@@ -1,9 +1,15 @@
 import Foundation
 
-final class PeoplesPresenter {
-    unowned let view: PeoplesVC
+// MARK: - protocol
+protocol PeoplesPresenterProtocol {
+    
+}
 
-    init(view: PeoplesVC) {
+final class PeoplesPresenter: PeoplesPresenterProtocol {
+    
+    unowned let view: PeoplesVCProtocol
+
+    init(view: PeoplesVCProtocol) {
         self.view = view
     }
 }

@@ -1,9 +1,14 @@
 import UIKit
 
+// MARK: - protocol
+protocol ScheduleVCProtocol: AnyObject {
+    
+}
+
 class ScheduleVC: UIViewController {
     // MARK: - PROPERTIES:
     
-    var presenter: SchedulePresenter?
+    var presenter: SchedulePresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     
@@ -41,3 +46,6 @@ class ScheduleVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
+extension ScheduleVC: ScheduleVCProtocol {
+    
+}

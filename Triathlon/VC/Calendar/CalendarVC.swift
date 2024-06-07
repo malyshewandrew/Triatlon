@@ -1,9 +1,14 @@
 import UIKit
 
+// MARK: - protocol
+protocol CalendarVCProtocol: AnyObject {
+    
+}
+
 class CalendarVC: UIViewController {
     // MARK: - PROPERTIES:
     
-    var presenter: CalendarPresenter?
+    var presenter: CalendarPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     
@@ -41,3 +46,6 @@ class CalendarVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
+extension CalendarVC: CalendarVCProtocol {
+    
+}

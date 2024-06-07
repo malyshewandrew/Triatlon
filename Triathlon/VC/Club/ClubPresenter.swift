@@ -1,10 +1,17 @@
 import Foundation
 
-final class ClubPresenter {
-    unowned let view: ClubVC
+// MARK: - protocol
+protocol ClubPresenterProtocol {
+    
+}
 
-    init(view: ClubVC) {
+final class ClubPresenter: ClubPresenterProtocol {
+    
+    unowned let view: ClubVCProtocol
+    
+    init(view: ClubVCProtocol) {
         self.view = view
     }
+
 }
 
