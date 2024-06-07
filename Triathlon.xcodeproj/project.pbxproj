@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B612C11BB7D00AB19CC /* TabBarController.swift */; };
+		FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B632C11BD2800AB19CC /* Extensions.swift */; };
+		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
+		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
+		FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34112C11255B0014DE84 /* CalendarVC.swift */; };
+		FBAD34142C11256B0014DE84 /* CalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */; };
+		FBAD34162C1125740014DE84 /* ClubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34152C1125740014DE84 /* ClubVC.swift */; };
+		FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34172C11257E0014DE84 /* ClubPresenter.swift */; };
+		FBAD341A2C1125870014DE84 /* PeoplesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34192C1125870014DE84 /* PeoplesVC.swift */; };
+		FBAD341C2C1125920014DE84 /* PeoplesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD341B2C1125920014DE84 /* PeoplesPresenter.swift */; };
+		FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD341D2C11259B0014DE84 /* ShopVC.swift */; };
+		FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD341F2C1125A60014DE84 /* ShopPresenter.swift */; };
+		FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B852C10CC1400FBDF3B /* AppDelegate.swift */; };
+		FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B872C10CC1400FBDF3B /* SceneDelegate.swift */; };
+		FBB89B8A2C10CC1400FBDF3B /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */; };
+		FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */; };
+		FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */; };
+		FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FB703B612C11BB7D00AB19CC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
+		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
+		FBAD34112C11255B0014DE84 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenter.swift; sourceTree = "<group>"; };
+		FBAD34152C1125740014DE84 /* ClubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubVC.swift; sourceTree = "<group>"; };
+		FBAD34172C11257E0014DE84 /* ClubPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubPresenter.swift; sourceTree = "<group>"; };
+		FBAD34192C1125870014DE84 /* PeoplesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplesVC.swift; sourceTree = "<group>"; };
+		FBAD341B2C1125920014DE84 /* PeoplesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplesPresenter.swift; sourceTree = "<group>"; };
+		FBAD341D2C11259B0014DE84 /* ShopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVC.swift; sourceTree = "<group>"; };
+		FBAD341F2C1125A60014DE84 /* ShopPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPresenter.swift; sourceTree = "<group>"; };
+		FBB89B822C10CC1400FBDF3B /* Triathlon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triathlon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB89B852C10CC1400FBDF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FBB89B872C10CC1400FBDF3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBB89B912C10CC1500FBDF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FBB89B932C10CC1500FBDF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBB89B7F2C10CC1400FBDF3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB703B602C11BB6B00AB19CC /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				FB703B612C11BB7D00AB19CC /* TabBarController.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		FBAD340C2C1120760014DE84 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */,
+				FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		FBAD340D2C1125340014DE84 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				FBAD34112C11255B0014DE84 /* CalendarVC.swift */,
+				FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		FBAD340E2C11253F0014DE84 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				FBAD34152C1125740014DE84 /* ClubVC.swift */,
+				FBAD34172C11257E0014DE84 /* ClubPresenter.swift */,
+			);
+			path = Club;
+			sourceTree = "<group>";
+		};
+		FBAD340F2C1125450014DE84 /* Peoples */ = {
+			isa = PBXGroup;
+			children = (
+				FBAD34192C1125870014DE84 /* PeoplesVC.swift */,
+				FBAD341B2C1125920014DE84 /* PeoplesPresenter.swift */,
+			);
+			path = Peoples;
+			sourceTree = "<group>";
+		};
+		FBAD34102C11254B0014DE84 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				FBAD341D2C11259B0014DE84 /* ShopVC.swift */,
+				FBAD341F2C1125A60014DE84 /* ShopPresenter.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		FBB89B792C10CC1400FBDF3B = {
+			isa = PBXGroup;
+			children = (
+				FBB89B842C10CC1400FBDF3B /* Triathlon */,
+				FBB89B832C10CC1400FBDF3B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBB89B832C10CC1400FBDF3B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBB89B822C10CC1400FBDF3B /* Triathlon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBB89B842C10CC1400FBDF3B /* Triathlon */ = {
+			isa = PBXGroup;
+			children = (
+				FBB89B9B2C10CE8E00FBDF3B /* Delegates */,
+				FB703B602C11BB6B00AB19CC /* Tab Bar */,
+				FBB89B9D2C10CEAF00FBDF3B /* VC */,
+				FBB89B9C2C10CE9F00FBDF3B /* UI */,
+				FBB89B932C10CC1500FBDF3B /* Info.plist */,
+			);
+			path = Triathlon;
+			sourceTree = "<group>";
+		};
+		FBB89B9B2C10CE8E00FBDF3B /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FBB89B852C10CC1400FBDF3B /* AppDelegate.swift */,
+				FBB89B872C10CC1400FBDF3B /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FBB89B9C2C10CE9F00FBDF3B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */,
+				FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */,
+				FB703B632C11BD2800AB19CC /* Extensions.swift */,
+				FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */,
+				FB9BACD52C12723600D8E2B7 /* UIComponents.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FBB89B9D2C10CEAF00FBDF3B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				FBAD340E2C11253F0014DE84 /* Club */,
+				FBAD340F2C1125450014DE84 /* Peoples */,
+				FBAD340D2C1125340014DE84 /* Calendar */,
+				FBAD340C2C1120760014DE84 /* Schedule */,
+				FBAD34102C11254B0014DE84 /* Shop */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBB89B812C10CC1400FBDF3B /* Triathlon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBB89B962C10CC1500FBDF3B /* Build configuration list for PBXNativeTarget "Triathlon" */;
+			buildPhases = (
+				FBB89B7E2C10CC1400FBDF3B /* Sources */,
+				FBB89B7F2C10CC1400FBDF3B /* Frameworks */,
+				FBB89B802C10CC1400FBDF3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Triathlon;
+			productName = Triathlon;
+			productReference = FBB89B822C10CC1400FBDF3B /* Triathlon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBB89B7A2C10CC1400FBDF3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					FBB89B812C10CC1400FBDF3B = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = FBB89B7D2C10CC1400FBDF3B /* Build configuration list for PBXProject "Triathlon" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBB89B792C10CC1400FBDF3B;
+			productRefGroup = FBB89B832C10CC1400FBDF3B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBB89B812C10CC1400FBDF3B /* Triathlon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBB89B802C10CC1400FBDF3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */,
+				FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBB89B7E2C10CC1400FBDF3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBAD34142C11256B0014DE84 /* CalendarPresenter.swift in Sources */,
+				FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */,
+				FBB89B8A2C10CC1400FBDF3B /* ScheduleVC.swift in Sources */,
+				FBAD34162C1125740014DE84 /* ClubVC.swift in Sources */,
+				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
+				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
+				FBAD341C2C1125920014DE84 /* PeoplesPresenter.swift in Sources */,
+				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
+				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
+				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
+				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
+				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
+				FBAD341A2C1125870014DE84 /* PeoplesVC.swift in Sources */,
+				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
+				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
+				FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBB89B912C10CC1500FBDF3B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FBB89B942C10CC1500FBDF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FBB89B952C10CC1500FBDF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBB89B972C10CC1500FBDF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KKD4ZM687;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Triathlon/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tristyle;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = triathlon.Triathlon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FBB89B982C10CC1500FBDF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KKD4ZM687;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Triathlon/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tristyle;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = triathlon.Triathlon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBB89B7D2C10CC1400FBDF3B /* Build configuration list for PBXProject "Triathlon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBB89B942C10CC1500FBDF3B /* Debug */,
+				FBB89B952C10CC1500FBDF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBB89B962C10CC1500FBDF3B /* Build configuration list for PBXNativeTarget "Triathlon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBB89B972C10CC1500FBDF3B /* Debug */,
+				FBB89B982C10CC1500FBDF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBB89B7A2C10CC1400FBDF3B /* Project object */;
+}
