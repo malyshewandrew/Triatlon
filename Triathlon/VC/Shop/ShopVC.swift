@@ -1,9 +1,14 @@
 import UIKit
 
+// MARK: - protocol
+protocol ShopVCProtocol: AnyObject {
+    
+}
+
 class ShopVC: UIViewController {
     // MARK: - PROPERTIES:
     
-    var presenter: ShopPresenter?
+    var presenter: ShopPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     
@@ -41,3 +46,6 @@ class ShopVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
+extension ShopVC: ShopVCProtocol {
+    
+}

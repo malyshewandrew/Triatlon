@@ -1,9 +1,14 @@
 import UIKit
 
+// MARK: - protocol
+protocol ClubVCProtocol: AnyObject {
+    
+}
+
 class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
-    var presenter: ClubPresenter?
+    var presenter: ClubPresenterProtocol!
     
     private let loadingView = UIView()
     private let tristyleLogoImageView = UIImageView(image: UIImage(resource: .tristyleLogo))
@@ -74,3 +79,6 @@ class ClubVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
+extension ClubVC: ClubVCProtocol {
+    
+}

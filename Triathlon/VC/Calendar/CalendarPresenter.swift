@@ -1,9 +1,15 @@
 import Foundation
 
-final class CalendarPresenter {
-    unowned let view: CalendarVC
+// MARK: - protocol
+protocol CalendarPresenterProtocol {
+    
+}
 
-    init(view: CalendarVC) {
+final class CalendarPresenter: CalendarPresenterProtocol {
+    
+    unowned let view: CalendarVCProtocol
+
+    init(view: CalendarVCProtocol) {
         self.view = view
     }
 }

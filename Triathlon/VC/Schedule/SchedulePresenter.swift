@@ -1,9 +1,15 @@
 import Foundation
 
-final class SchedulePresenter {
-    unowned let view: ScheduleVC
+// MARK: - protocol
+protocol SchedulePresenterProtocol {
+    
+}
 
-    init(view: ScheduleVC) {
+final class SchedulePresenter: SchedulePresenterProtocol {
+    
+    unowned let view: ScheduleVCProtocol
+
+    init(view: ScheduleVCProtocol) {
         self.view = view
     }
 }

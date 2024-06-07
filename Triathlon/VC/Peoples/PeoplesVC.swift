@@ -1,9 +1,14 @@
 import UIKit
 
+// MARK: - protocol
+protocol PeoplesVCProtocol: AnyObject {
+    
+}
+
 class PeoplesVC: UIViewController {
     // MARK: - PROPERTIES:
     
-    var presenter: PeoplesPresenter?
+    var presenter: PeoplesPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     
@@ -41,3 +46,6 @@ class PeoplesVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
+extension PeoplesVC: PeoplesVCProtocol {
+    
+}

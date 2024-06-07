@@ -1,9 +1,15 @@
 import Foundation
 
-final class ShopPresenter {
-    unowned let view: ShopVC
+// MARK: - protocol
+protocol ShopPresenterProtocol {
+    
+}
 
-    init(view: ShopVC) {
+final class ShopPresenter: ShopPresenterProtocol {
+    
+    unowned let view: ShopVCProtocol
+
+    init(view: ShopVCProtocol) {
         self.view = view
     }
 }
