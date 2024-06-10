@@ -2,25 +2,22 @@ import UIKit
 
 // MARK: - protocol
 
-protocol ClubVCProtocol: AnyObject {}
+protocol ClubVCProtocol: AnyObject {
+    
+}
 
 class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ClubPresenterProtocol!
-    
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
-    
     private let scrollView = UIScrollView()
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
-    
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
-    
     private let sportsmenCountLabel = UILabel()
     private let sportsmenDescriptionLabel = UILabel()
-    
     private let startCountLabel = UILabel()
     private let startDescriptionLabel = UILabel()
     
@@ -31,9 +28,7 @@ class ClubVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
-        animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
-        animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
-        animateCountLabel(label: startCountLabel, to: 32, duration: 2)
+        startAnimationForCountsLabel()
     }
     
     // MARK: - ADD SUBVIEWS:
@@ -167,42 +162,16 @@ class ClubVC: UIViewController {
         })
     }
     
-    // ANIMATE COUNT LABELS:
-    func animateCountLabel(label: UILabel, to endValue: Int, duration: Double) {
-        let animationStartDate = Date()
-        let animationDuration: Double = duration
-        let displayLink = CADisplayLink(target: self, selector: #selector(updateLabel))
-        displayLink.add(to: .current, forMode: .default)
-        displayLink.preferredFramesPerSecond = 60
-        objc_setAssociatedObject(displayLink, &startValueKey, label, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(displayLink, &endValueKey, endValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(displayLink, &animationStartDateKey, animationStartDate, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(displayLink, &animationDurationKey, animationDuration, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-        
-    // UPDATE COUNT LABELS:
-    @objc private func updateLabel(_ displayLink: CADisplayLink) {
-        guard let label = objc_getAssociatedObject(displayLink, &startValueKey) as? UILabel else { return }
-        let endValue = objc_getAssociatedObject(displayLink, &endValueKey) as! Int
-        let animationStartDate = objc_getAssociatedObject(displayLink, &animationStartDateKey) as! Date
-        let animationDuration = objc_getAssociatedObject(displayLink, &animationDurationKey) as! Double
-        let now = Date()
-        let elapsedTime = now.timeIntervalSince(animationStartDate)
-        let percentage = min(elapsedTime / animationDuration, 1)
-        let newValue = Int(Double(endValue) * percentage)
-        label.text = "\(newValue)"
-            
-        if percentage == 1 {
-            displayLink.invalidate()
-        }
+    // START ANIMATION FOR COUNTS LABEL:
+    private func startAnimationForCountsLabel() {
+        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
+        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
+        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
     }
 }
 
 // MARK: - EXTENSION:
 
-extension ClubVC: ClubVCProtocol {}
-
-private var startValueKey: UInt8 = 0
-private var endValueKey: UInt8 = 0
-private var animationStartDateKey: UInt8 = 0
-private var animationDurationKey: UInt8 = 0
+extension ClubVC: ClubVCProtocol {
+    
+}
