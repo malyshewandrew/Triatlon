@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB1427042C17959400D94901 /* CodexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427032C17959400D94901 /* CodexVC.swift */; };
+		FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427052C17978100D94901 /* PhilosophyVC.swift */; };
 		FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B612C11BB7D00AB19CC /* TabBarController.swift */; };
 		FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B632C11BD2800AB19CC /* Extensions.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB1427032C17959400D94901 /* CodexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexVC.swift; sourceTree = "<group>"; };
+		FB1427052C17978100D94901 /* PhilosophyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhilosophyVC.swift; sourceTree = "<group>"; };
 		FB703B612C11BB7D00AB19CC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			children = (
 				FBAD34152C1125740014DE84 /* ClubVC.swift */,
 				FBAD34172C11257E0014DE84 /* ClubPresenter.swift */,
+				FB1427032C17959400D94901 /* CodexVC.swift */,
+				FB1427052C17978100D94901 /* PhilosophyVC.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -259,7 +265,9 @@
 				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
 				FBAD341A2C1125870014DE84 /* PeoplesVC.swift in Sources */,
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
+				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
+				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
 				FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

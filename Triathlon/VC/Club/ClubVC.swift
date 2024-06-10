@@ -10,7 +10,6 @@ class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ClubPresenterProtocol!
-    private let vibration = Vibration()
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
@@ -20,10 +19,16 @@ class ClubVC: UIViewController {
     private let sportsmenDescriptionLabel = UILabel()
     private let startCountLabel = UILabel()
     private let startDescriptionLabel = UILabel()
-    
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
     private let joinButton = UIButton(type: .system)
+    
+    private let linksView = UIView()
+    private let instagramButton = UIButton(type: .system)
+    private let youtubeButton = UIButton(type: .system)
+    private let telegramButton = UIButton(type: .system)
+    private let phoneButton = UIButton(type: .system)
+    private let webButton = UIButton(type: .system)
     
     // MARK: - LIFYCYCLE:
     
@@ -32,14 +37,14 @@ class ClubVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
-        startAnimationForCountsLabel()
     }
     
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(logoImageView, loadingView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton)
+        view.addSubviews(logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
         loadingView.addSubviews(loadingImageView)
+        linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -113,6 +118,48 @@ class ClubVC: UIViewController {
         joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         joinButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         joinButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // LINKS VIEW:
+        linksView.translatesAutoresizingMaskIntoConstraints = false
+        linksView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        linksView.topAnchor.constraint(equalTo: joinButton.bottomAnchor, constant: 50).isActive = true
+        linksView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        linksView.heightAnchor.constraint(equalTo: linksView.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // INSTAGRAM:
+        instagramButton.translatesAutoresizingMaskIntoConstraints = false
+        instagramButton.centerXAnchor.constraint(equalTo: linksView.centerXAnchor).isActive = true
+        instagramButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
+        instagramButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
+        instagramButton.widthAnchor.constraint(equalTo: instagramButton.heightAnchor, multiplier: 1).isActive = true
+        
+        // YOUTUBE:
+        youtubeButton.translatesAutoresizingMaskIntoConstraints = false
+        youtubeButton.trailingAnchor.constraint(equalTo: instagramButton.leadingAnchor, constant: -25).isActive = true
+        youtubeButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
+        youtubeButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
+        youtubeButton.widthAnchor.constraint(equalTo: youtubeButton.heightAnchor, multiplier: 1).isActive = true
+        
+        // TELEGRAM:
+        telegramButton.translatesAutoresizingMaskIntoConstraints = false
+        telegramButton.trailingAnchor.constraint(equalTo: youtubeButton.leadingAnchor, constant: -25).isActive = true
+        telegramButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
+        telegramButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
+        telegramButton.widthAnchor.constraint(equalTo: telegramButton.heightAnchor, multiplier: 1).isActive = true
+        
+        // WEB:
+        webButton.translatesAutoresizingMaskIntoConstraints = false
+        webButton.leadingAnchor.constraint(equalTo: instagramButton.trailingAnchor, constant: 25).isActive = true
+        webButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
+        webButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
+        webButton.widthAnchor.constraint(equalTo: webButton.heightAnchor, multiplier: 1).isActive = true
+        
+        // PHONE:
+        phoneButton.translatesAutoresizingMaskIntoConstraints = false
+        phoneButton.leadingAnchor.constraint(equalTo: webButton.trailingAnchor, constant: 25).isActive = true
+        phoneButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
+        phoneButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
+        phoneButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -120,7 +167,7 @@ class ClubVC: UIViewController {
     private func configureUI() {
         // LOADING VIEW:
         loadingView.backgroundColor = .colorMainBlue
-        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 3)
+        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 0)
         
         // VIEW:
         view.backgroundColor = .colorTabBar
@@ -138,7 +185,7 @@ class ClubVC: UIViewController {
         // COACH:
         coachCountLabel.textColor = .white
         coachCountLabel.font = fontBoldStandard64
-        coachCountLabel.text = "16"
+        coachCountLabel.text = "   "
         
         coachDescriptionLabel.textColor = .white
         coachDescriptionLabel.font = fontLightStandard12
@@ -147,7 +194,7 @@ class ClubVC: UIViewController {
         // SPORTSMEN:
         sportsmenCountLabel.textColor = .white
         sportsmenCountLabel.font = fontBoldStandard64
-        sportsmenCountLabel.text = "152"
+        sportsmenCountLabel.text = "   "
         
         sportsmenDescriptionLabel.textColor = .white
         sportsmenDescriptionLabel.font = fontLightStandard12
@@ -156,7 +203,7 @@ class ClubVC: UIViewController {
         // START:
         startCountLabel.textColor = .white
         startCountLabel.font = fontBoldStandard64
-        startCountLabel.text = "32"
+        startCountLabel.text = "   "
         
         startDescriptionLabel.textColor = .white
         startDescriptionLabel.font = fontLightStandard12
@@ -169,6 +216,10 @@ class ClubVC: UIViewController {
         codexButton.layer.cornerRadius = cornerRadius
         codexButton.layer.borderWidth = 2
         codexButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        codexButton.addAction(UIAction(handler: { [weak self] _ in
+            let codexVC = CodexVC()
+            self?.present(codexVC, animated: true)
+        }), for: .touchUpInside)
         
         // PHILOSOPHY BUTTON:
         philosophyButton.setTitle("Философия и ценности", for: .normal)
@@ -177,6 +228,10 @@ class ClubVC: UIViewController {
         philosophyButton.layer.cornerRadius = cornerRadius
         philosophyButton.layer.borderWidth = 2
         philosophyButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        philosophyButton.addAction(UIAction(handler: { [weak self] _ in
+            let philosophyVC = PhilosophyVC()
+            self?.present(philosophyVC, animated: true)
+        }), for: .touchUpInside)
         
         // JOIN BUTTON:
         joinButton.setTitle("Начать тренироваться", for: .normal)
@@ -185,25 +240,67 @@ class ClubVC: UIViewController {
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.layer.borderWidth = 2
         joinButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        joinButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.joinButtonTapped()
+        }), for: .touchUpInside)
+        
+        // LINKS VIEW:
+        linksView.layer.cornerRadius = cornerRadius
+        
+        // INSTAGRAM:
+        instagramButton.setImage(UIImage(resource: .instagram), for: .normal)
+        instagramButton.tintColor = .white
+        instagramButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.instagramButtonTapped()
+        }), for: .touchUpInside)
+        
+        // YOUTUBE:
+        youtubeButton.setImage(UIImage(resource: .youTube), for: .normal)
+        youtubeButton.tintColor = .white
+        youtubeButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.youtubeButtonTapped()
+        }), for: .touchUpInside)
+        
+        // TELEGRAM:
+        telegramButton.setImage(UIImage(resource: .telegram), for: .normal)
+        telegramButton.tintColor = .white
+        telegramButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.telegramButtonTapped()
+        }), for: .touchUpInside)
+        
+        // WEB:
+        webButton.setImage(UIImage(resource: .web), for: .normal)
+        webButton.tintColor = .white
+        webButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.webButtonTapped()
+        }), for: .touchUpInside)
+        
+        // PHONE:
+        phoneButton.setImage(UIImage(resource: .phone), for: .normal)
+        phoneButton.tintColor = .white
+        phoneButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.presenter.phoneButtonTapped()
+        }), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
     
     // CLOSED ANIMATION VIEW:
     @objc private func closeAnimationVIew() {
-        tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             self?.loadingView.alpha = 0.0
-        }, completion: { _ in
-            self.loadingView.removeFromSuperview()
+        }, completion: { [weak self] _ in
+            self?.loadingView.removeFromSuperview()
+            self?.startAnimationForCountsLabel()
         })
     }
     
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
-        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
-        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
-        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
+        self.presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
+        self.presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
+        self.presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
     }
 }
 
