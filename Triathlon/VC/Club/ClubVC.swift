@@ -1,10 +1,10 @@
+import PDFKit
 import UIKit
+import WebKit
 
 // MARK: - protocol
 
-protocol ClubVCProtocol: AnyObject {
-    
-}
+protocol ClubVCProtocol: AnyObject {}
 
 class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
@@ -287,7 +287,7 @@ class ClubVC: UIViewController {
     
     // CLOSED ANIMATION VIEW:
     @objc private func closeAnimationVIew() {
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             self?.loadingView.alpha = 0.0
         }, completion: { [weak self] _ in
@@ -298,14 +298,12 @@ class ClubVC: UIViewController {
     
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
-        self.presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
-        self.presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
-        self.presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
+        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
+        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
+        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
     }
 }
 
 // MARK: - EXTENSION:
 
-extension ClubVC: ClubVCProtocol {
-    
-}
+extension ClubVC: ClubVCProtocol {}

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB1427042C17959400D94901 /* CodexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427032C17959400D94901 /* CodexVC.swift */; };
 		FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427052C17978100D94901 /* PhilosophyVC.swift */; };
+		FB1427082C179F1100D94901 /* Codex.pdf in Resources */ = {isa = PBXBuildFile; fileRef = FB1427072C179F1100D94901 /* Codex.pdf */; };
 		FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B612C11BB7D00AB19CC /* TabBarController.swift */; };
 		FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B632C11BD2800AB19CC /* Extensions.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		FB1427032C17959400D94901 /* CodexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexVC.swift; sourceTree = "<group>"; };
 		FB1427052C17978100D94901 /* PhilosophyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhilosophyVC.swift; sourceTree = "<group>"; };
+		FB1427072C179F1100D94901 /* Codex.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Codex.pdf; sourceTree = "<group>"; };
 		FB703B612C11BB7D00AB19CC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				FBB89B9D2C10CEAF00FBDF3B /* VC */,
 				FBB89B9C2C10CE9F00FBDF3B /* UI */,
 				FBB89B932C10CC1500FBDF3B /* Info.plist */,
+				FB1427072C179F1100D94901 /* Codex.pdf */,
 			);
 			path = Triathlon;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */,
+				FB1427082C179F1100D94901 /* Codex.pdf in Resources */,
 				FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

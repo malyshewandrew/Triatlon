@@ -4,6 +4,7 @@ import UIKit
 
 protocol ClubPresenterProtocol {
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double)
+    func codexButtonTapped()
     func joinButtonTapped()
     func instagramButtonTapped()
     func youtubeButtonTapped()
@@ -53,6 +54,11 @@ final class ClubPresenter: ClubPresenterProtocol {
         if percentage == 1 {
             displayLink.invalidate()
         }
+    }
+    
+    // CODEX BUTTON TAPPED:
+    func codexButtonTapped() {
+        
     }
     
     // JOIN BUTTON TAPPED:
