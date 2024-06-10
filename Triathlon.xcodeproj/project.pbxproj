@@ -146,7 +146,6 @@
 				FBB89B9D2C10CEAF00FBDF3B /* VC */,
 				FBB89B9C2C10CE9F00FBDF3B /* UI */,
 				FBB89B932C10CC1500FBDF3B /* Info.plist */,
-				FB1427072C179F1100D94901 /* Codex.pdf */,
 			);
 			path = Triathlon;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 				FB703B632C11BD2800AB19CC /* Extensions.swift */,
 				FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */,
 				FB9BACD52C12723600D8E2B7 /* UIComponents.swift */,
+				FB1427072C179F1100D94901 /* Codex.pdf */,
 			);
 			path = UI;
 			sourceTree = "<group>";

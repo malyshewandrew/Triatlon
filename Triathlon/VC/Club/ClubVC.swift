@@ -135,28 +135,28 @@ class ClubVC: UIViewController {
         
         // YOUTUBE:
         youtubeButton.translatesAutoresizingMaskIntoConstraints = false
-        youtubeButton.trailingAnchor.constraint(equalTo: instagramButton.leadingAnchor, constant: -25).isActive = true
+        youtubeButton.trailingAnchor.constraint(equalTo: instagramButton.leadingAnchor, constant: -30).isActive = true
         youtubeButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
         youtubeButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
         youtubeButton.widthAnchor.constraint(equalTo: youtubeButton.heightAnchor, multiplier: 1).isActive = true
         
         // TELEGRAM:
         telegramButton.translatesAutoresizingMaskIntoConstraints = false
-        telegramButton.trailingAnchor.constraint(equalTo: youtubeButton.leadingAnchor, constant: -25).isActive = true
+        telegramButton.trailingAnchor.constraint(equalTo: youtubeButton.leadingAnchor, constant: -30).isActive = true
         telegramButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
         telegramButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
         telegramButton.widthAnchor.constraint(equalTo: telegramButton.heightAnchor, multiplier: 1).isActive = true
         
         // WEB:
         webButton.translatesAutoresizingMaskIntoConstraints = false
-        webButton.leadingAnchor.constraint(equalTo: instagramButton.trailingAnchor, constant: 25).isActive = true
+        webButton.leadingAnchor.constraint(equalTo: instagramButton.trailingAnchor, constant: 30).isActive = true
         webButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
         webButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
         webButton.widthAnchor.constraint(equalTo: webButton.heightAnchor, multiplier: 1).isActive = true
         
         // PHONE:
         phoneButton.translatesAutoresizingMaskIntoConstraints = false
-        phoneButton.leadingAnchor.constraint(equalTo: webButton.trailingAnchor, constant: 25).isActive = true
+        phoneButton.leadingAnchor.constraint(equalTo: webButton.trailingAnchor, constant: 30).isActive = true
         phoneButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
         phoneButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
         phoneButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
