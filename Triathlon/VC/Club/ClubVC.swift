@@ -10,9 +10,9 @@ class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ClubPresenterProtocol!
+    private let vibration = Vibration()
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
-    private let scrollView = UIScrollView()
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
@@ -20,6 +20,10 @@ class ClubVC: UIViewController {
     private let sportsmenDescriptionLabel = UILabel()
     private let startCountLabel = UILabel()
     private let startDescriptionLabel = UILabel()
+    
+    private let codexButton = UIButton(type: .system)
+    private let philosophyButton = UIButton(type: .system)
+    private let joinButton = UIButton(type: .system)
     
     // MARK: - LIFYCYCLE:
     
@@ -34,9 +38,8 @@ class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(logoImageView, scrollView, loadingView)
+        view.addSubviews(logoImageView, loadingView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton)
         loadingView.addSubviews(loadingImageView)
-        scrollView.addSubviews(coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -56,13 +59,6 @@ class ClubVC: UIViewController {
         loadingImageView.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
         loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor, multiplier: 1).isActive = true
         
-        // SCROLL VIEW:
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
@@ -72,7 +68,7 @@ class ClubVC: UIViewController {
         
         // COACH:
         coachCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        coachCountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
+        coachCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
         coachCountLabel.trailingAnchor.constraint(equalTo: sportsmenCountLabel.leadingAnchor, constant: -25).isActive = true
         
         coachDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,8 +77,8 @@ class ClubVC: UIViewController {
         
         // SPORTSMEN:
         sportsmenCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        sportsmenCountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
-        sportsmenCountLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        sportsmenCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
+        sportsmenCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         sportsmenDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         sportsmenDescriptionLabel.topAnchor.constraint(equalTo: sportsmenCountLabel.bottomAnchor).isActive = true
@@ -90,12 +86,33 @@ class ClubVC: UIViewController {
         
         // START:
         startCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        startCountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
+        startCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
         startCountLabel.leadingAnchor.constraint(equalTo: sportsmenCountLabel.trailingAnchor, constant: 25).isActive = true
         
         startDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         startDescriptionLabel.topAnchor.constraint(equalTo: startCountLabel.bottomAnchor).isActive = true
         startDescriptionLabel.centerXAnchor.constraint(equalTo: startCountLabel.centerXAnchor).isActive = true
+        
+        // CODEX BUTTON:
+        codexButton.translatesAutoresizingMaskIntoConstraints = false
+        codexButton.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 50).isActive = true
+        codexButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        codexButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        codexButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // PHILOSOPHY BUTTON:
+        philosophyButton.translatesAutoresizingMaskIntoConstraints = false
+        philosophyButton.topAnchor.constraint(equalTo: codexButton.bottomAnchor, constant: 25).isActive = true
+        philosophyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        philosophyButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        philosophyButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // JOIN BUTTON:
+        joinButton.translatesAutoresizingMaskIntoConstraints = false
+        joinButton.topAnchor.constraint(equalTo: philosophyButton.bottomAnchor, constant: 25).isActive = true
+        joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        joinButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        joinButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -103,7 +120,7 @@ class ClubVC: UIViewController {
     private func configureUI() {
         // LOADING VIEW:
         loadingView.backgroundColor = .colorMainBlue
-        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 0)
+        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 3)
         
         // VIEW:
         view.backgroundColor = .colorTabBar
@@ -114,10 +131,6 @@ class ClubVC: UIViewController {
         
         // TAB BAR:
         tabBarController?.tabBar.isHidden = true
-        
-        // SCROLL VIEW:
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height)
-        scrollView.isScrollEnabled = true
 
         // IMAGE VIEW:
         logoImageView.contentMode = .scaleAspectFit
@@ -148,6 +161,30 @@ class ClubVC: UIViewController {
         startDescriptionLabel.textColor = .white
         startDescriptionLabel.font = fontLightStandard12
         startDescriptionLabel.text = "Стартов"
+        
+        // CODEX BUTTON:
+        codexButton.setTitle("Кодекс клуба", for: .normal)
+        codexButton.setTitleColor(.white, for: .normal)
+        codexButton.layer.masksToBounds = true
+        codexButton.layer.cornerRadius = cornerRadius
+        codexButton.layer.borderWidth = 2
+        codexButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        
+        // PHILOSOPHY BUTTON:
+        philosophyButton.setTitle("Философия и ценности", for: .normal)
+        philosophyButton.setTitleColor(.white, for: .normal)
+        philosophyButton.layer.masksToBounds = true
+        philosophyButton.layer.cornerRadius = cornerRadius
+        philosophyButton.layer.borderWidth = 2
+        philosophyButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        
+        // JOIN BUTTON:
+        joinButton.setTitle("Начать тренироваться", for: .normal)
+        joinButton.setTitleColor(.white, for: .normal)
+        joinButton.layer.masksToBounds = true
+        joinButton.layer.cornerRadius = cornerRadius
+        joinButton.layer.borderWidth = 2
+        joinButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
     }
     
     // MARK: - HELPERS:
