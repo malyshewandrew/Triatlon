@@ -30,6 +30,8 @@
 		FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */; };
 		FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */; };
 		FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */; };
+		FBBC86252C18F26300752195 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86242C18F26300752195 /* ScheduleModel.swift */; };
+		FBBC86272C18F31200752195 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86262C18F31200752195 /* ScheduleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		FBB89B912C10CC1500FBDF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBB89B932C10CC1500FBDF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
+		FBBC86242C18F26300752195 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		FBBC86262C18F31200752195 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			children = (
 				FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */,
 				FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */,
+				FBBC86242C18F26300752195 /* ScheduleModel.swift */,
+				FBBC86262C18F31200752195 /* ScheduleCell.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -276,8 +282,10 @@
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
+				FBBC86272C18F31200752195 /* ScheduleCell.swift in Sources */,
 				FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */,
 				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
+				FBBC86252C18F26300752195 /* ScheduleModel.swift in Sources */,
 				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
 				FBAD341A2C1125870014DE84 /* PeoplesVC.swift in Sources */,
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
