@@ -19,7 +19,7 @@ final class CalendarVC: UIViewController {
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Ironman Minsk",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Indoor Triathlon",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 12))!: "Ski Winter",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 12))!: "Презентация Tristyle",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start"
     ]
     private var sortedDates: [(date: Date, event: String)] = []
@@ -66,13 +66,13 @@ final class CalendarVC: UIViewController {
         
         // NAME LABEL:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 25).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 50).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         
         // DATE LABEL:
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 25).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 50).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         // TABLE VIEW:
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,7 @@ final class CalendarVC: UIViewController {
         // TITLE:
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.text = "Календарь стартов Tristyle:"
+        titleLabel.text = "Календарь Tristyle:"
         titleLabel.font = fontBoldStandard16
         
         // CALENDAR VIEW:
@@ -106,6 +106,7 @@ final class CalendarVC: UIViewController {
         // CALENDAR:
         calendar.dataSource = self
         calendar.delegate = self
+        calendar.scrollDirection = .vertical
         let appearance = calendar.appearance
         appearance.headerTitleColor = .white
         appearance.weekdayTextColor = .systemRed
@@ -114,15 +115,20 @@ final class CalendarVC: UIViewController {
         appearance.todayColor = .systemBlue
         appearance.selectionColor = .systemOrange
         appearance.eventDefaultColor = .systemRed
+        appearance.caseOptions = .headerUsesUpperCase
+        appearance.headerTitleColor = .white
+        appearance.headerTitleFont = fontBoldStandard16
         appearance.borderRadius = 1
         
         // NAME LABEL:
         nameLabel.textColor = .white
-        nameLabel.text = "Название старта:"
+        nameLabel.text = "Название события:"
+        nameLabel.font = fontMediumStandard14
         
         // DATE LABEL:
         dateLabel.textColor = .white
         dateLabel.text = "Осталось дней:"
+        dateLabel.font = fontMediumStandard14
         
         // TABLE VIEW:
         tableView.dataSource = self
