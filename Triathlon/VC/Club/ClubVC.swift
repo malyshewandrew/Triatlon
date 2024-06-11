@@ -37,6 +37,7 @@ class ClubVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
+        UserDefaults.standard.setValue(true, forKey: "FirstOpen")
     }
     
     // MARK: - ADD SUBVIEWS:
@@ -167,7 +168,7 @@ class ClubVC: UIViewController {
     private func configureUI() {
         // LOADING VIEW:
         loadingView.backgroundColor = .colorMainBlue
-        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 0)
+        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 2)
         
         // VIEW:
         view.backgroundColor = .colorTabBar
