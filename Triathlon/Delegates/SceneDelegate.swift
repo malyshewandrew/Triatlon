@@ -7,11 +7,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-
         let tabBarController = TabBarController()
-
+        
         self.window = window
-        window.rootViewController = tabBarController
+        if UserDefaults.standard.bool(forKey: "FirstOpen") {
+            window.rootViewController = tabBarController
+        } else {
+            let onboaringVC = OnboardingVC()
+            let clubPresenter = OnboardingPresenter(view: onboaringVC)
+            onboaringVC.presenter = clubPresenter
+            let onboardingNavigationController = UINavigationController(rootViewController: onboaringVC)
+            window.rootViewController = onboardingNavigationController
+        }
+ 
         window.makeKeyAndVisible()
     }
 
