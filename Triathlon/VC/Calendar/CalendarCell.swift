@@ -45,7 +45,7 @@ final class CalendarCell: UITableViewCell {
         // DATE:
         daysLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         daysLeftLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        daysLeftLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
+        daysLeftLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true
     }
     
     // MARK: - CONFIGURE UI:

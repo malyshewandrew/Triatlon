@@ -9,15 +9,18 @@ final class CalendarVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: CalendarPresenterProtocol!
+    private let titleLabel = UILabel()
     private let calendarView = UIView()
     private var calendar = FSCalendar()
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
     private let tableView = UITableView()
     private let markedDates: [Date: String] = [
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Ironman Minsk 2024",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Ironman Minsk",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Indoor Triathlon",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup"
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 12))!: "Ski Winter",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start"
     ]
     private var sortedDates: [(date: Date, event: String)] = []
     private let vibration = Vibration()
@@ -35,16 +38,21 @@ final class CalendarVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(calendarView, nameLabel, dateLabel, tableView)
+        view.addSubviews(titleLabel, calendarView, nameLabel, dateLabel, tableView)
         calendarView.addSubviews(calendar)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        // TITLE:
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         // CALENDAR VIEW:
         calendarView.translatesAutoresizingMaskIntoConstraints = false
-        calendarView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        calendarView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
         calendarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         calendarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
         calendarView.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -81,7 +89,13 @@ final class CalendarVC: UIViewController {
         view.backgroundColor = .colorTabBar
         
         // NAVIGATION CONTROLLER:
-        navigationItem.title = "Календарь"
+        navigationItem.title = ""
+        
+        // TITLE:
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.text = "Календарь стартов Tristyle:"
+        titleLabel.font = fontBoldStandard16
         
         // CALENDAR VIEW:
         calendarView.layer.cornerRadius = cornerRadius
