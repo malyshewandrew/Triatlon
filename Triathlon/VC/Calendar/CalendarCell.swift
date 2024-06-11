@@ -5,7 +5,7 @@ final class CalendarCell: UITableViewCell {
     // MARK: - PROPERTIES:
     private let containerView = UIView()
     private let nameLabel = UILabel()
-    private let dateLabel = UILabel()
+    private let daysLeftLabel = UILabel()
     
     // MARK: - LIFECYCLE:
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -22,7 +22,7 @@ final class CalendarCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubviews(containerView)
-        containerView.addSubviews(nameLabel, dateLabel)
+        containerView.addSubviews(nameLabel, daysLeftLabel)
         
     }
     
@@ -33,39 +33,47 @@ final class CalendarCell: UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // NAME:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
         
         // DATE:
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5).isActive = true
+        daysLeftLabel.translatesAutoresizingMaskIntoConstraints = false
+        daysLeftLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        daysLeftLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
     
     private func configureUI() {
         // CONTENT VIEW:
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .colorTabBar
         
         // CONTAINER VIEW:
+        containerView.layer.cornerRadius = cornerRadius
         containerView.backgroundColor = .colorBackground
         
         // NAME:
         nameLabel.textColor = .white
         
         // DATE:
-        dateLabel.textColor = .white
+        daysLeftLabel.textColor = .white
     }
     
     // MARK: - HELPERS:
-    func configure(name: String, date: String) {
+    func configure(name: String, daysLeft: Int) {
         nameLabel.text = name
-        dateLabel.text = date
+        daysLeftLabel.text = "\(daysLeft)"
+    }
+}
+
+extension Date {
+    var startOfDay: Date {
+        return Calendar.current.startOfDay(for: self)
     }
 }

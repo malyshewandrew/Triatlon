@@ -11,12 +11,16 @@ final class CalendarVC: UIViewController {
     var presenter: CalendarPresenterProtocol!
     private let calendarView = UIView()
     private var calendar = FSCalendar()
+    private let nameLabel = UILabel()
+    private let dateLabel = UILabel()
     private let tableView = UITableView()
     private let markedDates: [Date: String] = [
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Соревнования 15 июня",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Соревнования 18 июня",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Соревнования 27 июня"
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Ironman Minsk 2024",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Indoor Triathlon",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup"
     ]
+    private var sortedDates: [(date: Date, event: String)] = []
+    private let vibration = Vibration()
     
     // MARK: - LIFYCYCLE:
     
@@ -25,19 +29,19 @@ final class CalendarVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
+        sortedDates = markedDates.map { (date: $0.key, event: $0.value) }.sorted { $0.date < $1.date }
     }
     
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(calendarView, tableView)
+        view.addSubviews(calendarView, nameLabel, dateLabel, tableView)
         calendarView.addSubviews(calendar)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
-        
         // CALENDAR VIEW:
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
@@ -52,12 +56,22 @@ final class CalendarVC: UIViewController {
         calendar.centerXAnchor.constraint(equalTo: calendarView.centerXAnchor).isActive = true
         calendar.widthAnchor.constraint(equalTo: calendarView.widthAnchor, multiplier: 0.95).isActive = true
         
+        // NAME LABEL:
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 25).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        
+        // DATE LABEL:
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 25).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        
         // TABLE VIEW:
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 25).isActive = true
+        tableView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -88,10 +102,20 @@ final class CalendarVC: UIViewController {
         appearance.eventDefaultColor = .systemRed
         appearance.borderRadius = 1
         
+        // NAME LABEL:
+        nameLabel.textColor = .white
+        nameLabel.text = "Название старта:"
+        
+        // DATE LABEL:
+        dateLabel.textColor = .white
+        dateLabel.text = "Осталось дней:"
+        
         // TABLE VIEW:
         tableView.dataSource = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.register(CalendarCell.self, forCellReuseIdentifier: "CalendarCell")
+        tableView.backgroundColor = .colorTabBar
     }
     
     // MARK: - HELPERS:
@@ -99,9 +123,7 @@ final class CalendarVC: UIViewController {
 
 // MARK: - EXTENSIONS:
 
-extension CalendarVC: CalendarVCProtocol {
-    
-}
+extension CalendarVC: CalendarVCProtocol {}
 
 // CALENDAR:
 extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
@@ -115,6 +137,7 @@ extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         if let message = markedDates[date] {
+            vibration.vibrationStandart()
             let alert = UIAlertController(title: "Старт Tristyle", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -131,11 +154,22 @@ extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
 // TABLE VIEW:
 extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        markedDates.count
+        return sortedDates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else {
+            return UITableViewCell()
+        }
+        let start = sortedDates[indexPath.row]
+        cell.configure(name: start.event, daysLeft: calculateDaysLeft(to: start.date))
         return cell
+    }
+    
+    private func calculateDaysLeft(to date: Date) -> Int {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let components = calendar.dateComponents([.day], from: currentDate.startOfDay, to: date.startOfDay)
+        return components.day ?? 0
     }
 }
