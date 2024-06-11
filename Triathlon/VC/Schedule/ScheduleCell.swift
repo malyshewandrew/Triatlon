@@ -9,6 +9,7 @@ final class ScheduleCell: UITableViewCell {
     private let photoView = UIImageView()
     private let sportLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let joinButton = UIButton(type: .system)
     
     // MARK: - LIFYCYCLE:
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,7 +25,7 @@ final class ScheduleCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubviews(containerView)
-        containerView.addSubviews(nameLabel, trainerName, photoView, sportLabel, descriptionLabel)
+        containerView.addSubviews(nameLabel, trainerName, photoView, sportLabel, descriptionLabel, joinButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -37,7 +38,7 @@ final class ScheduleCell: UITableViewCell {
         containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 175).isActive = true
         
         // PHOTO VIEW:
         photoView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +69,12 @@ final class ScheduleCell: UITableViewCell {
         descriptionLabel.topAnchor.constraint(equalTo: sportLabel.bottomAnchor, constant: 10).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
+        
+        // JOIN BUTTON:
+        joinButton.translatesAutoresizingMaskIntoConstraints = false
+        joinButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
+        joinButton.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        joinButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -102,6 +109,13 @@ final class ScheduleCell: UITableViewCell {
         // DESCRIPTION:
         descriptionLabel.textColor = .white
         descriptionLabel.font = fontMediumStandard14
+        
+        // JOIN BUTTON:
+        joinButton.setTitle("Записаться", for: .normal)
+        joinButton.setTitleColor(.white, for: .normal)
+        joinButton.layer.masksToBounds = true
+        joinButton.layer.cornerRadius = cornerRadius
+        joinButton.backgroundColor = .systemGreen
     }
     
     // MARK: - HELPERS:

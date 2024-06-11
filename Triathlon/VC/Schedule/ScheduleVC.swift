@@ -10,7 +10,7 @@ class ScheduleVC: UIViewController {
     var presenter: SchedulePresenterProtocol!
     private let titleLabel = UILabel()
     private let tableView = UITableView()
-    let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", description: "Вторник, пятница"), ScheduleModel(name: "Группа велоспорт", trainer: "Александр Дахно", photo: UIImage(resource: .dahno), sport: "Велоспорт", description: "Понедельник, среда, пятница")]
+    let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", description: "Вторник, пятница"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптуа", photo: UIImage(resource: .coptur), sport: "Плавание", description: "Вторник, суббота"), ScheduleModel(name: "Триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Велоспорт, бег, плавание", description: "Понедельник, пятница"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", description: "Среда, пятница")]
     
     // MARK: - LIFYCYCLE:
     
@@ -54,7 +54,7 @@ class ScheduleVC: UIViewController {
         
         // TITLE:
         titleLabel.textColor = .white
-        titleLabel.text = "Расписание тренировок:"
+        titleLabel.text = "Группы Tristyle:"
         titleLabel.font = fontBoldStandard16
         
         // TABLE VIEW:
@@ -82,5 +82,9 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
         let group = arrayGroups[indexPath.row]
         cell.configure(photo: group.photo, name: group.name, trainer: group.trainer, sport: group.sport, description: group.description)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Tap to group")
     }
 }
