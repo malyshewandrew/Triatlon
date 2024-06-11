@@ -20,7 +20,8 @@ final class CalendarVC: UIViewController {
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Indoor Triathlon",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 12))!: "Презентация Tristyle",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start"
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 2))!: "Test date"
     ]
     private var sortedDates: [(date: Date, event: String)] = []
     private let vibration = Vibration()
@@ -33,6 +34,7 @@ final class CalendarVC: UIViewController {
         configureConstraints()
         configureUI()
         sortedDates = markedDates.map { (date: $0.key, event: $0.value) }.sorted { $0.date < $1.date }
+        filterDates()
     }
     
     // MARK: - ADD SUBVIEWS:
@@ -139,6 +141,14 @@ final class CalendarVC: UIViewController {
     }
     
     // MARK: - HELPERS:
+
+    private func filterDates() {
+        let currentDate = Date()
+        sortedDates = markedDates.filter { $0.key > currentDate }
+            .map { (date: $0.key, event: $0.value) }
+            .sorted { $0.date < $1.date }
+        tableView.reloadData()
+    }
 }
 
 // MARK: - EXTENSIONS:
