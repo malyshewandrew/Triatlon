@@ -30,6 +30,9 @@
 		FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */; };
 		FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */; };
 		FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */; };
+		FBBC861D2C18B0E000752195 /* OnboardingOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC861C2C18B0E000752195 /* OnboardingOne.swift */; };
+		FBBC86212C18C2BE00752195 /* Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FBBC86202C18C2BE00752195 /* Video.mp4 */; };
+		FBBC86232C18E14800752195 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86222C18E14800752195 /* OnboardingPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		FBB89B912C10CC1500FBDF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBB89B932C10CC1500FBDF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
+		FBBC861C2C18B0E000752195 /* OnboardingOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOne.swift; sourceTree = "<group>"; };
+		FBBC86202C18C2BE00752195 /* Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video.mp4; sourceTree = "<group>"; };
+		FBBC86222C18E14800752195 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 		FBB89B9C2C10CE9F00FBDF3B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FBBC86202C18C2BE00752195 /* Video.mp4 */,
 				FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */,
 				FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */,
 				FB703B632C11BD2800AB19CC /* Extensions.swift */,
@@ -180,6 +187,7 @@
 		FBB89B9D2C10CEAF00FBDF3B /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				FBBC861B2C18B0D100752195 /* Onboarding */,
 				FBAD340E2C11253F0014DE84 /* Club */,
 				FBAD340F2C1125450014DE84 /* Peoples */,
 				FBAD340D2C1125340014DE84 /* Calendar */,
@@ -187,6 +195,15 @@
 				FBAD34102C11254B0014DE84 /* Shop */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		FBBC861B2C18B0D100752195 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				FBBC861C2C18B0E000752195 /* OnboardingOne.swift */,
+				FBBC86222C18E14800752195 /* OnboardingPresenter.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +273,7 @@
 				FBB89B922C10CC1500FBDF3B /* LaunchScreen.storyboard in Resources */,
 				FB1427082C179F1100D94901 /* Codex.pdf in Resources */,
 				FBB89B8F2C10CC1500FBDF3B /* Assets.xcassets in Resources */,
+				FBBC86212C18C2BE00752195 /* Video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +291,7 @@
 				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
 				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
 				FBAD341C2C1125920014DE84 /* PeoplesPresenter.swift in Sources */,
+				FBBC861D2C18B0E000752195 /* OnboardingOne.swift in Sources */,
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
@@ -283,6 +302,7 @@
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
+				FBBC86232C18E14800752195 /* OnboardingPresenter.swift in Sources */,
 				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
 				FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */,
 			);
