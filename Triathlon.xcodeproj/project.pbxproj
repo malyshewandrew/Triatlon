@@ -40,6 +40,8 @@
 		FBBC863B2C19B96900752195 /* TrainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86362C19B96900752195 /* TrainerModel.swift */; };
 		FBBC863C2C19B96900752195 /* PeoplesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86372C19B96900752195 /* PeoplesPresenter.swift */; };
 		FBBC863D2C19B96900752195 /* PeoplesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86382C19B96900752195 /* PeoplesVC.swift */; };
+		FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC863E2C19C73700752195 /* ShopCell.swift */; };
+		FBBC86412C19C94100752195 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86402C19C94100752195 /* ProductModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		FBBC86362C19B96900752195 /* TrainerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerModel.swift; sourceTree = "<group>"; };
 		FBBC86372C19B96900752195 /* PeoplesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesPresenter.swift; sourceTree = "<group>"; };
 		FBBC86382C19B96900752195 /* PeoplesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesVC.swift; sourceTree = "<group>"; };
+		FBBC863E2C19C73700752195 /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		FBBC86402C19C94100752195 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			children = (
 				FBAD341D2C11259B0014DE84 /* ShopVC.swift */,
 				FBAD341F2C1125A60014DE84 /* ShopPresenter.swift */,
+				FBBC863E2C19C73700752195 /* ShopCell.swift */,
+				FBBC86402C19C94100752195 /* ProductModel.swift */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -325,6 +331,8 @@
 				FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */,
 				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
 				FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */,
+				FBBC86412C19C94100752195 /* ProductModel.swift in Sources */,
+				FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */,
 				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
 				52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */,
