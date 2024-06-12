@@ -55,11 +55,11 @@ final class ShopCell: UITableViewCell {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         
         // PRICE LABEL:
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
+        priceLabel.centerYAnchor.constraint(equalTo: buyButton.centerYAnchor).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         priceLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
         
@@ -68,6 +68,7 @@ final class ShopCell: UITableViewCell {
         buyButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         buyButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         buyButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.2).isActive = true
+        buyButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -94,7 +95,7 @@ final class ShopCell: UITableViewCell {
         
         // DESCRIPTION:
         descriptionLabel.textColor = .white
-        descriptionLabel.font = fontMediumStandard14
+        descriptionLabel.font = fontLightStandard12
         descriptionLabel.numberOfLines = 0
         
         // PRICE LABEL:
@@ -104,6 +105,7 @@ final class ShopCell: UITableViewCell {
         // BUY BUTTON:
         buyButton.setTitle("Купить", for: .normal)
         buyButton.setTitleColor(.white, for: .normal)
+        buyButton.titleLabel?.font = fontMediumStandard14
         buyButton.layer.masksToBounds = true
         buyButton.layer.cornerRadius = cornerRadius
         buyButton.backgroundColor = .systemBlue

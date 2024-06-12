@@ -12,8 +12,8 @@ class PeoplesVC: UIViewController {
     private var segmentedControl = UISegmentedControl()
     private let tableViewTrainer = UITableView()
     private let tableViewTeam = UITableView()
-    private let trainerArray: [TrainerModel] = [
-        TrainerModel(photo: [UIImage(resource: .adamovich), UIImage(resource: .adamovich), UIImage(resource: .adamovich)], name: "Имя", surname: "Фамилия",  country: "🇧🇾", achievements: """
+    private let trainerArray: [HumanModel] = [
+        HumanModel(photo: [UIImage(resource: .adamovich), UIImage(resource: .adamovich), UIImage(resource: .adamovich)], name: "Имя Фамилия",  country: "🇧🇾", achievements: """
 - Победитель соревнований
 - Призер игр
 - Мастер спорта
@@ -21,7 +21,7 @@ class PeoplesVC: UIViewController {
 - Участник соревнвоаний
 - Держатель рекорда
 """, work: "Тренер по триатлону", url: "https://google.com", phoneNumber: "+37529000000"),
-        TrainerModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя", surname: "Фамилия", country: "🇧🇾", achievements: """
+        HumanModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
 - Победитель соревнований
 - Призер игр
 - Финишер первенства
@@ -30,8 +30,8 @@ class PeoplesVC: UIViewController {
 - Кандидат в мастера спорта
 """, work: "Тренер по бегу", url: "https://google.com", phoneNumber: "+37529000000")
     ]
-    private let teamArray: [TrainerModel] = [
-        TrainerModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя", surname: "Фамилия", country: "🇧🇾", achievements: """
+    private let teamArray: [HumanModel] = [
+        HumanModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
 - Финишер соревнований
 - Участник игр
 - Заслуженный мастер спорта
@@ -61,10 +61,10 @@ class PeoplesVC: UIViewController {
     private func configureTableView() {
         tableViewTrainer.delegate = self
         tableViewTrainer.dataSource = self
-        tableViewTrainer.register(TrainerCustomCell.self, forCellReuseIdentifier: "TrainerCustomCell")
+        tableViewTrainer.register(TrainerCell.self, forCellReuseIdentifier: "TrainerCell")
         tableViewTeam.delegate = self
         tableViewTeam.dataSource = self
-        tableViewTeam.register(TeamCustomCell.self, forCellReuseIdentifier: "TeamCustomCell")
+        tableViewTeam.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
     }
     
     // MARK: - ADD SUBVIEWS:
@@ -169,13 +169,13 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tableViewTrainer {
-            if let cell = tableViewTrainer.dequeueReusableCell(withIdentifier: "TrainerCustomCell", for: indexPath) as? TrainerCustomCell {
+            if let cell = tableViewTrainer.dequeueReusableCell(withIdentifier: "TrainerCell", for: indexPath) as? TrainerCell {
                 let trainer = trainerArray[indexPath.row]
                 cell.configure(with: trainer)
                 return cell
             }
         } else if tableView == tableViewTeam {
-            if let cell = tableViewTeam.dequeueReusableCell(withIdentifier: "TeamCustomCell", for: indexPath) as? TeamCustomCell {
+            if let cell = tableViewTeam.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as? TeamCell {
                 let trainer = teamArray[indexPath.row]
                 cell.configure(with: trainer)
                 return cell

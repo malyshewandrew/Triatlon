@@ -1,11 +1,10 @@
 import UIKit
 
-class TeamCustomCell: UITableViewCell {
-    
+class TrainerCell: UITableViewCell {
     // MARK: - PROPERTIES:
+
     private let containerView = UIView()
     private let nameLabel = UILabel()
-    private let surnameLabel = UILabel()
     private let countryLabel = UILabel()
     private let imageCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
     private let layout = UICollectionViewFlowLayout()
@@ -16,6 +15,7 @@ class TeamCustomCell: UITableViewCell {
     private let workLabel = UILabel()
     
     // MARK: - LIFYCYCLE:
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
@@ -24,19 +24,21 @@ class TeamCustomCell: UITableViewCell {
         configureCollectionView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - ADD SUBVIEW:
+
     private func addSubviews() {
         contentView.addSubview(containerView)
-        containerView.addSubviews(nameLabel, surnameLabel, countryLabel, imageCollectionView, achievementsLabel, phoneButton, profileButton, workLabel)
+        containerView.addSubviews(nameLabel, countryLabel, imageCollectionView, achievementsLabel, phoneButton, profileButton, workLabel)
     }
     
     // MARK: - CONFIGURE CONSTREINTS:
+
     private func configureConstreints() {
-        
         // CONTAINER VIEW:
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
@@ -48,11 +50,6 @@ class TeamCustomCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
-        
-        // SURNAME LABEL:
-        surnameLabel.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10).isActive = true
-        surnameLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 2).isActive = true
         
         // COUNTRY LABEL:
         countryLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +69,7 @@ class TeamCustomCell: UITableViewCell {
         achievementsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
         achievementsLabel.trailingAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         achievementsLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
-            
+                
         // WORK LABEL:
         workLabel.translatesAutoresizingMaskIntoConstraints = false
         workLabel.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 10).isActive = true
@@ -95,9 +92,9 @@ class TeamCustomCell: UITableViewCell {
     }
     
     // MARK: - CONFIGURE UI:
+
     private func configureUI() {
-        
-        // CONTEN VIEW:
+        // CONTENT VIEW:
         contentView.backgroundColor = .colorMain
         
         // CONTAINER VIEW:
@@ -109,15 +106,10 @@ class TeamCustomCell: UITableViewCell {
         nameLabel.textColor = .white
         nameLabel.font = fontBoldStandard22
         
-        // SURNAME LABEL:
-        surnameLabel.text = "Surname"
-        surnameLabel.textColor = .white
-        surnameLabel.font = fontBoldStandard22
-        
         // COUNTRY LABEL:
         countryLabel.font = .systemFont(ofSize: 30)
         
-        // WORK LABEL:
+        // WORK LABE:
         workLabel.text = "Director Director Director Director Director"
         workLabel.textColor = .white
         workLabel.font = fontMediumStandard14
@@ -145,18 +137,8 @@ class TeamCustomCell: UITableViewCell {
         // IMAGE COLLECTION VIEW:
         imageCollectionView.layer.cornerRadius = cornerRadius
     }
-    
+
     // MARK: - HELPERS:
-    
-    // CONFIGURE:
-    func configure (with trainer: TrainerModel) {
-        nameLabel.text = trainer.name
-        surnameLabel.text = trainer.surname
-        countryLabel.text = trainer.country
-        imagesArray = trainer.photo
-        achievementsLabel.text = trainer.achievements
-        workLabel.text = trainer.work
-    }
     
     // CONFIGURE COLLECTION VIEW:
     private func configureCollectionView() {
@@ -167,18 +149,28 @@ class TeamCustomCell: UITableViewCell {
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: 150, height: 200)
         imageCollectionView.collectionViewLayout = layout
-        imageCollectionView.register(TeamImageCollectionViewCell.self, forCellWithReuseIdentifier: "TeamImageCollectionViewCell")
+        imageCollectionView.register(TrainerCollectionView.self, forCellWithReuseIdentifier: "TrainerCollectionView")
+    }
+    
+    // CONFIGURE:
+    func configure(with trainer: HumanModel) {
+        nameLabel.text = trainer.name
+        countryLabel.text = trainer.country
+        imagesArray = trainer.photo
+        achievementsLabel.text = trainer.achievements
+        workLabel.text = trainer.work
     }
 }
 
 // MARK: - EXTENSION:
-extension TeamCustomCell: UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension TrainerCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TeamImageCollectionViewCell", for: indexPath) as? TeamImageCollectionViewCell {
+        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TrainerCollectionView", for: indexPath) as? TrainerCollectionView {
             imageCell.setImage(imagesArray[indexPath.row])
             return imageCell
         }

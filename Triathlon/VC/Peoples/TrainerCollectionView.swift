@@ -1,6 +1,6 @@
 import UIKit
 
-final class TeamCollectionView: UICollectionViewCell {
+final class TrainerCollectionView: UICollectionViewCell {
     // MARK: - PROPERTIES:
 
     private let imageView = UIImageView()
@@ -36,7 +36,7 @@ final class TeamCollectionView: UICollectionViewCell {
     private func configureUI() {
         
         // IMAGE VIEW:
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
     }
     

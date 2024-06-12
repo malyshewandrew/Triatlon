@@ -75,6 +75,7 @@ final class ScheduleCell: UITableViewCell {
         joinButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         joinButton.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         joinButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
+        joinButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -113,6 +114,7 @@ final class ScheduleCell: UITableViewCell {
         // JOIN BUTTON:
         joinButton.setTitle("Записаться", for: .normal)
         joinButton.setTitleColor(.white, for: .normal)
+        joinButton.titleLabel?.font = fontMediumStandard14
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.backgroundColor = .systemBlue

@@ -16,10 +16,10 @@ final class CalendarVC: UIViewController {
     private let dateLabel = UILabel()
     private let tableView = UITableView()
     private let markedDates: [Date: String] = [
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 15))!: "Ironman Minsk",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 18))!: "Indoor Triathlon",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 27))!: "Water Cup",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 12))!: "Презентация Tristyle",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 21))!: "Ironman Minsk",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 24))!: "Indoor Triathlon",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 26))!: "Water Cup",
+        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 17))!: "Презентация Tristyle",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start",
         Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 2))!: "Test date"
     ]
