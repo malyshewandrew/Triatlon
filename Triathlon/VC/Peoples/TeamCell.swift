@@ -123,13 +123,13 @@ class TeamCell: UITableViewCell {
         phoneButton.backgroundColor = .systemBlue
         phoneButton.setTitle("Связаться", for: .normal)
         phoneButton.titleLabel?.font = fontMediumStandard14
-        phoneButton.layer.cornerRadius = 8
+        phoneButton.layer.cornerRadius = cornerRadius
         
         // PROFILE BUTTON:
         profileButton.backgroundColor = .systemBlue
         profileButton.setTitle("Профиль", for: .normal)
         profileButton.titleLabel?.font = fontMediumStandard14
-        profileButton.layer.cornerRadius = 8
+        profileButton.layer.cornerRadius = cornerRadius
         
         // IMAGE COLLECTION VIEW:
         imageCollectionView.layer.cornerRadius = cornerRadius

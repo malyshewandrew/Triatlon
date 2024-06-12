@@ -9,8 +9,9 @@ class ShopVC: UIViewController {
     
     var presenter: ShopPresenterProtocol!
     
+    private let vibration = Vibration()
     private var segmentedControl = UISegmentedControl()
-    private let tableView = UITableView()
+    private let clothesTableView = UITableView()
     private let clothesArray: [ProductModel] = [
         ProductModel(name: "Майка Repeat", description: "- Приталенный силуэт\n- Принт шелкография", price: "35 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-463203246798-maika-repeat-muzhskaya", photo: .tshirt),
         ProductModel(name: "Худи Age Group", description: "- Спущенная линия плеча\n- Расширенный капюшон\n- Два боковых кармана\n - Рукава с вырезами для большого пальца\n - Манжет по низу и рукаву", price: "70 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-149769668430-hudi-age-group-zhenskaya", photo: .hoodie),
@@ -29,7 +30,7 @@ class ShopVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(segmentedControl, tableView)
+        view.addSubviews(segmentedControl, clothesTableView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -42,11 +43,11 @@ class ShopVC: UIViewController {
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
         // TABLE VIEW:
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        clothesTableView.translatesAutoresizingMaskIntoConstraints = false
+        clothesTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
+        clothesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        clothesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        clothesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -75,29 +76,31 @@ class ShopVC: UIViewController {
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
         // TABLE VIEW:
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ShopCell.self, forCellReuseIdentifier: "ShopCell")
-        tableView.backgroundColor = .colorMain
-        tableView.separatorStyle = .none
+        clothesTableView.delegate = self
+        clothesTableView.dataSource = self
+        clothesTableView.register(ShopCell.self, forCellReuseIdentifier: "ShopCell")
+        clothesTableView.backgroundColor = .colorMain
+        clothesTableView.separatorStyle = .none
+        clothesTableView.isHidden = false
     }
     
     // MARK: - HELPERS:
     
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
+        vibration.vibrationStandart()
         switch sender.selectedSegmentIndex {
         case 0:
-            print("Одежда")
+            clothesTableView.isHidden = false
         case 1:
-            print("Вело")
+            clothesTableView.isHidden = true
         case 2:
-            print("Бег")
+            clothesTableView.isHidden = true
         case 3:
-            print("Плавание")
+            clothesTableView.isHidden = true
         case 4:
-            print("Питание")
+            clothesTableView.isHidden = true
         default:
-            print("Не выбрано")
+            clothesTableView.isHidden = true
         }
     }
 }
@@ -108,14 +111,21 @@ extension ShopVC: ShopVCProtocol {}
 
 extension ShopVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        clothesArray.count
+        if tableView == clothesTableView {
+            return clothesArray.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath) as? ShopCell else { return UITableViewCell() }
-        let clothes = clothesArray[indexPath.row]
-        cell.configure(product: clothes)
-        return cell
+        if tableView == clothesTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath) as? ShopCell else { return UITableViewCell() }
+            let clothes = clothesArray[indexPath.row]
+            cell.configure(product: clothes)
+            cell.presenter = presenter
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

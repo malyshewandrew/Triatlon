@@ -9,6 +9,8 @@ final class ShopCell: UITableViewCell {
     private let photoView = UIImageView()
     private let priceLabel = UILabel()
     private let buyButton = UIButton(type: .system)
+    private var productLink: String?
+    var presenter: ShopPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -109,13 +111,22 @@ final class ShopCell: UITableViewCell {
         buyButton.layer.masksToBounds = true
         buyButton.layer.cornerRadius = cornerRadius
         buyButton.backgroundColor = .systemBlue
+        buyButton.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
+    
+    // CONFIGURE:
     func configure (product: ProductModel) {
         photoView.image = product.photo
         nameLabel.text = product.name
         descriptionLabel.text = product.description
         priceLabel.text = product.price
+        productLink = product.link
+    }
+    
+    // BUY BUTTON TAPPED:
+    @objc func buyButtonTapped() {
+        presenter.shopButtonTapped(with: productLink)
     }
 }

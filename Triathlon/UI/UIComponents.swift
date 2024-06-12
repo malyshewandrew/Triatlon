@@ -2,7 +2,7 @@ import UIKit
 
 // MARK: - CORNER RADIUS:
 
-let cornerRadius: CGFloat = 16
+let cornerRadius: CGFloat = 14
 
 // MARK: - FONTS:
 

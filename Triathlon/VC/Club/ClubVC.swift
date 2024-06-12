@@ -1,7 +1,7 @@
+import Lottie
 import PDFKit
 import UIKit
 import WebKit
-import Lottie
 
 // MARK: - protocol
 
@@ -33,6 +33,15 @@ class ClubVC: UIViewController {
     private let phoneButton = UIButton(type: .system)
     private let webButton = UIButton(type: .system)
     
+    private let lottieView = UIView()
+    private let swimLottie = LottieAnimationView(name: "SwimLottie")
+    private let bikeLottie = LottieAnimationView(name: "BikeLottie")
+    private let runLottie = LottieAnimationView(name: "RunLottie")
+    
+    private var currentLottie: LottieAnimationView?
+    private var animationTimer: Timer?
+    private var showTimer: Timer?
+    
     // MARK: - LIFYCYCLE:
     
     override func viewDidLoad() {
@@ -48,7 +57,8 @@ class ClubVC: UIViewController {
     private func addSubviews() {
         view.addSubviews(logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
-        linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton)
+        linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton, lottieView)
+        lottieView.addSubviews(swimLottie, bikeLottie, runLottie)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -133,7 +143,7 @@ class ClubVC: UIViewController {
         // LINKS VIEW:
         linksView.translatesAutoresizingMaskIntoConstraints = false
         linksView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        linksView.topAnchor.constraint(equalTo: joinButton.bottomAnchor, constant: 50).isActive = true
+        linksView.topAnchor.constraint(equalTo: joinButton.bottomAnchor, constant: 30).isActive = true
         linksView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         linksView.heightAnchor.constraint(equalTo: linksView.widthAnchor, multiplier: 0.2).isActive = true
         
@@ -171,6 +181,13 @@ class ClubVC: UIViewController {
         phoneButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
         phoneButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
         phoneButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
+        
+        // LOTTIE VIEW:
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
+        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        lottieView.topAnchor.constraint(equalTo: phoneButton.bottomAnchor).isActive = true
+        lottieView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
+        lottieView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -314,9 +331,51 @@ class ClubVC: UIViewController {
     
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
-        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
-        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
-        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
+            presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
+            presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
+            presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
+            showTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startLottieAnimationCycle), userInfo: nil, repeats: false)
+    }
+    
+    // MARK: - LOTTIE ANIMATION CYCLE:
+        
+    @objc private func startLottieAnimationCycle() {
+        currentLottie = swimLottie
+        if let initialLottie = currentLottie {
+            lottieView.addSubview(initialLottie)
+            initialLottie.translatesAutoresizingMaskIntoConstraints = false
+            initialLottie.topAnchor.constraint(equalTo: lottieView.topAnchor).isActive = true
+            initialLottie.bottomAnchor.constraint(equalTo: lottieView.bottomAnchor).isActive = true
+            initialLottie.leadingAnchor.constraint(equalTo: lottieView.leadingAnchor).isActive = true
+            initialLottie.trailingAnchor.constraint(equalTo: lottieView.trailingAnchor).isActive = true
+            initialLottie.play()
+            initialLottie.loopMode = .loop
+        }
+        animationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(changeLottieAnimation), userInfo: nil, repeats: true)
+    }
+
+    @objc private func changeLottieAnimation() {
+        currentLottie?.stop()
+        currentLottie?.removeFromSuperview()
+
+        if currentLottie == swimLottie {
+            currentLottie = bikeLottie
+        } else if currentLottie == bikeLottie {
+            currentLottie = runLottie
+        } else {
+            currentLottie = swimLottie
+        }
+
+        if let newLottie = currentLottie {
+            lottieView.addSubview(newLottie)
+            newLottie.translatesAutoresizingMaskIntoConstraints = false
+            newLottie.topAnchor.constraint(equalTo: lottieView.topAnchor).isActive = true
+            newLottie.bottomAnchor.constraint(equalTo: lottieView.bottomAnchor).isActive = true
+            newLottie.leadingAnchor.constraint(equalTo: lottieView.leadingAnchor).isActive = true
+            newLottie.trailingAnchor.constraint(equalTo: lottieView.trailingAnchor).isActive = true
+            newLottie.play()
+            newLottie.loopMode = .loop
+        }
     }
 }
 

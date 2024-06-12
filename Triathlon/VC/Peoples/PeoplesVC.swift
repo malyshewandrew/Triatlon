@@ -28,7 +28,7 @@ class PeoplesVC: UIViewController {
 - Держатель рекорда
 - Обладатель кубка
 - Кандидат в мастера спорта
-""", work: "Тренер по бегу", url: "https://google.com", phoneNumber: "+37529000000")
+""", work: "Тренер по плаванию", url: "https://google.com", phoneNumber: "+37529000000")
     ]
     private let teamArray: [HumanModel] = [
         HumanModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
