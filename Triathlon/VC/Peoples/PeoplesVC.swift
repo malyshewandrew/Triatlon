@@ -80,6 +80,7 @@ class PeoplesVC: UIViewController {
         // VIEW:
         view.backgroundColor = .colorTabBar
         tableViewTrainer.backgroundColor = .colorTabBar
+        tableViewTrainer.isHidden = true
         tableViewTeam.backgroundColor = .colorTabBar
         tableViewTeam.isHidden = true
         
@@ -103,7 +104,7 @@ class PeoplesVC: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             tableViewTrainer.isHidden = false
-            tableViewTeam.isEditing = true
+            tableViewTeam.isHidden = true
         case 1:
             tableViewTrainer.isHidden = true
             tableViewTeam.isHidden = false
