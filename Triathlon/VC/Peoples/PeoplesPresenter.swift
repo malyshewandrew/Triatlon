@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 protocol PeoplesPresenterProtocol {
     
 }
