@@ -8,7 +8,7 @@ struct TrainerModel {
     let surname: String
     let age: String
     let country: String
-    let achievements: [String]
+    let achievements: String
     let work: String
     let url: String
     let phoneNumber: String?
