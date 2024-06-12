@@ -37,7 +37,7 @@ final class CodexVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
     }
     
     // MARK: - HELPERS:

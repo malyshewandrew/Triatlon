@@ -1,6 +1,7 @@
 import PDFKit
 import UIKit
 import WebKit
+import Lottie
 
 // MARK: - protocol
 
@@ -12,6 +13,8 @@ class ClubVC: UIViewController {
     var presenter: ClubPresenterProtocol!
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
+    private let loadingLottie = LottieAnimationView(name: "LoadingLottie")
+    
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
@@ -44,7 +47,7 @@ class ClubVC: UIViewController {
     
     private func addSubviews() {
         view.addSubviews(logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
-        loadingView.addSubviews(loadingImageView)
+        loadingView.addSubviews(loadingImageView, loadingLottie)
         linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton)
     }
     
@@ -64,6 +67,13 @@ class ClubVC: UIViewController {
         loadingImageView.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor).isActive = true
         loadingImageView.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
         loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor, multiplier: 1).isActive = true
+        
+        // LOADING LOTTIE:
+        loadingLottie.translatesAutoresizingMaskIntoConstraints = false
+        loadingLottie.centerXAnchor.constraint(equalTo: loadingImageView.centerXAnchor).isActive = true
+        loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
+        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.3).isActive = true
+        loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -167,11 +177,16 @@ class ClubVC: UIViewController {
     
     private func configureUI() {
         // LOADING VIEW:
-        loadingView.backgroundColor = .colorMainBlue
+        loadingView.backgroundColor = .colorMain
+        
+        // LOADING LOTTTIE:
+        loadingLottie.play()
+        loadingLottie.loopMode = .loop
+        
         perform(#selector(closeAnimationVIew), with: nil, afterDelay: 2)
         
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
@@ -299,9 +314,9 @@ class ClubVC: UIViewController {
     
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
-        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 1.0)
-        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 3)
-        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 2)
+        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
+        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
+        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
     }
 }
 

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="colorMainBlue"/>
+                        <color key="backgroundColor" name="colorMain"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,8 +26,8 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="colorMainBlue">
-            <color red="0.11800000071525574" green="0.17299999296665192" blue="0.3880000114440918" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="colorMain">
+            <color red="0.13333332540000001" green="0.14509806040000001" blue="0.1607843041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

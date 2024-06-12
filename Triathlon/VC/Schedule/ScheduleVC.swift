@@ -10,7 +10,7 @@ class ScheduleVC: UIViewController {
     var presenter: SchedulePresenterProtocol!
     private let titleLabel = UILabel()
     private let tableView = UITableView()
-    let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", description: "Вторник, пятница"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптуа", photo: UIImage(resource: .coptur), sport: "Плавание", description: "Вторник, суббота"), ScheduleModel(name: "Триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Велоспорт, бег, плавание", description: "Понедельник, пятница"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", description: "Среда, пятница")]
+    let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", description: "Вторник, пятница"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптур", photo: UIImage(resource: .coptur), sport: "Плавание", description: "Вторник, суббота"), ScheduleModel(name: "Триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Велоспорт, бег, плавание", description: "Понедельник, пятница"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", description: "Среда, пятница")]
     
     // MARK: - LIFYCYCLE:
     
@@ -47,7 +47,7 @@ class ScheduleVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
@@ -61,7 +61,7 @@ class ScheduleVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: "ScheduleCell")
-        tableView.backgroundColor = .colorTabBar
+        tableView.backgroundColor = .colorMain
         tableView.separatorStyle = .none
     }
     

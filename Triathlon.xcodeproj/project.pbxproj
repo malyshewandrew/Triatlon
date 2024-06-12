@@ -42,6 +42,7 @@
 		FBBC863D2C19B96900752195 /* PeoplesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86382C19B96900752195 /* PeoplesVC.swift */; };
 		FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC863E2C19C73700752195 /* ShopCell.swift */; };
 		FBBC86412C19C94100752195 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86402C19C94100752195 /* ProductModel.swift */; };
+		FBBC86442C1A3F5E00752195 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FBBC86432C1A3F5E00752195 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB14270B2C185D7A00D94901 /* FSCalendar in Frameworks */,
+				FBBC86442C1A3F5E00752195 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +140,8 @@
 		FBAD340F2C1125450014DE84 /* Peoples */ = {
 			isa = PBXGroup;
 			children = (
-				FBBC86372C19B96900752195 /* PeoplesPresenter.swift */,
 				FBBC86382C19B96900752195 /* PeoplesVC.swift */,
+				FBBC86372C19B96900752195 /* PeoplesPresenter.swift */,
 				FBBC86352C19B96900752195 /* TrainerCustomCell.swift */,
 				FBBC86342C19B96900752195 /* TrainerImageCollectionViewCell.swift */,
 				FBBC86362C19B96900752195 /* TrainerModel.swift */,
@@ -200,13 +202,13 @@
 		FBB89B9C2C10CE9F00FBDF3B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FBBC86282C1907FD00752195 /* Video.mp4 */,
 				FBB89B902C10CC1500FBDF3B /* LaunchScreen.storyboard */,
 				FBB89B8E2C10CC1500FBDF3B /* Assets.xcassets */,
+				FBBC86282C1907FD00752195 /* Video.mp4 */,
+				FB1427072C179F1100D94901 /* Codex.pdf */,
 				FB703B632C11BD2800AB19CC /* Extensions.swift */,
 				FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */,
 				FB9BACD52C12723600D8E2B7 /* UIComponents.swift */,
-				FB1427072C179F1100D94901 /* Codex.pdf */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -251,6 +253,7 @@
 			name = Triathlon;
 			packageProductDependencies = (
 				FB14270A2C185D7A00D94901 /* FSCalendar */,
+				FBBC86432C1A3F5E00752195 /* Lottie */,
 			);
 			productName = Triathlon;
 			productReference = FBB89B822C10CC1400FBDF3B /* Triathlon.app */;
@@ -282,6 +285,7 @@
 			mainGroup = FBB89B792C10CC1400FBDF3B;
 			packageReferences = (
 				FB1427092C185D7A00D94901 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				FBBC86422C1A3F5D00752195 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = FBB89B832C10CC1400FBDF3B /* Products */;
 			projectDirPath = "";
@@ -571,6 +575,14 @@
 				minimumVersion = 2.8.4;
 			};
 		};
+		FBBC86422C1A3F5D00752195 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -578,6 +590,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB1427092C185D7A00D94901 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		FBBC86432C1A3F5E00752195 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBBC86422C1A3F5D00752195 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

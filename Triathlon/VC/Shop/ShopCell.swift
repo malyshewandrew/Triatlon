@@ -76,7 +76,7 @@ final class ShopCell: UITableViewCell {
         
         // CONTENT VIEW:
         selectionStyle = .none
-        contentView.backgroundColor = .colorTabBar
+        contentView.backgroundColor = .colorMain
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground
@@ -106,7 +106,7 @@ final class ShopCell: UITableViewCell {
         buyButton.setTitleColor(.white, for: .normal)
         buyButton.layer.masksToBounds = true
         buyButton.layer.cornerRadius = cornerRadius
-        buyButton.backgroundColor = .systemGreen
+        buyButton.backgroundColor = .systemBlue
     }
     
     // MARK: - HELPERS:

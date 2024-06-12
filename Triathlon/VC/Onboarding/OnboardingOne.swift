@@ -54,7 +54,7 @@ final class OnboardingVC: UIViewController {
         continueButton.titleLabel?.font = fontBoldStandard16
         continueButton.layer.cornerRadius = cornerRadius
         continueButton.layer.masksToBounds = true
-        continueButton.backgroundColor = .colorTabBar
+        continueButton.backgroundColor = .colorMain
         continueButton.layer.shadowRadius = 25
         continueButton.layer.shadowColor = UIColor.systemBlue.cgColor
         continueButton.layer.shadowOpacity = 1

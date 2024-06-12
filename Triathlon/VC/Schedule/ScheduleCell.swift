@@ -83,7 +83,7 @@ final class ScheduleCell: UITableViewCell {
         
         // CONTENT VIEW:
         selectionStyle = .none
-        contentView.backgroundColor = .colorTabBar
+        contentView.backgroundColor = .colorMain
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground
@@ -115,7 +115,7 @@ final class ScheduleCell: UITableViewCell {
         joinButton.setTitleColor(.white, for: .normal)
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
-        joinButton.backgroundColor = .systemGreen
+        joinButton.backgroundColor = .systemBlue
     }
     
     // MARK: - HELPERS:

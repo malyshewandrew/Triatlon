@@ -37,7 +37,7 @@ class ShopVC: UIViewController {
     private func configureConstraints() {
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
@@ -53,7 +53,7 @@ class ShopVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
@@ -78,7 +78,7 @@ class ShopVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ShopCell.self, forCellReuseIdentifier: "ShopCell")
-        tableView.backgroundColor = .colorTabBar
+        tableView.backgroundColor = .colorMain
         tableView.separatorStyle = .none
     }
     

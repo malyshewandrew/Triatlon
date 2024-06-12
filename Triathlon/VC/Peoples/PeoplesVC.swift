@@ -9,15 +9,36 @@ class PeoplesVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: PeoplesPresenterProtocol!
-    private var segmentControl = UISegmentedControl()
+    private var segmentedControl = UISegmentedControl()
     private let tableViewTrainer = UITableView()
     private let tableViewTeam = UITableView()
     private let trainerArray: [TrainerModel] = [
-        TrainerModel(photo: [UIImage(resource: .adamovich)], name: "Алексей", surname: "Адамович", age: "35", country: "🏳️‍🌈", achievements: "Победитель победителей \nПризер призеров \nИ просто лучший Победитель победителей \nПризер призеров \nИ просто лучший", work: "Treiner Тренер", url: "https://google.com", phoneNumber: "+7 999 888 77 66"),
-        TrainerModel(photo: [UIImage(resource: .coptur)], name: "Алексей", surname: "Адамович", age: "35", country: "🇰🇷", achievements: "Далеко бегу высоко прыгаю никода не устаю", work: "Супер Тренер", url: "https://google.com", phoneNumber: "+7 888 55 55 ")
+        TrainerModel(photo: [UIImage(resource: .adamovich), UIImage(resource: .adamovich), UIImage(resource: .adamovich)], name: "Имя", surname: "Фамилия",  country: "🇧🇾", achievements: """
+- Победитель соревнований
+- Призер игр
+- Мастер спорта
+- Обладатель кубка
+- Участник соревнвоаний
+- Держатель рекорда
+""", work: "Тренер по триатлону", url: "https://google.com", phoneNumber: "+37529000000"),
+        TrainerModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя", surname: "Фамилия", country: "🇧🇾", achievements: """
+- Победитель соревнований
+- Призер игр
+- Финишер первенства
+- Держатель рекорда
+- Обладатель кубка
+- Кандидат в мастера спорта
+""", work: "Тренер по бегу", url: "https://google.com", phoneNumber: "+37529000000")
     ]
     private let teamArray: [TrainerModel] = [
-        TrainerModel(photo: [UIImage(resource: .meljah)], name: "Name", surname: "Surname", age: "5", country: "🇺🇸", achievements: "Super Herous", work: "King Sports", url: "https://google.com", phoneNumber: "+7 999 888 77 66")
+        TrainerModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя", surname: "Фамилия", country: "🇧🇾", achievements: """
+- Финишер соревнований
+- Участник игр
+- Заслуженный мастер спорта
+- Обладатель кубка
+- Обладатель кубка
+- Кандидат в мастера спорта
+""", work: "Tristyle Team", url: "https://google.com", phoneNumber: "+37529000000")
     ]
     
     // MARK: - LIFYCYCLE:
@@ -28,13 +49,12 @@ class PeoplesVC: UIViewController {
         configureConstraints()
         configureUI()
         configureTableView()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        segmentControl.selectedSegmentIndex = 0
-        segmentedControlValueChanged(sender: segmentControl)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControlValueChanged(sender: segmentedControl)
     }
     
     // MARK: - CONFIGURE TABLE VIEWS
@@ -50,25 +70,29 @@ class PeoplesVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(segmentControl, tableViewTrainer, tableViewTeam)
+        view.addSubviews(segmentedControl, tableViewTrainer, tableViewTeam)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
-        segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
+        // SEGMENT CONTROL:
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
+        segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        
+        // TABLE VIEW TRAINER:
         tableViewTrainer.translatesAutoresizingMaskIntoConstraints = false
-        tableViewTrainer.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 20).isActive = true
+        tableViewTrainer.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
         tableViewTrainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         tableViewTrainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         tableViewTrainer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        // TABLE VIEW TEAM:
         tableViewTeam.translatesAutoresizingMaskIntoConstraints = false
-        tableViewTeam.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 20).isActive = true
+        tableViewTeam.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
         tableViewTeam.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         tableViewTeam.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         tableViewTeam.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -78,28 +102,36 @@ class PeoplesVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
-        tableViewTrainer.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
+        
+        // TABLE VIEW TRAINER:
+        tableViewTrainer.backgroundColor = .colorMain
         tableViewTrainer.isHidden = true
-        tableViewTeam.backgroundColor = .colorTabBar
+        tableViewTrainer.separatorStyle = .none
+        
+        // TABLE VIEW TEAM:
+        tableViewTeam.backgroundColor = .colorMain
         tableViewTeam.isHidden = true
+        tableViewTeam.separatorStyle = .none
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
         navigationController?.navigationBar.isHidden = true
         
-        // SEGMENT CONTROL
-        segmentControl.backgroundColor = .white
-        segmentControl.insertSegment(withTitle: "Тренеры", at: 0, animated: true)
-        segmentControl.insertSegment(withTitle: "Состав", at: 1, animated: true)
-        segmentControl.insertSegment(withTitle: "Спортсмены", at: 2, animated: true)
-        segmentControl.insertSegment(withTitle: "Команда", at: 3, animated: true)
-        segmentControl.selectedSegmentIndex = 0
-        segmentControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
-
+        // SEGMENTED CONTROL
+        segmentedControl.backgroundColor = .colorBackground
+        segmentedControl.selectedSegmentTintColor = .colorBackground
+        let normalTextAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
+        segmentedControl.setTitleTextAttributes(normalTextAttributes, for: .normal)
+        segmentedControl.insertSegment(withTitle: "Тренеры", at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: "Состав", at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: "Спортсмены", at: 2, animated: true)
+        segmentedControl.insertSegment(withTitle: "Команда", at: 3, animated: true)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
     }
     
-    // MARK: - objc methods
+    // MARK: - HELPERS:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -109,9 +141,11 @@ class PeoplesVC: UIViewController {
             tableViewTrainer.isHidden = true
             tableViewTeam.isHidden = false
         case 2:
-            print("Спортсмены")
+            tableViewTrainer.isHidden = true
+            tableViewTeam.isHidden = true
         case 3:
-            print("Команда")
+            tableViewTrainer.isHidden = true
+            tableViewTeam.isHidden = true
         default:
             print("Не выбрано")
         }

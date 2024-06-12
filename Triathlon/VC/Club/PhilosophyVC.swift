@@ -113,7 +113,7 @@ final class PhilosophyVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
         
         // SCROLL VIEW:
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 1.7)

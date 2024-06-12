@@ -88,7 +88,7 @@ final class CalendarVC: UIViewController {
     
     private func configureUI() {
         // VIEW:
-        view.backgroundColor = .colorTabBar
+        view.backgroundColor = .colorMain
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
@@ -137,7 +137,7 @@ final class CalendarVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(CalendarCell.self, forCellReuseIdentifier: "CalendarCell")
-        tableView.backgroundColor = .colorTabBar
+        tableView.backgroundColor = .colorMain
     }
     
     // MARK: - HELPERS:
