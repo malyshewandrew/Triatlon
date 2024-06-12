@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52E746E22C19F9B4004D1AE3 /* TeamCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E746E12C19F9B4004D1AE3 /* TeamCustomCell.swift */; };
+		52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E746E32C19F9E7004D1AE3 /* TeamImageCollectionCell.swift */; };
 		FB1427042C17959400D94901 /* CodexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427032C17959400D94901 /* CodexVC.swift */; };
 		FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1427052C17978100D94901 /* PhilosophyVC.swift */; };
 		FB1427082C179F1100D94901 /* Codex.pdf in Resources */ = {isa = PBXBuildFile; fileRef = FB1427072C179F1100D94901 /* Codex.pdf */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52E746E12C19F9B4004D1AE3 /* TeamCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCustomCell.swift; sourceTree = "<group>"; };
+		52E746E32C19F9E7004D1AE3 /* TeamImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageCollectionCell.swift; sourceTree = "<group>"; };
 		FB1427032C17959400D94901 /* CodexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexVC.swift; sourceTree = "<group>"; };
 		FB1427052C17978100D94901 /* PhilosophyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhilosophyVC.swift; sourceTree = "<group>"; };
 		FB1427072C179F1100D94901 /* Codex.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Codex.pdf; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				FBBC86352C19B96900752195 /* TrainerCustomCell.swift */,
 				FBBC86342C19B96900752195 /* TrainerImageCollectionViewCell.swift */,
 				FBBC86362C19B96900752195 /* TrainerModel.swift */,
+				52E746E12C19F9B4004D1AE3 /* TeamCustomCell.swift */,
+				52E746E32C19F9E7004D1AE3 /* TeamImageCollectionCell.swift */,
 			);
 			path = Peoples;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
 				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
+				52E746E22C19F9B4004D1AE3 /* TeamCustomCell.swift in Sources */,
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FBBC86392C19B96900752195 /* TrainerImageCollectionViewCell.swift in Sources */,
 				FBBC86302C19082200752195 /* OnboardingOne.swift in Sources */,
@@ -320,6 +327,7 @@
 				FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */,
 				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
+				52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */,

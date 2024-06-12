@@ -1,6 +1,6 @@
 import UIKit
 
-final class TrainerImageCollectionViewCell: UICollectionViewCell {
+final class TeamImageCollectionViewCell: UICollectionViewCell {
     
     private let imageView = UIImageView()
     

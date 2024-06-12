@@ -1,6 +1,6 @@
 import UIKit
 
-class TrainerCustomCell: UITableViewCell {
+class TeamCustomCell: UITableViewCell {
     
     // MARK: - PROPERTIES:
     private let contenerView = UIView()
@@ -47,7 +47,7 @@ class TrainerCustomCell: UITableViewCell {
         imageCollectionView.collectionViewLayout = layout
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 350, height: 200)
-        imageCollectionView.register(TrainerImageCollectionViewCell.self, forCellWithReuseIdentifier: "TrainerImageCollectionViewCell")
+        imageCollectionView.register(TeamImageCollectionViewCell.self, forCellWithReuseIdentifier: "TeamImageCollectionViewCell")
     }
     
     // MARK: - ADD SUBVIEW:
@@ -161,13 +161,13 @@ class TrainerCustomCell: UITableViewCell {
 }
 
 // MARK: - EXTENSION:
-extension TrainerCustomCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TeamCustomCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TrainerImageCollectionViewCell", for: indexPath) as? TrainerImageCollectionViewCell {
+        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TeamImageCollectionViewCell", for: indexPath) as? TeamImageCollectionViewCell {
             imageCell.setImage(imagesArray[indexPath.row])
             return imageCell
         }
