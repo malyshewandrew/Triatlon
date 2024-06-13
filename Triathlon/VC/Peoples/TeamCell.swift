@@ -10,8 +10,6 @@ class TeamCell: UITableViewCell {
     private let layout = UICollectionViewFlowLayout()
     private var imagesArray = [UIImage]()
     private let achievementsLabel = UILabel()
-    private let phoneButton = UIButton()
-    private var phoneNumber = ""
     private let profileButton = UIButton()
     private var profileLink: String?
     private let workLabel = UILabel()
@@ -33,7 +31,7 @@ class TeamCell: UITableViewCell {
     // MARK: - ADD SUBVIEW:
     private func addSubviews() {
         contentView.addSubview(containerView)
-        containerView.addSubviews(nameLabel, countryLabel, imageCollectionView, achievementsLabel, phoneButton, profileButton, workLabel)
+        containerView.addSubviews(nameLabel, countryLabel, imageCollectionView, achievementsLabel, profileButton, workLabel)
     }
     
     // MARK: - CONFIGURE CONSTREINTS:
@@ -79,16 +77,9 @@ class TeamCell: UITableViewCell {
         // PROFILE BUTTON:
         profileButton.translatesAutoresizingMaskIntoConstraints = false
         profileButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
-        profileButton.bottomAnchor.constraint(equalTo: phoneButton.topAnchor, constant: -5).isActive = true
+        profileButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         profileButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         profileButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
-        
-        // PHONE BUTTON:
-        phoneButton.translatesAutoresizingMaskIntoConstraints = false
-        phoneButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
-        phoneButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        phoneButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
-        phoneButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -122,13 +113,6 @@ class TeamCell: UITableViewCell {
         achievementsLabel.numberOfLines = .zero
         achievementsLabel.text = "Herous baba yaga  ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga"
         
-        // PHONE BUTTON:
-        phoneButton.backgroundColor = .systemBlue
-        phoneButton.setTitle("Связаться", for: .normal)
-        phoneButton.titleLabel?.font = fontMediumStandard14
-        phoneButton.layer.cornerRadius = cornerRadius
-        phoneButton.addTarget(self, action: #selector(phoneButtonTapped), for: .touchUpInside)
-        
         // PROFILE BUTTON:
         profileButton.backgroundColor = .systemBlue
         profileButton.setTitle("Профиль", for: .normal)
@@ -149,7 +133,6 @@ class TeamCell: UITableViewCell {
         imagesArray = trainer.photo
         achievementsLabel.text = trainer.achievements
         workLabel.text = trainer.work
-        phoneNumber = trainer.phoneNumber ?? ""
         profileLink = trainer.url
     }
     
@@ -163,11 +146,6 @@ class TeamCell: UITableViewCell {
         layout.itemSize = CGSize(width: 150, height: 200)
         imageCollectionView.collectionViewLayout = layout
         imageCollectionView.register(TeamCollectionView.self, forCellWithReuseIdentifier: "TeamCollectionView")
-    }
-    
-    // PHONE BUTTON:
-    @objc private func phoneButtonTapped() {
-        presenter.phoneButtonTapped(with: phoneNumber)
     }
     
     // PROFILE BUTTON:

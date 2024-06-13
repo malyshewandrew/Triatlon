@@ -7,11 +7,13 @@ protocol ClubPresenterProtocol {
     func infoButtonTapped() -> UIAlertController
     func showAlert(title: String, message: String)
     func joinButtonTapped()
+    func fbButtonTapped()
     func instagramButtonTapped()
     func youtubeButtonTapped()
     func telegramButtonTapped()
     func webButtonTapped()
     func phoneButtonTapped()
+    func emailButtonTapped()
 }
 
 final class ClubPresenter: ClubPresenterProtocol {
@@ -112,6 +114,19 @@ final class ClubPresenter: ClubPresenterProtocol {
         }
     }
     
+    // FB BUTTON TAPPED:
+    func fbButtonTapped() {
+        let appURL = URL(string: "https://www.facebook.com/tristyletrainer/")
+        let webURL = URL(string: "https://www.facebook.com/tristyletrainer/")
+        guard let appURL = appURL else { return }
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            guard let webURL = webURL else { return }
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+        }
+    }
+    
     // INSTAGRAM BUTTON TAPPED:
     func instagramButtonTapped() {
         let appURL = URL(string: "instagram://user?username=tristyletrainer")
@@ -140,8 +155,8 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // TELEGRAM BUTTON TAPPED:
     func telegramButtonTapped() {
-        let appURL = URL(string: "tg://resolve?domain=tristyle")
-        let webURL = URL(string: "https://t.me/tristyle")
+        let appURL = URL(string: "tg://resolve?domain=Tristyleteam")
+        let webURL = URL(string: "https://t.me/Tristyleteam")
         guard let appURL = appURL else { return }
         if UIApplication.shared.canOpenURL(appURL) {
             UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
@@ -168,6 +183,14 @@ final class ClubPresenter: ClubPresenterProtocol {
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         } else {
             print("Cannot make a phone call.")
+        }
+    }
+    
+    // EMAIL BUTTON TAPPED:
+    func emailButtonTapped() {
+        let email = "tristyletrainer@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.open(url)
         }
     }
 }

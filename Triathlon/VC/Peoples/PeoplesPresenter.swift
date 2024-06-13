@@ -4,7 +4,6 @@ import UIKit
 // MARK: - PROTOCOL:
 protocol PeoplesPresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
-    func phoneButtonTapped(with phoneNumber: String?)
     func profileButtonTapped(with prifileLink: String?)
 }
 
@@ -30,17 +29,7 @@ final class PeoplesPresenter: PeoplesPresenterProtocol {
             print("Не выбрано")
         }
     }
-    
-    // PHONE BUTTON TAPPED:
-    func phoneButtonTapped(with phoneNumber: String?) {
-        guard let phoneNumber = phoneNumber else { return }
-        guard let phoneURL = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(phoneURL) else {
-            print("Cannot make a phone call.")
-            return
-        }
-        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-    }
-    
+
     // PROFILE BUTTON TAPPED:
     func profileButtonTapped(with prifileLink: String?) {
         guard let link = prifileLink, let url = URL(string: link), UIApplication.shared.canOpenURL(url) else {

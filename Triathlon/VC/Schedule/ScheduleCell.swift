@@ -9,7 +9,9 @@ final class ScheduleCell: UITableViewCell {
     private let photoView = UIImageView()
     private let sportLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let placeLabel = UILabel()
     private let joinButton = UIButton(type: .system)
+    var presenter: SchedulePresenterProtocol!
     
     // MARK: - LIFYCYCLE:
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,7 +27,7 @@ final class ScheduleCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubviews(containerView)
-        containerView.addSubviews(nameLabel, trainerName, photoView, sportLabel, descriptionLabel, joinButton)
+        containerView.addSubviews(nameLabel, trainerName, photoView, sportLabel, descriptionLabel, placeLabel, joinButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -70,10 +72,16 @@ final class ScheduleCell: UITableViewCell {
         descriptionLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
         
+        // PLACE LABEL:
+        placeLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10).isActive = true
+        placeLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        placeLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
+        
         // JOIN BUTTON:
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         joinButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
-        joinButton.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        joinButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         joinButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
         joinButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
@@ -98,18 +106,27 @@ final class ScheduleCell: UITableViewCell {
         // NAME LABEL:
         nameLabel.textColor = .white
         nameLabel.font = fontBoldStandard16
+        nameLabel.adjustsFontSizeToFitWidth = true
         
         // TRAINER:
         trainerName.textColor = .white
         trainerName.font = fontMediumStandard14
+        trainerName.adjustsFontSizeToFitWidth = true
         
         // SPORT LABEL:
         sportLabel.textColor = .white
         sportLabel.font = fontMediumStandard14
+        sportLabel.adjustsFontSizeToFitWidth = true
         
         // DESCRIPTION:
         descriptionLabel.textColor = .white
         descriptionLabel.font = fontMediumStandard14
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        
+        // PLACE LABEL:
+        placeLabel.textColor = .white
+        placeLabel.font = fontMediumStandard14
+        placeLabel.adjustsFontSizeToFitWidth = true
         
         // JOIN BUTTON:
         joinButton.setTitle("Записаться", for: .normal)
@@ -118,14 +135,21 @@ final class ScheduleCell: UITableViewCell {
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.backgroundColor = .systemBlue
+        joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
-    func configure (photo: UIImage, name: String, trainer: String, sport: String, description: String) {
-        photoView.image = photo
-        nameLabel.text = name
-        trainerName.text = trainer
-        sportLabel.text = sport
-        descriptionLabel.text = description
+    func configure (schedule: ScheduleModel) {
+        photoView.image = schedule.photo
+        nameLabel.text = schedule.name
+        trainerName.text = schedule.trainer
+        sportLabel.text = schedule.sport
+        descriptionLabel.text = schedule.days
+        placeLabel.text = schedule.place
+    }
+    
+    // JOIN BUTTON TAPPED:
+    @objc func joinButtonTapped() {
+        presenter.joinButtonTapped()
     }
 }
