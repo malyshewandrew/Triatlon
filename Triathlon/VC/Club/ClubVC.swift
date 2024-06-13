@@ -15,6 +15,8 @@ class ClubVC: UIViewController {
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let loadingLottie = LottieAnimationView(name: "LoadingLottie")
     
+    private let infoButton = UIButton(type: .system)
+    private let configurationImage = UIImage.SymbolConfiguration(pointSize: 20)
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
@@ -37,10 +39,12 @@ class ClubVC: UIViewController {
     private let swimLottie = LottieAnimationView(name: "SwimLottie")
     private let bikeLottie = LottieAnimationView(name: "BikeLottie")
     private let runLottie = LottieAnimationView(name: "RunLottie")
+    private let motoLottie = LottieAnimationView(name: "MotoLottie")
     
     private var currentLottie: LottieAnimationView?
     private var animationTimer: Timer?
     private var showTimer: Timer?
+    private let vibration = Vibration()
     
     // MARK: - LIFYCYCLE:
     
@@ -55,10 +59,10 @@ class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
+        view.addSubviews(infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
         linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton, lottieView)
-        lottieView.addSubviews(swimLottie, bikeLottie, runLottie)
+        lottieView.addSubviews(swimLottie, bikeLottie, runLottie, motoLottie)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -84,6 +88,13 @@ class ClubVC: UIViewController {
         loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
         loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.3).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
+        
+        // INFO BUTTON:
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
+        infoButton.topAnchor.constraint(equalTo: logoImageView.topAnchor).isActive = true
+        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        infoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        infoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -211,6 +222,11 @@ class ClubVC: UIViewController {
         
         // TAB BAR:
         tabBarController?.tabBar.isHidden = true
+        
+        // INFO BUTTON:
+        infoButton.setImage(UIImage(systemName: "info.circle.fill", withConfiguration: configurationImage), for: .normal)
+        infoButton.tintColor = .white
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
 
         // IMAGE VIEW:
         logoImageView.contentMode = .scaleAspectFit
@@ -250,6 +266,7 @@ class ClubVC: UIViewController {
         codexButton.layer.borderWidth = 2
         codexButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         codexButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             let codexVC = CodexVC()
             self?.present(codexVC, animated: true)
         }), for: .touchUpInside)
@@ -262,6 +279,7 @@ class ClubVC: UIViewController {
         philosophyButton.layer.borderWidth = 2
         philosophyButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         philosophyButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             let philosophyVC = PhilosophyVC()
             self?.present(philosophyVC, animated: true)
         }), for: .touchUpInside)
@@ -274,6 +292,7 @@ class ClubVC: UIViewController {
         joinButton.layer.borderWidth = 2
         joinButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         joinButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.joinButtonTapped()
         }), for: .touchUpInside)
         
@@ -284,6 +303,7 @@ class ClubVC: UIViewController {
         instagramButton.setImage(UIImage(resource: .instagram), for: .normal)
         instagramButton.tintColor = .white
         instagramButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.instagramButtonTapped()
         }), for: .touchUpInside)
         
@@ -291,6 +311,7 @@ class ClubVC: UIViewController {
         youtubeButton.setImage(UIImage(resource: .youTube), for: .normal)
         youtubeButton.tintColor = .white
         youtubeButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.youtubeButtonTapped()
         }), for: .touchUpInside)
         
@@ -298,6 +319,7 @@ class ClubVC: UIViewController {
         telegramButton.setImage(UIImage(resource: .telegram), for: .normal)
         telegramButton.tintColor = .white
         telegramButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.telegramButtonTapped()
         }), for: .touchUpInside)
         
@@ -305,6 +327,7 @@ class ClubVC: UIViewController {
         webButton.setImage(UIImage(resource: .web), for: .normal)
         webButton.tintColor = .white
         webButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.webButtonTapped()
         }), for: .touchUpInside)
         
@@ -312,6 +335,7 @@ class ClubVC: UIViewController {
         phoneButton.setImage(UIImage(resource: .phone), for: .normal)
         phoneButton.tintColor = .white
         phoneButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
             self?.presenter.phoneButtonTapped()
         }), for: .touchUpInside)
     }
@@ -337,6 +361,12 @@ class ClubVC: UIViewController {
             showTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startLottieAnimationCycle), userInfo: nil, repeats: false)
     }
     
+    // INFO BUTTON TAPPED:
+    @objc private func infoButtonTapped() {
+        vibration.vibrationStandart()
+        present(presenter.infoButtonTapped(), animated: true)
+    }
+    
     // MARK: - LOTTIE ANIMATION CYCLE:
         
     @objc private func startLottieAnimationCycle() {
@@ -351,7 +381,7 @@ class ClubVC: UIViewController {
             initialLottie.play()
             initialLottie.loopMode = .loop
         }
-        animationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(changeLottieAnimation), userInfo: nil, repeats: true)
+        animationTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(changeLottieAnimation), userInfo: nil, repeats: true)
     }
 
     @objc private func changeLottieAnimation() {
@@ -362,6 +392,8 @@ class ClubVC: UIViewController {
             currentLottie = bikeLottie
         } else if currentLottie == bikeLottie {
             currentLottie = runLottie
+        } else if currentLottie == runLottie {
+            currentLottie = motoLottie
         } else {
             currentLottie = swimLottie
         }
@@ -381,4 +413,10 @@ class ClubVC: UIViewController {
 
 // MARK: - EXTENSION:
 
-extension ClubVC: ClubVCProtocol {}
+extension ClubVC: ClubVCProtocol {
+    func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
+}

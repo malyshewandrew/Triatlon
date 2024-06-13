@@ -4,7 +4,8 @@ import UIKit
 
 protocol ClubPresenterProtocol {
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double)
-    func codexButtonTapped()
+    func infoButtonTapped() -> UIAlertController
+    func showAlert(title: String, message: String)
     func joinButtonTapped()
     func instagramButtonTapped()
     func youtubeButtonTapped()
@@ -14,6 +15,7 @@ protocol ClubPresenterProtocol {
 }
 
 final class ClubPresenter: ClubPresenterProtocol {
+    
     unowned let view: ClubVCProtocol
     private let vibration = Vibration()
     
@@ -21,6 +23,8 @@ final class ClubPresenter: ClubPresenterProtocol {
     private var endValueKey: UInt8 = 0
     private var animationStartDateKey: UInt8 = 0
     private var animationDurationKey: UInt8 = 0
+    private var buildVersion = ""
+    private var appVersion = ""
     
     init(view: ClubVCProtocol) {
         self.view = view
@@ -56,14 +60,51 @@ final class ClubPresenter: ClubPresenterProtocol {
         }
     }
     
-    // CODEX BUTTON TAPPED:
-    func codexButtonTapped() {
+    // INFO BUTTON TAPPED:
+    func infoButtonTapped() -> UIAlertController{
         
+        if let infoDictionary = Bundle.main.infoDictionary {
+            if let buildVersion = infoDictionary["CFBundleVersion"] as? String {
+                self.buildVersion = buildVersion
+            }
+            if let appVersion = infoDictionary["CFBundleShortVersionString"] as? String {
+                self.appVersion = appVersion
+            }
+        }
+        
+        let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Политика конфидециальности", style: .default, handler: { _ in
+            if let url = URL(string: "https://google.com"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Cannot open the URL.")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Условия использования", style: .default, handler: { _ in
+            if let url = URL(string: "https://google.com"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Cannot open the URL.")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "О приложении", style: .default, handler: { _ in
+            self.showAlert(title: "SwiftyLab™", message: "Версия приложения: \(self.appVersion)\nВерсия сборки:\(self.buildVersion)\n©Malyshew Andrew")
+        }))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
+        return alert
     }
+    
+    func showAlert(title: String, message: String) {
+        guard let viewController = view as? UIViewController else { return }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        viewController.present(alert, animated: true)
+    }
+    
+    
     
     // JOIN BUTTON TAPPED:
     func joinButtonTapped() {
-        vibration.vibrationStandart()
         if let url = URL(string: "https://smart.tristyle.by/group?utm_source=cite"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
@@ -73,7 +114,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // INSTAGRAM BUTTON TAPPED:
     func instagramButtonTapped() {
-        vibration.vibrationStandart()
         let appURL = URL(string: "instagram://user?username=tristyletrainer")
         let webURL = URL(string: "https://instagram.com/tristyletrainer")
         guard let appURL = appURL else { return }
@@ -87,7 +127,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // YOUTUBE BUTTON TAPPED:
     func youtubeButtonTapped() {
-        vibration.vibrationStandart()
         let appURL = URL(string: "https://www.youtube.com/@tristyleteam")
         let webURL = URL(string: "https://www.youtube.com/@tristyleteam")
         guard let appURL = appURL else { return }
@@ -101,7 +140,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // TELEGRAM BUTTON TAPPED:
     func telegramButtonTapped() {
-        vibration.vibrationStandart()
         let appURL = URL(string: "tg://resolve?domain=tristyle")
         let webURL = URL(string: "https://t.me/tristyle")
         guard let appURL = appURL else { return }
@@ -115,7 +153,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // WEB BUTTON TAPPED:
     func webButtonTapped() {
-        vibration.vibrationStandart()
         if let url = URL(string: "https://tristyle.by/"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
@@ -125,7 +162,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // PHONE BUTTON TAPPED:
     func phoneButtonTapped() {
-        vibration.vibrationStandart()
         if let phoneURL = URL(string: "tel://+375291556161"),
            UIApplication.shared.canOpenURL(phoneURL)
         {
