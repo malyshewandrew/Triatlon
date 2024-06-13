@@ -20,7 +20,7 @@ class PeoplesVC: UIViewController {
 - Обладатель кубка
 - Участник соревнвоаний
 - Держатель рекорда
-""", work: "Тренер по триатлону", url: "https://google.com", phoneNumber: "+37529000000"),
+""", work: "Тренер по триатлону", url: "https://google.com", phoneNumber: "+375298607103"),
         HumanModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
 - Победитель соревнований
 - Призер игр
@@ -28,7 +28,7 @@ class PeoplesVC: UIViewController {
 - Держатель рекорда
 - Обладатель кубка
 - Кандидат в мастера спорта
-""", work: "Тренер по плаванию", url: "https://google.com", phoneNumber: "+37529000000")
+""", work: "Тренер по плаванию", url: "https://google.com", phoneNumber: "+375298607103")
     ]
     private let teamArray: [HumanModel] = [
         HumanModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
@@ -38,7 +38,7 @@ class PeoplesVC: UIViewController {
 - Обладатель кубка
 - Обладатель кубка
 - Кандидат в мастера спорта
-""", work: "Tristyle Team", url: "https://google.com", phoneNumber: "+37529000000")
+""", work: "Tristyle Team", url: "https://google.com", phoneNumber: "+375298607103")
     ]
     
     // MARK: - LIFYCYCLE:
@@ -172,12 +172,14 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
             if let cell = tableViewTrainer.dequeueReusableCell(withIdentifier: "TrainerCell", for: indexPath) as? TrainerCell {
                 let trainer = trainerArray[indexPath.row]
                 cell.configure(with: trainer)
+                cell.presenter = presenter
                 return cell
             }
         } else if tableView == tableViewTeam {
             if let cell = tableViewTeam.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as? TeamCell {
                 let trainer = teamArray[indexPath.row]
                 cell.configure(with: trainer)
+                cell.presenter = presenter
                 return cell
             }
         }

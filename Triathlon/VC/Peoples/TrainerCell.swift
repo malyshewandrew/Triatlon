@@ -11,8 +11,11 @@ class TrainerCell: UITableViewCell {
     private var imagesArray = [UIImage]()
     private let achievementsLabel = UILabel()
     private let phoneButton = UIButton()
+    private var phoneNumber = ""
     private let profileButton = UIButton()
+    private var profileLink: String?
     private let workLabel = UILabel()
+    var presenter: PeoplesPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
 
@@ -127,12 +130,14 @@ class TrainerCell: UITableViewCell {
         phoneButton.setTitle("Связаться", for: .normal)
         phoneButton.titleLabel?.font = fontMediumStandard14
         phoneButton.layer.cornerRadius = cornerRadius
+        phoneButton.addTarget(self, action: #selector(phoneButtonTapped), for: .touchUpInside)
         
         // PROFILE BUTTON:
         profileButton.backgroundColor = .systemBlue
         profileButton.setTitle("Профиль", for: .normal)
         profileButton.titleLabel?.font = fontMediumStandard14
         profileButton.layer.cornerRadius = cornerRadius
+        profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         
         // IMAGE COLLECTION VIEW:
         imageCollectionView.layer.cornerRadius = cornerRadius
@@ -159,6 +164,20 @@ class TrainerCell: UITableViewCell {
         imagesArray = trainer.photo
         achievementsLabel.text = trainer.achievements
         workLabel.text = trainer.work
+        phoneNumber = trainer.phoneNumber ?? ""
+        profileLink = trainer.url
+    }
+    
+    // MARK: - HELPERS:
+    
+    // PHONE BUTTON:
+    @objc private func phoneButtonTapped() {
+        presenter.phoneButtonTapped(with: phoneNumber)
+    }
+    
+    // PROFILE BUTTON:
+    @objc private func profileButtonTapped() {
+        presenter.profileButtonTapped(with: profileLink)
     }
 }
 
