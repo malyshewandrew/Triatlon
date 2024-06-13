@@ -70,7 +70,7 @@ class ClubVC: UIViewController {
         // LOADING IMAGE:
         loadingImageView.translatesAutoresizingMaskIntoConstraints = false
         loadingImageView.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor).isActive = true
-        loadingImageView.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor).isActive = true
+        loadingImageView.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor, constant: -50).isActive = true
         loadingImageView.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
         loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor, multiplier: 1).isActive = true
         
@@ -370,9 +370,9 @@ class ClubVC: UIViewController {
     
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
-            presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
-            presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
-            presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
+        presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
+        presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
+        presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
     }
     
     // INFO BUTTON TAPPED:
@@ -386,8 +386,8 @@ class ClubVC: UIViewController {
 
 extension ClubVC: ClubVCProtocol {
     func showAlert(title: String, message: String) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
-        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }

@@ -1,6 +1,7 @@
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
+
 protocol SchedulePresenterProtocol {
     func joinButtonTapped()
 }
@@ -10,11 +11,12 @@ final class SchedulePresenter: SchedulePresenterProtocol {
     // MARK: - PROPERTIES:
     unowned let view: ScheduleVCProtocol
 
+    // MARK: - INIT:
     init(view: ScheduleVCProtocol) {
         self.view = view
     }
     
-    // MARK: - MOTHODS:
+    // MARK: - METHODS:
     
     // JOIN BUTTON TAPPED:
     func joinButtonTapped() {

@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 // MARK: - PROTOCOL:
+
 protocol PeoplesPresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
     func profileButtonTapped(with prifileLink: String?)
@@ -9,12 +10,15 @@ protocol PeoplesPresenterProtocol {
 
 final class PeoplesPresenter: PeoplesPresenterProtocol {
 
+    // MARK: - PROPERTIES:
     unowned let view: PeoplesVCProtocol
 
+    // MARK: - INIT:
     init(view: PeoplesVCProtocol) {
         self.view = view
     }
     
+    // MARK: - METHODS:
     func selectedSegmentControl(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:

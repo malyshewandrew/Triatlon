@@ -81,8 +81,8 @@ class TrainerCell: UITableViewCell {
         profileButton.translatesAutoresizingMaskIntoConstraints = false
         profileButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         profileButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
-        profileButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        profileButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
+        profileButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        profileButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.25).isActive = true
     }
     
     // MARK: - CONFIGURE UI:

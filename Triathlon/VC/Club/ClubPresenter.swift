@@ -1,6 +1,6 @@
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
 protocol ClubPresenterProtocol {
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double)
@@ -17,7 +17,8 @@ protocol ClubPresenterProtocol {
 }
 
 final class ClubPresenter: ClubPresenterProtocol {
-    
+    // MARK: - PROPERTIES:
+
     unowned let view: ClubVCProtocol
     private let vibration = Vibration()
     
@@ -28,9 +29,13 @@ final class ClubPresenter: ClubPresenterProtocol {
     private var buildVersion = ""
     private var appVersion = ""
     
+    // MARK: - INIT:
+
     init(view: ClubVCProtocol) {
         self.view = view
     }
+    
+    // MARK: - METHODS:
     
     // ANIMATE COUNT LABELS:
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double) {
@@ -63,8 +68,7 @@ final class ClubPresenter: ClubPresenterProtocol {
     }
     
     // INFO BUTTON TAPPED:
-    func infoButtonTapped() -> UIAlertController{
-        
+    func infoButtonTapped() -> UIAlertController {
         if let infoDictionary = Bundle.main.infoDictionary {
             if let buildVersion = infoDictionary["CFBundleVersion"] as? String {
                 self.buildVersion = buildVersion
@@ -96,14 +100,24 @@ final class ClubPresenter: ClubPresenterProtocol {
         return alert
     }
     
+    // SHOW ALERT:
     func showAlert(title: String, message: String) {
         guard let viewController = view as? UIViewController else { return }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "Связаться", style: .default, handler: { _ in
+            let appURL = URL(string: "tg://resolve?domain=malyshewandrew")
+            let webURL = URL(string: "https://t.me/malyshewandrew")
+            guard let appURL = appURL else { return }
+            if UIApplication.shared.canOpenURL(appURL) {
+                UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+            } else {
+                guard let webURL = webURL else { return }
+                UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive))
         viewController.present(alert, animated: true)
     }
-    
-    
     
     // JOIN BUTTON TAPPED:
     func joinButtonTapped() {

@@ -82,7 +82,7 @@ final class ScheduleCell: UITableViewCell {
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         joinButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         joinButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
-        joinButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
+        joinButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.25).isActive = true
         joinButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
@@ -131,6 +131,7 @@ final class ScheduleCell: UITableViewCell {
         // JOIN BUTTON:
         joinButton.setTitle("Записаться", for: .normal)
         joinButton.setTitleColor(.white, for: .normal)
+        joinButton.titleLabel?.adjustsFontSizeToFitWidth = true
         joinButton.titleLabel?.font = fontMediumStandard14
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
@@ -142,10 +143,10 @@ final class ScheduleCell: UITableViewCell {
     func configure (schedule: ScheduleModel) {
         photoView.image = schedule.photo
         nameLabel.text = schedule.name
-        trainerName.text = schedule.trainer
-        sportLabel.text = schedule.sport
-        descriptionLabel.text = schedule.days
-        placeLabel.text = schedule.place
+        trainerName.text = "Тренер: " + schedule.trainer
+        sportLabel.text = "Спорт: " + schedule.sport
+        descriptionLabel.text = "Дни: " + schedule.days
+        placeLabel.text = "Место: " + schedule.place
     }
     
     // JOIN BUTTON TAPPED:
