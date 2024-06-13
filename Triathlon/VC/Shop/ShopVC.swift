@@ -1,10 +1,12 @@
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
-protocol ShopVCProtocol: AnyObject {}
+protocol ShopVCProtocol: AnyObject {
+    
+}
 
-class ShopVC: UIViewController {
+final class ShopVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ShopPresenterProtocol!
@@ -12,11 +14,6 @@ class ShopVC: UIViewController {
     private let vibration = Vibration()
     private var segmentedControl = UISegmentedControl()
     private let clothesTableView = UITableView()
-    private let clothesArray: [ProductModel] = [
-        ProductModel(name: "Майка Repeat", description: "- Приталенный силуэт\n- Принт шелкография", price: "35 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-463203246798-maika-repeat-muzhskaya", photo: .tshirt),
-        ProductModel(name: "Худи Age Group", description: "- Спущенная линия плеча\n- Расширенный капюшон\n- Два боковых кармана\n - Рукава с вырезами для большого пальца\n - Манжет по низу и рукаву", price: "70 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-149769668430-hudi-age-group-zhenskaya", photo: .hoodie),
-        ProductModel(name: "Майка Female Triathlete", description: "- Приталенный силуэт\n- Принт шелкография", price: "35 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-793756860850-maika-female-triathlete-zhenskaya", photo: .tshirtFemaleTriathlete)
-    ]
     
     // MARK: - LIFYCYCLE:
     
@@ -107,7 +104,9 @@ class ShopVC: UIViewController {
 
 // MARK: - EXTENSION:
 
-extension ShopVC: ShopVCProtocol {}
+extension ShopVC: ShopVCProtocol {
+    
+}
 
 extension ShopVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

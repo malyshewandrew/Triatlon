@@ -1,16 +1,17 @@
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
+
 protocol ScheduleVCProtocol: AnyObject {
+    
 }
 
-class ScheduleVC: UIViewController {
+final class ScheduleVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: SchedulePresenterProtocol!
     private let titleLabel = UILabel()
     private let tableView = UITableView()
-    let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", days: "Вторник, пятница", place: "Минск арена"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптур", photo: UIImage(resource: .coptur), sport: "Плавание", days: "Вторник, суббота", place: "Бассейн БГУФК"), ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Триатлон", days: "Понедельник, пятница", place: "Tristyle"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", days: "Среда, пятница", place: "Калиновского")]
     
     // MARK: - LIFYCYCLE:
     
@@ -37,7 +38,7 @@ class ScheduleVC: UIViewController {
         
         // TABLE VIEW:
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: titleLabel.topAnchor,constant: 35).isActive = true
+        tableView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 35).isActive = true
         tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -69,8 +70,8 @@ class ScheduleVC: UIViewController {
 }
 
 // MARK: - EXTENSION:
-extension ScheduleVC: ScheduleVCProtocol {
-}
+
+extension ScheduleVC: ScheduleVCProtocol {}
 
 extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

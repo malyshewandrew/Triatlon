@@ -1,8 +1,8 @@
 import UIKit
 
 final class PhilosophyVC: UIViewController {
-
     // MARK: - PROPERTIES:
+
     private let scrollView = UIScrollView()
     private let topTitleLabel = UILabel()
     private let titleLabel = UILabel()
@@ -198,7 +198,6 @@ final class PhilosophyVC: UIViewController {
     }
     
     // MARK: - HELPERS:
-    
 }
 
 // MARK: - EXTENSIONS:

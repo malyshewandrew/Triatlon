@@ -1,8 +1,8 @@
 import UIKit
 
 final class ScheduleCell: UITableViewCell {
-    
     // MARK: - PROPERTIES:
+
     private let containerView = UIView()
     private let nameLabel = UILabel()
     private let trainerName = UILabel()
@@ -14,15 +14,19 @@ final class ScheduleCell: UITableViewCell {
     var presenter: SchedulePresenterProtocol!
     
     // MARK: - LIFYCYCLE:
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         configureConstraints()
         configureUI()
     }
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
@@ -89,7 +93,6 @@ final class ScheduleCell: UITableViewCell {
     // MARK: - CONFIGURE UI:
     
     private func configureUI() {
-        
         // CONTENT VIEW:
         selectionStyle = .none
         contentView.backgroundColor = .colorMain
@@ -140,7 +143,8 @@ final class ScheduleCell: UITableViewCell {
     }
     
     // MARK: - HELPERS:
-    func configure (schedule: ScheduleModel) {
+
+    func configure(schedule: ScheduleModel) {
         photoView.image = schedule.photo
         nameLabel.text = schedule.name
         trainerName.text = "Тренер: " + schedule.trainer

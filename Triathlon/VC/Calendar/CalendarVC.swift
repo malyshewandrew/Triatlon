@@ -1,9 +1,11 @@
 import FSCalendar
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
-protocol CalendarVCProtocol: AnyObject {}
+protocol CalendarVCProtocol: AnyObject {
+    
+}
  
 final class CalendarVC: UIViewController {
     // MARK: - PROPERTIES:

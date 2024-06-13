@@ -1,8 +1,8 @@
 import UIKit
 
 final class ShopCell: UITableViewCell {
-    
     // MARK: - PROPERTIES:
+
     private let containerView = UIView()
     private let nameLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -13,15 +13,19 @@ final class ShopCell: UITableViewCell {
     var presenter: ShopPresenterProtocol!
     
     // MARK: - LIFYCYCLE:
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         configureConstraints()
         configureUI()
     }
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
@@ -76,7 +80,6 @@ final class ShopCell: UITableViewCell {
     // MARK: - CONFIGURE UI:
     
     private func configureUI() {
-        
         // CONTENT VIEW:
         selectionStyle = .none
         contentView.backgroundColor = .colorMain
@@ -117,7 +120,7 @@ final class ShopCell: UITableViewCell {
     // MARK: - HELPERS:
     
     // CONFIGURE:
-    func configure (product: ProductModel) {
+    func configure(product: ProductModel) {
         photoView.image = product.photo
         nameLabel.text = product.name
         descriptionLabel.text = product.description

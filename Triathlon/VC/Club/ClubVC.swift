@@ -3,11 +3,13 @@ import PDFKit
 import UIKit
 import WebKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
-protocol ClubVCProtocol: AnyObject {}
+protocol ClubVCProtocol: AnyObject {
+    
+}
 
-class ClubVC: UIViewController {
+final class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ClubPresenterProtocol!

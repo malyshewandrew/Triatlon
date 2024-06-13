@@ -21,7 +21,6 @@ final class ClubPresenter: ClubPresenterProtocol {
 
     unowned let view: ClubVCProtocol
     private let vibration = Vibration()
-    
     private var startValueKey: UInt8 = 0
     private var endValueKey: UInt8 = 0
     private var animationStartDateKey: UInt8 = 0

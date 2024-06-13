@@ -43,6 +43,7 @@
 		FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC863E2C19C73700752195 /* ShopCell.swift */; };
 		FBBC86412C19C94100752195 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86402C19C94100752195 /* ProductModel.swift */; };
 		FBBC86442C1A3F5E00752195 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FBBC86432C1A3F5E00752195 /* Lottie */; };
+		FBBC86462C1BAE0200752195 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86452C1BAE0200752195 /* Arrays.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		FBBC86382C19B96900752195 /* PeoplesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesVC.swift; sourceTree = "<group>"; };
 		FBBC863E2C19C73700752195 /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		FBBC86402C19C94100752195 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		FBBC86452C1BAE0200752195 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */,
-				FBBC862A2C19080700752195 /* ScheduleModel.swift */,
 				FBBC862C2C19081000752195 /* ScheduleCell.swift */,
 				FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */,
 			);
@@ -144,7 +145,6 @@
 				FBBC86372C19B96900752195 /* PeoplesPresenter.swift */,
 				FBBC86352C19B96900752195 /* TrainerCell.swift */,
 				FBBC86342C19B96900752195 /* TrainerCollectionView.swift */,
-				FBBC86362C19B96900752195 /* HumanModel.swift */,
 				52E746E12C19F9B4004D1AE3 /* TeamCell.swift */,
 				52E746E32C19F9E7004D1AE3 /* TeamImageCollectionCell.swift */,
 			);
@@ -157,7 +157,6 @@
 				FBAD341D2C11259B0014DE84 /* ShopVC.swift */,
 				FBAD341F2C1125A60014DE84 /* ShopPresenter.swift */,
 				FBBC863E2C19C73700752195 /* ShopCell.swift */,
-				FBBC86402C19C94100752195 /* ProductModel.swift */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -184,6 +183,8 @@
 				FBB89B9B2C10CE8E00FBDF3B /* Delegates */,
 				FB703B602C11BB6B00AB19CC /* Tab Bar */,
 				FBB89B9D2C10CEAF00FBDF3B /* VC */,
+				FBBC86472C1BAE9700752195 /* Data */,
+				FBBC86482C1BAFEA00752195 /* Models */,
 				FBB89B9C2C10CE9F00FBDF3B /* UI */,
 				FBB89B932C10CC1500FBDF3B /* Info.plist */,
 			);
@@ -233,6 +234,24 @@
 				FBBC862F2C19082200752195 /* OnboardingPresenter.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		FBBC86472C1BAE9700752195 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FBBC86452C1BAE0200752195 /* Arrays.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FBBC86482C1BAFEA00752195 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FBBC86362C19B96900752195 /* HumanModel.swift */,
+				FBBC862A2C19080700752195 /* ScheduleModel.swift */,
+				FBBC86402C19C94100752195 /* ProductModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +347,7 @@
 				52E746E22C19F9B4004D1AE3 /* TeamCell.swift in Sources */,
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FBBC86392C19B96900752195 /* TrainerCollectionView.swift in Sources */,
+				FBBC86462C1BAE0200752195 /* Arrays.swift in Sources */,
 				FBBC86302C19082200752195 /* OnboardingOne.swift in Sources */,
 				FBBC863A2C19B96900752195 /* TrainerCell.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,

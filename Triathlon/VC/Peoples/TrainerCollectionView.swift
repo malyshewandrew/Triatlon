@@ -22,7 +22,6 @@ final class TrainerCollectionView: UICollectionViewCell {
     // MARK: - CONFIGURE CONSTRAINTS:
 
     private func configureConstraints() {
-        
         // IMAGE VIEW:
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true

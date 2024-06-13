@@ -1,7 +1,7 @@
 import AVFoundation
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
 protocol OnboardingVCProtocol: AnyObject {
     

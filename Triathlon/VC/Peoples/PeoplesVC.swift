@@ -2,44 +2,15 @@ import UIKit
 
 // MARK: - PROTOCOL:
 protocol PeoplesVCProtocol: AnyObject {
-    
 }
 
-class PeoplesVC: UIViewController {
+final class PeoplesVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: PeoplesPresenterProtocol!
     private var segmentedControl = UISegmentedControl()
     private let tableViewTrainer = UITableView()
     private let tableViewTeam = UITableView()
-    private let trainerArray: [HumanModel] = [
-        HumanModel(photo: [UIImage(resource: .adamovich), UIImage(resource: .adamovich), UIImage(resource: .adamovich)], name: "Имя Фамилия",  country: "🇧🇾", achievements: """
-- Победитель соревнований
-- Призер игр
-- Мастер спорта
-- Обладатель кубка
-- Участник соревнвоаний
-- Держатель рекорда
-""", work: "Тренер по триатлону", url: "https://google.com"),
-        HumanModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
-- Победитель соревнований
-- Призер игр
-- Финишер первенства
-- Держатель рекорда
-- Обладатель кубка
-- Кандидат в мастера спорта
-""", work: "Тренер по плаванию", url: "https://google.com")
-    ]
-    private let teamArray: [HumanModel] = [
-        HumanModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
-- Финишер соревнований
-- Участник игр
-- Заслуженный мастер спорта
-- Обладатель кубка
-- Обладатель кубка
-- Кандидат в мастера спорта
-""", work: "Tristyle Team", url: "https://google.com")
-    ]
     
     // MARK: - LIFYCYCLE:
     

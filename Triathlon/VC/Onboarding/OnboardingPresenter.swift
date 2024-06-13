@@ -1,7 +1,7 @@
 import AVFoundation
 import UIKit
 
-// MARK: - protocol
+// MARK: - PROTOCOL:
 
 protocol OnboardingPresenterProtocol {
     func startVideo()
@@ -9,11 +9,13 @@ protocol OnboardingPresenterProtocol {
 }
 
 final class OnboardingPresenter: NSObject, OnboardingPresenterProtocol {
-    // MARK: PROPERTIES:
+    // MARK: - PROPERTIES:
 
     unowned let view: OnboardingVC
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
+
+    // MARK: - INIT:
 
     init(view: OnboardingVC) {
         self.view = view

@@ -1,19 +1,22 @@
 import UIKit
 
 final class CalendarCell: UITableViewCell {
-    
     // MARK: - PROPERTIES:
+
     private let containerView = UIView()
     private let nameLabel = UILabel()
     private let daysLeftLabel = UILabel()
     
     // MARK: - LIFECYCLE:
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         configureConstraints()
         configureUI()
     }
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -23,7 +26,6 @@ final class CalendarCell: UITableViewCell {
     private func addSubviews() {
         contentView.addSubviews(containerView)
         containerView.addSubviews(nameLabel, daysLeftLabel)
-        
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -68,14 +70,9 @@ final class CalendarCell: UITableViewCell {
     }
     
     // MARK: - HELPERS:
+
     func configure(name: String, daysLeft: Int) {
         nameLabel.text = name
         daysLeftLabel.text = "\(daysLeft)"
-    }
-}
-
-extension Date {
-    var startOfDay: Date {
-        return Calendar.current.startOfDay(for: self)
     }
 }

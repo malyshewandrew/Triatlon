@@ -1,6 +1,6 @@
 import UIKit
 
-class TrainerCell: UITableViewCell {
+final class TrainerCell: UITableViewCell {
     // MARK: - PROPERTIES:
 
     private let containerView = UIView()
