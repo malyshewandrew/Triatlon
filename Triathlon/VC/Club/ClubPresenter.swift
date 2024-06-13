@@ -5,7 +5,8 @@ import UIKit
 protocol ClubPresenterProtocol {
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double)
     func infoButtonTapped() -> UIAlertController
-    func showAlert(title: String, message: String)
+    func showAlertCompany(title: String, message: String)
+    func showAlertDeveloper(title: String, message: String)
     func joinButtonTapped()
     func fbButtonTapped()
     func instagramButtonTapped()
@@ -92,15 +93,43 @@ final class ClubPresenter: ClubPresenterProtocol {
                 print("Cannot open the URL.")
             }
         }))
+        alert.addAction(UIAlertAction(title: "Контакты", style: .default, handler: { _ in
+            self.showAlertCompany(title: "Tristyle", message: """
+ИП Плодунов З.С.
+УНП 192599598
+Адрес: 220055, Республика Беларусь, Минск, ул. Неманская, д.73, офис 33
+Свидетельство о государственной регистрации № 0604206 от 04.02.2016 выдано Минским
+горисполкомом
+""")
+        }))
         alert.addAction(UIAlertAction(title: "О приложении", style: .default, handler: { _ in
-            self.showAlert(title: "SwiftyLab™", message: "Версия приложения: \(self.appVersion)\nВерсия сборки:\(self.buildVersion)\n©Malyshew Andrew")
+            self.showAlertDeveloper(title: "SwiftyLab™", message: "Версия приложения: \(self.appVersion)\nВерсия сборки:\(self.buildVersion)\n©Malyshew Andrew")
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
         return alert
     }
     
-    // SHOW ALERT:
-    func showAlert(title: String, message: String) {
+    // SHOW ALERT COMPANY:
+    func showAlertCompany(title: String, message: String) {
+        guard let viewController = view as? UIViewController else { return }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Связаться", style: .default, handler: { _ in
+            let appURL = URL(string: "tg://resolve?domain=artodocx")
+            let webURL = URL(string: "https://t.me/artodocx")
+            guard let appURL = appURL else { return }
+            if UIApplication.shared.canOpenURL(appURL) {
+                UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+            } else {
+                guard let webURL = webURL else { return }
+                UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive))
+        viewController.present(alert, animated: true)
+    }
+    
+    // SHOW ALERT DEVELOPER:
+    func showAlertDeveloper(title: String, message: String) {
         guard let viewController = view as? UIViewController else { return }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Связаться", style: .default, handler: { _ in
