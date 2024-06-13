@@ -3,7 +3,8 @@ import UIKit
 // MARK: - PROTOCOL:
 
 protocol ShopVCProtocol: AnyObject {
-    
+    func showClothesTableView()
+    func hideTableView()
 }
 
 final class ShopVC: UIViewController {
@@ -85,28 +86,11 @@ final class ShopVC: UIViewController {
     
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         vibration.vibrationStandart()
-        switch sender.selectedSegmentIndex {
-        case 0:
-            clothesTableView.isHidden = false
-        case 1:
-            clothesTableView.isHidden = true
-        case 2:
-            clothesTableView.isHidden = true
-        case 3:
-            clothesTableView.isHidden = true
-        case 4:
-            clothesTableView.isHidden = true
-        default:
-            clothesTableView.isHidden = true
-        }
+        presenter.selectedSegmentControl(sender: sender)
     }
 }
 
 // MARK: - EXTENSION:
-
-extension ShopVC: ShopVCProtocol {
-    
-}
 
 extension ShopVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,5 +113,16 @@ extension ShopVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Tap to item")
+    }
+}
+
+extension ShopVC: ShopVCProtocol {
+    // SHOW CLOTHES:
+    func showClothesTableView() {
+        clothesTableView.isHidden = false
+    }
+    // HIDE TABLE VIEW:
+    func hideTableView() {
+        clothesTableView.isHidden = true
     }
 }

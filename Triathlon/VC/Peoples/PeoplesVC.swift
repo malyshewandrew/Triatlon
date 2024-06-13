@@ -2,6 +2,9 @@ import UIKit
 
 // MARK: - PROTOCOL:
 protocol PeoplesVCProtocol: AnyObject {
+    func showTrainerTableView()
+    func showTeamTableView()
+    func hideAllTableViews()
 }
 
 final class PeoplesVC: UIViewController {
@@ -25,7 +28,7 @@ final class PeoplesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControlValueChanged(sender: segmentedControl)
+        presenter.selectedSegmentControl(sender: segmentedControl)
     }
     
     // MARK: - CONFIGURE TABLE VIEWS
@@ -104,29 +107,11 @@ final class PeoplesVC: UIViewController {
     
     // MARK: - HELPERS:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            tableViewTrainer.isHidden = false
-            tableViewTeam.isHidden = true
-        case 1:
-            tableViewTrainer.isHidden = true
-            tableViewTeam.isHidden = false
-        case 2:
-            tableViewTrainer.isHidden = true
-            tableViewTeam.isHidden = true
-        case 3:
-            tableViewTrainer.isHidden = true
-            tableViewTeam.isHidden = true
-        default:
-            print("Не выбрано")
-        }
+        presenter.selectedSegmentControl(sender: sender)
     }
 }
 
 // MARK: - EXTENSION:
-extension PeoplesVC: PeoplesVCProtocol {
-    
-}
 
 extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,5 +140,23 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return UITableViewCell()
+    }
+}
+
+extension PeoplesVC: PeoplesVCProtocol {
+    // SHOW TRAINERS:
+    func showTrainerTableView() {
+        tableViewTrainer.isHidden = false
+        tableViewTeam.isHidden = true
+    }
+    // SHOW TEAM:
+    func showTeamTableView() {
+        tableViewTrainer.isHidden = true
+        tableViewTeam.isHidden = false
+    }
+    // HIDE ALL:
+    func hideAllTableViews() {
+        tableViewTrainer.isHidden = true
+        tableViewTeam.isHidden = true
     }
 }

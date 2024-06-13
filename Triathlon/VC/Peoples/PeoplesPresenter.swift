@@ -19,20 +19,22 @@ final class PeoplesPresenter: PeoplesPresenterProtocol {
     }
     
     // MARK: - METHODS:
+    
+    // SELECTED SEGMENTED CONTROL:
     func selectedSegmentControl(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            print("Состав")
-        case 1:
-            print("Состав")
-        case 2:
-            print("Спортсмены")
-        case 3:
-            print("Команда")
-        default:
-            print("Не выбрано")
+            switch sender.selectedSegmentIndex {
+            case 0:
+                view.showTrainerTableView()
+            case 1:
+                view.showTeamTableView()
+            case 2:
+                view.hideAllTableViews()
+            case 3:
+                view.hideAllTableViews()
+            default:
+                print("Не выбрано")
+            }
         }
-    }
 
     // PROFILE BUTTON TAPPED:
     func profileButtonTapped(with prifileLink: String?) {
