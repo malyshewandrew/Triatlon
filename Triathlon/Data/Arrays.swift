@@ -4,27 +4,20 @@ import UIKit
 
 // TRAINERS
 let trainerArray: [HumanModel] = [
-    HumanModel(photo: [UIImage(resource: .adamovich), UIImage(resource: .adamovich), UIImage(resource: .adamovich)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
-    - Победитель соревнований
-    - Призер игр
-    - Мастер спорта
-    - Обладатель кубка
-    - Участник соревнвоаний
-    - Держатель рекорда
-    """, work: "Тренер по триатлону", url: "https://google.com"),
-    HumanModel(photo: [UIImage(resource: .coptur), UIImage(resource: .coptur), UIImage(resource: .coptur)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
-    - Победитель соревнований
-    - Призер игр
-    - Финишер первенства
-    - Держатель рекорда
-    - Обладатель кубка
-    - Кандидат в мастера спорта
-    """, work: "Тренер по плаванию", url: "https://google.com")
+    HumanModel(photo: [UIImage(resource: .meljah1), UIImage(resource: .meljah2), UIImage(resource: .meljah3), UIImage(resource: .meljah4), UIImage(resource: .meljah5)], name: "Дмитрий Мелях", country: "🇧🇾", achievements: """
+- 3-кратный участник Олимпийских Игр
+- 2-кратный чемпион мира (по современному пятиборью)
+- Победитель этапа Кубка мира
+- Чемпион Европы
+- Тринадцатикратный чемпион РБ
+- Заслуженный мастер спорта Республики Беларусь (высшая спортивная награда страны)
+- Старший тренер национальной команды
+""", work: "Тренер по триатлону", url: "https://google.com")
 ]
 
 // TEAM:
 let teamArray: [HumanModel] = [
-    HumanModel(photo: [UIImage(resource: .meljah), UIImage(resource: .meljah), UIImage(resource: .meljah)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
+    HumanModel(photo: [UIImage(resource: .meljah1)], name: "Имя Фамилия", country: "🇧🇾", achievements: """
     - Финишер соревнований
     - Участник игр
     - Заслуженный мастер спорта
@@ -36,7 +29,7 @@ let teamArray: [HumanModel] = [
 
 // MARK: - GROUPS:
 
-let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah), sport: "Велоспорт, бег", days: "Вторник, пятница", place: "Минск арена"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптур", photo: UIImage(resource: .coptur), sport: "Плавание", days: "Вторник, суббота", place: "Бассейн БГУФК"), ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Триатлон", days: "Понедельник, пятница", place: "Tristyle"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", days: "Среда, пятница", place: "Калиновского")]
+let arrayGroups: [ScheduleModel] = [ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Мелях", photo: UIImage(resource: .meljah1), sport: "Велоспорт, бег", days: "Вторник, пятница", place: "Минск арена"), ScheduleModel(name: "Группа плавания", trainer: "Дмитрий Коптур", photo: UIImage(resource: .coptur), sport: "Плавание", days: "Вторник, суббота", place: "Бассейн БГУФК"), ScheduleModel(name: "Группа триатлон", trainer: "Дмитрий Толкачев", photo: UIImage(resource: .tolkachev), sport: "Триатлон", days: "Понедельник, пятница", place: "Tristyle"), ScheduleModel(name: "Группа бег", trainer: "Алексей Адамович", photo: UIImage(resource: .adamovich), sport: "Бег", days: "Среда, пятница", place: "Калиновского")]
 
 // MARK: - SHOP:
 
