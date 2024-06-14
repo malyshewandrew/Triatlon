@@ -16,6 +16,7 @@ final class ClubVC: UIViewController {
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let loadingLottie = LottieAnimationView(name: "LoadingLottie")
+    private let linkButton = UIButton(type: .system)
     private let infoButton = UIButton(type: .system)
     private let configurationImage = UIImage.SymbolConfiguration(pointSize: 20)
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
@@ -28,14 +29,6 @@ final class ClubVC: UIViewController {
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
     private let joinButton = UIButton(type: .system)
-    private let linksView = UIView()
-    private let instagramButton = UIButton(type: .system)
-    private let youtubeButton = UIButton(type: .system)
-    private let telegramButton = UIButton(type: .system)
-    private let phoneButton = UIButton(type: .system)
-    private let webButton = UIButton(type: .system)
-    private let fbButton = UIButton(type: .system)
-    private let emailButton = UIButton(type: .system)
     private var currentLottie: LottieAnimationView?
     private var animationTimer: Timer?
     private var showTimer: Timer?
@@ -54,9 +47,8 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, linksView, loadingView)
+        view.addSubviews(linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
-        linksView.addSubviews(instagramButton, telegramButton, youtubeButton, phoneButton, webButton, fbButton, emailButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -82,6 +74,13 @@ final class ClubVC: UIViewController {
         loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
         loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.3).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
+        
+        // LINK BUTTON:
+        linkButton.translatesAutoresizingMaskIntoConstraints = false
+        linkButton.topAnchor.constraint(equalTo: logoImageView.topAnchor).isActive = true
+        linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        linkButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        linkButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // INFO BUTTON:
         infoButton.translatesAutoresizingMaskIntoConstraints = false
@@ -144,62 +143,6 @@ final class ClubVC: UIViewController {
         joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         joinButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         joinButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
-        
-        // LINKS VIEW:
-        linksView.translatesAutoresizingMaskIntoConstraints = false
-        linksView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        linksView.topAnchor.constraint(equalTo: joinButton.bottomAnchor, constant: 30).isActive = true
-        linksView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-        linksView.heightAnchor.constraint(equalTo: linksView.widthAnchor, multiplier: 0.2).isActive = true
-        
-        // FACEBBOK:
-        fbButton.translatesAutoresizingMaskIntoConstraints = false
-        fbButton.trailingAnchor.constraint(equalTo: telegramButton.leadingAnchor, constant: -15).isActive = true
-        fbButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        fbButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        fbButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // INSTAGRAM:
-        instagramButton.translatesAutoresizingMaskIntoConstraints = false
-        instagramButton.centerXAnchor.constraint(equalTo: linksView.centerXAnchor).isActive = true
-        instagramButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        instagramButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        instagramButton.widthAnchor.constraint(equalTo: instagramButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // YOUTUBE:
-        youtubeButton.translatesAutoresizingMaskIntoConstraints = false
-        youtubeButton.trailingAnchor.constraint(equalTo: instagramButton.leadingAnchor, constant: -15).isActive = true
-        youtubeButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        youtubeButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        youtubeButton.widthAnchor.constraint(equalTo: youtubeButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // TELEGRAM:
-        telegramButton.translatesAutoresizingMaskIntoConstraints = false
-        telegramButton.trailingAnchor.constraint(equalTo: youtubeButton.leadingAnchor, constant: -15).isActive = true
-        telegramButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        telegramButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        telegramButton.widthAnchor.constraint(equalTo: telegramButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // WEB:
-        webButton.translatesAutoresizingMaskIntoConstraints = false
-        webButton.leadingAnchor.constraint(equalTo: instagramButton.trailingAnchor, constant: 15).isActive = true
-        webButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        webButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        webButton.widthAnchor.constraint(equalTo: webButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // PHONE:
-        phoneButton.translatesAutoresizingMaskIntoConstraints = false
-        phoneButton.leadingAnchor.constraint(equalTo: webButton.trailingAnchor, constant: 15).isActive = true
-        phoneButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        phoneButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        phoneButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
-        
-        // EMAIL:
-        emailButton.translatesAutoresizingMaskIntoConstraints = false
-        emailButton.leadingAnchor.constraint(equalTo: phoneButton.trailingAnchor, constant: 15).isActive = true
-        emailButton.centerYAnchor.constraint(equalTo: linksView.centerYAnchor).isActive = true
-        emailButton.heightAnchor.constraint(equalTo: linksView.heightAnchor, multiplier: 0.5).isActive = true
-        emailButton.widthAnchor.constraint(equalTo: phoneButton.heightAnchor, multiplier: 1).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -223,6 +166,11 @@ final class ClubVC: UIViewController {
         
         // TAB BAR:
         tabBarController?.tabBar.isHidden = true
+        
+        // LINK BUTTON:
+        linkButton.setImage(UIImage(systemName: "link.circle.fill", withConfiguration: configurationImage), for: .normal)
+        linkButton.tintColor = .white
+        linkButton.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
         
         // INFO BUTTON:
         infoButton.setImage(UIImage(systemName: "info.circle.fill", withConfiguration: configurationImage), for: .normal)
@@ -296,65 +244,6 @@ final class ClubVC: UIViewController {
             self?.vibration.vibrationStandart()
             self?.presenter.joinButtonTapped()
         }), for: .touchUpInside)
-        
-        // LINKS VIEW:
-        linksView.layer.cornerRadius = cornerRadius
-        
-        // FB:
-        fbButton.setImage(UIImage(resource: .facebook), for: .normal)
-        fbButton.tintColor = .white
-        fbButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.fbButtonTapped()
-        }), for: .touchUpInside)
-        
-        // INSTAGRAM:
-        instagramButton.setImage(UIImage(resource: .instagram), for: .normal)
-        instagramButton.tintColor = .white
-        instagramButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.instagramButtonTapped()
-        }), for: .touchUpInside)
-        
-        // YOUTUBE:
-        youtubeButton.setImage(UIImage(resource: .youTube), for: .normal)
-        youtubeButton.tintColor = .white
-        youtubeButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.youtubeButtonTapped()
-        }), for: .touchUpInside)
-        
-        // TELEGRAM:
-        telegramButton.setImage(UIImage(resource: .telegram), for: .normal)
-        telegramButton.tintColor = .white
-        telegramButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.telegramButtonTapped()
-        }), for: .touchUpInside)
-        
-        // WEB:
-        webButton.setImage(UIImage(resource: .web), for: .normal)
-        webButton.tintColor = .white
-        webButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.webButtonTapped()
-        }), for: .touchUpInside)
-        
-        // PHONE:
-        phoneButton.setImage(UIImage(resource: .phone), for: .normal)
-        phoneButton.tintColor = .white
-        phoneButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.phoneButtonTapped()
-        }), for: .touchUpInside)
-        
-        // EMAIL:
-        emailButton.setImage(UIImage(resource: .email), for: .normal)
-        emailButton.tintColor = .white
-        emailButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            self?.presenter.emailButtonTapped()
-        }), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
@@ -375,6 +264,12 @@ final class ClubVC: UIViewController {
         presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)
         presenter.animateCountLabel(label: sportsmenCountLabel, to: 152, duration: 1.5)
         presenter.animateCountLabel(label: startCountLabel, to: 32, duration: 1)
+    }
+    
+    // LINK BUTTON TAPPED:
+    @objc private func linkButtonTapped() {
+        vibration.vibrationStandart()
+        present(presenter.linkButtonTapped(), animated: true)
     }
     
     // INFO BUTTON TAPPED:

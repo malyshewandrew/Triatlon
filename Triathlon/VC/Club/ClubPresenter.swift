@@ -4,6 +4,7 @@ import UIKit
 
 protocol ClubPresenterProtocol {
     func animateCountLabel(label: UILabel, to endValue: Int, duration: Double)
+    func linkButtonTapped() -> UIAlertController
     func infoButtonTapped() -> UIAlertController
     func showAlertCompany(title: String, message: String)
     func showAlertDeveloper(title: String, message: String)
@@ -65,6 +66,34 @@ final class ClubPresenter: ClubPresenterProtocol {
         if percentage == 1 {
             displayLink.invalidate()
         }
+    }
+    
+    // LINK BUTTON TAPPED:
+    func linkButtonTapped() -> UIAlertController {
+        let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Сайт", style: .default, handler: { [weak self] _ in
+            self?.webButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { [weak self] _ in
+            self?.telegramButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { [weak self] _ in
+            self?.instagramButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "YouTube", style: .default, handler: { [weak self] _ in
+            self?.youtubeButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Facebook", style: .default, handler: { [weak self] _ in
+            self?.fbButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: { [weak self] _ in
+            self?.emailButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Позвонить", style: .default, handler: { [weak self] _ in
+            self?.phoneButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
+        return alert
     }
     
     // INFO BUTTON TAPPED:
