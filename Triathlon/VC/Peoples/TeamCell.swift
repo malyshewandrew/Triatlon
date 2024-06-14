@@ -65,14 +65,13 @@ final class TeamCell: UITableViewCell {
         achievementsLabel.translatesAutoresizingMaskIntoConstraints = false
         achievementsLabel.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 10).isActive = true
         achievementsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
-        achievementsLabel.trailingAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        achievementsLabel.trailingAnchor.constraint(equalTo: workLabel.leadingAnchor, constant: -20).isActive = true
         achievementsLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
             
         // WORK LABEL:
         workLabel.translatesAutoresizingMaskIntoConstraints = false
         workLabel.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 10).isActive = true
         workLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
-        workLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.4).isActive = true
         
         // PROFILE BUTTON:
         profileButton.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +92,6 @@ final class TeamCell: UITableViewCell {
         containerView.layer.cornerRadius = cornerRadius
         
         // NAME LABEL:
-        nameLabel.text = "Name"
         nameLabel.textColor = .white
         nameLabel.font = fontBoldStandard22
         
@@ -101,17 +99,15 @@ final class TeamCell: UITableViewCell {
         countryLabel.font = .systemFont(ofSize: 30)
         
         // WORK LABEL:
-        workLabel.text = "Director Director Director Director Director"
         workLabel.textColor = .white
         workLabel.font = fontMediumStandard14
-        workLabel.numberOfLines = .zero
         workLabel.textAlignment = .right
+        workLabel.adjustsFontSizeToFitWidth = true
         
         // ACHIEVEMENTS LABEL:
-        achievementsLabel.font = fontLightStandard12
+        achievementsLabel.font = fontLightStandard10
         achievementsLabel.textColor = .white
-        achievementsLabel.numberOfLines = .zero
-        achievementsLabel.text = "Herous baba yaga  ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga ex super herous baba yaga"
+        achievementsLabel.numberOfLines = 0
         
         // PROFILE BUTTON:
         profileButton.backgroundColor = .systemBlue

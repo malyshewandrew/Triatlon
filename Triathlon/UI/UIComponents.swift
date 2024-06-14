@@ -6,6 +6,7 @@ let cornerRadius: CGFloat = 14
 
 // MARK: - FONTS:
 
+let fontLightStandard10: UIFont = .systemFont(ofSize: 10, weight: .light, width: .standard)
 let fontLightStandard12: UIFont = .systemFont(ofSize: 12, weight: .light, width: .standard)
 let fontMediumLight14: UIFont = .systemFont(ofSize: 14, weight: .light, width: .standard)
 let fontMediumStandard14: UIFont = .systemFont(ofSize: 14, weight: .medium, width: .standard)
