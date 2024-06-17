@@ -46,6 +46,7 @@
 		FBBC86462C1BAE0200752195 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86452C1BAE0200752195 /* Arrays.swift */; };
 		FBBC864A2C1BB48D00752195 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FBBC86492C1BB48D00752195 /* PrivacyInfo.xcprivacy */; };
 		FBE94A512C2072D4007186DC /* MedecineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE94A502C2072D4007186DC /* MedecineVC.swift */; };
+		FBE94A532C20775D007186DC /* ClubCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE94A522C20775D007186DC /* ClubCardVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		FBBC86452C1BAE0200752195 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		FBBC86492C1BB48D00752195 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		FBE94A502C2072D4007186DC /* MedecineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedecineVC.swift; sourceTree = "<group>"; };
+		FBE94A522C20775D007186DC /* ClubCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				FB1427032C17959400D94901 /* CodexVC.swift */,
 				FB1427052C17978100D94901 /* PhilosophyVC.swift */,
 				FBE94A502C2072D4007186DC /* MedecineVC.swift */,
+				FBE94A522C20775D007186DC /* ClubCardVC.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */,
 				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
+				FBE94A532C20775D007186DC /* ClubCardVC.swift in Sources */,
 				FBE94A512C2072D4007186DC /* MedecineVC.swift in Sources */,
 				FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */,
 			);

@@ -27,9 +27,12 @@ final class ClubVC: UIViewController {
     private let sportsmenDescriptionLabel = UILabel()
     private let startCountLabel = UILabel()
     private let startDescriptionLabel = UILabel()
+    
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
     private let medecineButton = UIButton(type: .system)
+    private let clubCardButton = UIButton(type: .system)
+    
     private var currentLottie: LottieAnimationView?
     private var animationTimer: Timer?
     private var showTimer: Timer?
@@ -48,7 +51,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, clubCardButton, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
     }
     
@@ -143,14 +146,21 @@ final class ClubVC: UIViewController {
         philosophyButton.topAnchor.constraint(equalTo: codexButton.bottomAnchor, constant: 25).isActive = true
         philosophyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         philosophyButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        philosophyButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        philosophyButton.heightAnchor.constraint(equalTo: philosophyButton.widthAnchor, multiplier: 0.2).isActive = true
         
-        // JOIN BUTTON:
+        // MEDECINE BUTTON:
         medecineButton.translatesAutoresizingMaskIntoConstraints = false
         medecineButton.topAnchor.constraint(equalTo: philosophyButton.bottomAnchor, constant: 25).isActive = true
         medecineButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         medecineButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        medecineButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        medecineButton.heightAnchor.constraint(equalTo: medecineButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // CLUB CARD:
+        clubCardButton.translatesAutoresizingMaskIntoConstraints = false
+        clubCardButton.topAnchor.constraint(equalTo: medecineButton.bottomAnchor, constant: 25).isActive = true
+        clubCardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        clubCardButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        clubCardButton.heightAnchor.constraint(equalTo: clubCardButton.widthAnchor, multiplier: 0.2).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -255,6 +265,19 @@ final class ClubVC: UIViewController {
             self?.vibration.vibrationStandart()
             let medecineVC = MedecineVC()
             self?.present(medecineVC, animated: true)
+        }), for: .touchUpInside)
+        
+        // CLUB CARD:
+        clubCardButton.setTitle("Клубная карта", for: .normal)
+        clubCardButton.setTitleColor(.white, for: .normal)
+        clubCardButton.layer.masksToBounds = true
+        clubCardButton.layer.cornerRadius = cornerRadius
+        clubCardButton.layer.borderWidth = 2
+        clubCardButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        clubCardButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
+            let clubCardVC = ClubCardVC()
+            self?.present(clubCardVC, animated: true)
         }), for: .touchUpInside)
     }
     
