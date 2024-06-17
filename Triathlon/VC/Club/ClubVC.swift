@@ -173,7 +173,7 @@ final class ClubVC: UIViewController {
         loadingLottie.play()
         loadingLottie.loopMode = .loop
         
-        perform(#selector(closeAnimationVIew), with: nil, afterDelay: 2)
+        perform(#selector(closeAnimationView), with: nil, afterDelay: 2)
         
         // VIEW:
         view.backgroundColor = .colorMain
@@ -284,7 +284,7 @@ final class ClubVC: UIViewController {
     // MARK: - HELPERS:
     
     // CLOSED ANIMATION VIEW:
-    @objc private func closeAnimationVIew() {
+    @objc private func closeAnimationView() {
         tabBarController?.tabBar.isHidden = false
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             self?.loadingView.alpha = 0.0
