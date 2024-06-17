@@ -32,6 +32,7 @@ final class ClubVC: UIViewController {
     private let philosophyButton = UIButton(type: .system)
     private let medecineButton = UIButton(type: .system)
     private let clubCardButton = UIButton(type: .system)
+    private let anonimMessageButton = UIButton(type: .system)
     
     private var currentLottie: LottieAnimationView?
     private var animationTimer: Timer?
@@ -51,7 +52,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, clubCardButton, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
     }
     
@@ -161,6 +162,13 @@ final class ClubVC: UIViewController {
         clubCardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         clubCardButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         clubCardButton.heightAnchor.constraint(equalTo: clubCardButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // ANONIM MESSAGE:
+        anonimMessageButton.translatesAutoresizingMaskIntoConstraints = false
+        anonimMessageButton.topAnchor.constraint(equalTo: clubCardButton.bottomAnchor, constant: 25).isActive = true
+        anonimMessageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        anonimMessageButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        anonimMessageButton.heightAnchor.constraint(equalTo: anonimMessageButton.widthAnchor, multiplier: 0.2).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -278,6 +286,20 @@ final class ClubVC: UIViewController {
             self?.vibration.vibrationStandart()
             let clubCardVC = ClubCardVC()
             self?.present(clubCardVC, animated: true)
+        }), for: .touchUpInside)
+        
+        // ANONIM MESSAGE:
+        anonimMessageButton.setTitle("Анонимное сообщение", for: .normal)
+        anonimMessageButton.setTitleColor(.white, for: .normal)
+        anonimMessageButton.layer.masksToBounds = true
+        anonimMessageButton.layer.cornerRadius = cornerRadius
+        anonimMessageButton.layer.borderWidth = 2
+        anonimMessageButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        anonimMessageButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.vibration.vibrationStandart()
+            if let alert = self?.presenter.anonimButtonTapped() {
+                self?.present(alert, animated: true, completion: nil)
+            }
         }), for: .touchUpInside)
     }
     
