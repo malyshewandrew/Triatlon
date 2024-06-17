@@ -296,10 +296,17 @@ final class ClubVC: UIViewController {
         anonimMessageButton.layer.borderWidth = 2
         anonimMessageButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         anonimMessageButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
-            if let alert = self?.presenter.anonimButtonTapped() {
-                self?.present(alert, animated: true, completion: nil)
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+            let anonimVC = AnonimVC()
+            let presenter = AnonimPresenter(view: anonimVC)
+            anonimVC.presenter = presenter
+            if let sheetController = anonimVC.sheetPresentationController {
+                sheetController.prefersGrabberVisible = true
+                sheetController.preferredCornerRadius = 100
+                sheetController.detents = [.medium()]
             }
+            self.present(anonimVC, animated: true)
         }), for: .touchUpInside)
     }
     

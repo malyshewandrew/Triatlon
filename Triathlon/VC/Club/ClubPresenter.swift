@@ -15,7 +15,6 @@ protocol ClubPresenterProtocol {
     func webButtonTapped()
     func phoneButtonTapped()
     func emailButtonTapped()
-    func anonimButtonTapped() -> UIAlertController
 }
 
 final class ClubPresenter: ClubPresenterProtocol {
@@ -124,12 +123,12 @@ final class ClubPresenter: ClubPresenterProtocol {
         }))
         alert.addAction(UIAlertAction(title: "Контакты", style: .default, handler: { _ in
             self.showAlertCompany(title: "Tristyle", message: """
-ИП Плодунов З.С.
-УНП 192599598
-Адрес: 220055, Республика Беларусь, Минск, ул. Неманская, д.73, офис 33
-Свидетельство о государственной регистрации № 0604206 от 04.02.2016 выдано Минским
-горисполкомом
-""")
+            ИП Плодунов З.С.
+            УНП 192599598
+            Адрес: 220055, Республика Беларусь, Минск, ул. Неманская, д.73, офис 33
+            Свидетельство о государственной регистрации № 0604206 от 04.02.2016 выдано Минским
+            горисполкомом
+            """)
         }))
         alert.addAction(UIAlertAction(title: "О приложении", style: .default, handler: { _ in
             self.showAlertDeveloper(title: "SwiftyLab™", message: "Версия приложения: \(self.appVersion)\nВерсия сборки:\(self.buildVersion)\n©Malyshew Andrew")
@@ -254,23 +253,5 @@ final class ClubPresenter: ClubPresenterProtocol {
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url)
         }
-    }
-    
-    // ANONIM BUTTON TAPPED:
-    func anonimButtonTapped() -> UIAlertController {
-        let alert = UIAlertController(title: "Анонимная обратная связь", message: nil, preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.placeholder = "Введите сообщение"
-        }
-        let confirmAction = UIAlertAction(title: "Отправить", style: .default) { _ in
-            if let textField = alert.textFields?.first {
-                // Обработка введенного текста
-                print("Введенное сообщение: \(textField.text ?? "")")
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alert.addAction(confirmAction)
-        alert.addAction(cancelAction)
-        return alert
     }
 }
