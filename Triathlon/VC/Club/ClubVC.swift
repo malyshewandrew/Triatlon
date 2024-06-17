@@ -29,7 +29,7 @@ final class ClubVC: UIViewController {
     private let startDescriptionLabel = UILabel()
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
-    private let joinButton = UIButton(type: .system)
+    private let medecineButton = UIButton(type: .system)
     private var currentLottie: LottieAnimationView?
     private var animationTimer: Timer?
     private var showTimer: Timer?
@@ -48,7 +48,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
     }
     
@@ -146,11 +146,11 @@ final class ClubVC: UIViewController {
         philosophyButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // JOIN BUTTON:
-        joinButton.translatesAutoresizingMaskIntoConstraints = false
-        joinButton.topAnchor.constraint(equalTo: philosophyButton.bottomAnchor, constant: 25).isActive = true
-        joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        joinButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        joinButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
+        medecineButton.translatesAutoresizingMaskIntoConstraints = false
+        medecineButton.topAnchor.constraint(equalTo: philosophyButton.bottomAnchor, constant: 25).isActive = true
+        medecineButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        medecineButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        medecineButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -245,15 +245,16 @@ final class ClubVC: UIViewController {
         }), for: .touchUpInside)
         
         // JOIN BUTTON:
-        joinButton.setTitle("Начать тренироваться", for: .normal)
-        joinButton.setTitleColor(.white, for: .normal)
-        joinButton.layer.masksToBounds = true
-        joinButton.layer.cornerRadius = cornerRadius
-        joinButton.layer.borderWidth = 2
-        joinButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
-        joinButton.addAction(UIAction(handler: { [weak self] _ in
+        medecineButton.setTitle("Медицина", for: .normal)
+        medecineButton.setTitleColor(.white, for: .normal)
+        medecineButton.layer.masksToBounds = true
+        medecineButton.layer.cornerRadius = cornerRadius
+        medecineButton.layer.borderWidth = 2
+        medecineButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        medecineButton.addAction(UIAction(handler: { [weak self] _ in
             self?.vibration.vibrationStandart()
-            self?.presenter.joinButtonTapped()
+            let medecineVC = MedecineVC()
+            self?.present(medecineVC, animated: true)
         }), for: .touchUpInside)
     }
     

@@ -8,7 +8,6 @@ protocol ClubPresenterProtocol {
     func infoButtonTapped() -> UIAlertController
     func showAlertCompany(title: String, message: String)
     func showAlertDeveloper(title: String, message: String)
-    func joinButtonTapped()
     func fbButtonTapped()
     func instagramButtonTapped()
     func youtubeButtonTapped()
@@ -174,15 +173,6 @@ final class ClubPresenter: ClubPresenterProtocol {
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive))
         viewController.present(alert, animated: true)
-    }
-    
-    // JOIN BUTTON TAPPED:
-    func joinButtonTapped() {
-        if let url = URL(string: "https://smart.tristyle.by/group?utm_source=cite"), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            print("Cannot open the URL.")
-        }
     }
     
     // FB BUTTON TAPPED:

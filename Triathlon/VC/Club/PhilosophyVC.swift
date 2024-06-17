@@ -2,7 +2,7 @@ import UIKit
 
 final class PhilosophyVC: UIViewController {
     // MARK: - PROPERTIES:
-
+    private let backgroundImage = UIImageView()
     private let scrollView = UIScrollView()
     private let topTitleLabel = UILabel()
     private let titleLabel = UILabel()
@@ -28,13 +28,20 @@ final class PhilosophyVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(scrollView)
+        view.addSubviews(backgroundImage, scrollView)
         scrollView.addSubviews(topTitleLabel, titleLabel, descriptionLabel, ruleOneTitleLabel, ruleOneDescriptionLabel, ruleTwoTitleLabel, ruleTwoDescriptionLabel, ruleThreeTitleLabel, ruleThreeDescriptionLabel, ruleFourTitleLabel, ruleFourDescriptionLabel)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // SCROLL VIEW:
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -114,6 +121,9 @@ final class PhilosophyVC: UIViewController {
     private func configureUI() {
         // VIEW:
         view.backgroundColor = .colorMain
+        
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
         
         // SCROLL VIEW:
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 1.7)
