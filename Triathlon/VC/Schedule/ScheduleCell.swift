@@ -95,7 +95,7 @@ final class ScheduleCell: UITableViewCell {
     private func configureUI() {
         // CONTENT VIEW:
         selectionStyle = .none
-        contentView.backgroundColor = .colorMain
+        contentView.backgroundColor = .clear
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground

@@ -11,7 +11,7 @@ final class ShopVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ShopPresenterProtocol!
-    
+    private let backgroundImage = UIImageView()
     private let vibration = Vibration()
     private var segmentedControl = UISegmentedControl()
     private let clothesTableView = UITableView()
@@ -28,12 +28,19 @@ final class ShopVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(segmentedControl, clothesTableView)
+        view.addSubviews(backgroundImage, segmentedControl, clothesTableView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
@@ -58,6 +65,9 @@ final class ShopVC: UIViewController {
         navigationItem.title = ""
         navigationController?.navigationBar.isHidden = true
         
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
+        
         // SEGMENT CONTROL
         segmentedControl.backgroundColor = .colorBackground
         segmentedControl.selectedSegmentTintColor = .colorBackground
@@ -77,7 +87,7 @@ final class ShopVC: UIViewController {
         clothesTableView.delegate = self
         clothesTableView.dataSource = self
         clothesTableView.register(ShopCell.self, forCellReuseIdentifier: "ShopCell")
-        clothesTableView.backgroundColor = .colorMain
+        clothesTableView.backgroundColor = .clear
         clothesTableView.separatorStyle = .none
         clothesTableView.isHidden = false
     }
@@ -105,6 +115,7 @@ extension ShopVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath) as? ShopCell else { return UITableViewCell() }
             let clothes = clothesArray[indexPath.row]
             cell.configure(product: clothes)
+            cell.backgroundColor = .clear
             cell.presenter = presenter
             return cell
         }

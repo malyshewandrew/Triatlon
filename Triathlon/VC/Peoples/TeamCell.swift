@@ -85,7 +85,7 @@ final class TeamCell: UITableViewCell {
     private func configureUI() {
         
         // CONTEN VIEW:
-        contentView.backgroundColor = .colorMain
+        contentView.backgroundColor = .clear
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground

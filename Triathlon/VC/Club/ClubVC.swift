@@ -16,9 +16,10 @@ final class ClubVC: UIViewController {
     private let loadingView = UIView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let loadingLottie = LottieAnimationView(name: "LoadingLottie")
+    private let backgroundImage = UIImageView()
     private let linkButton = UIButton(type: .system)
     private let infoButton = UIButton(type: .system)
-    private let configurationImage = UIImage.SymbolConfiguration(pointSize: 20)
+    private let configurationImage = UIImage.SymbolConfiguration(pointSize: 25)
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
@@ -47,7 +48,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, joinButton, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
     }
     
@@ -75,23 +76,30 @@ final class ClubVC: UIViewController {
         loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.3).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
         
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // LINK BUTTON:
         linkButton.translatesAutoresizingMaskIntoConstraints = false
-        linkButton.topAnchor.constraint(equalTo: logoImageView.topAnchor).isActive = true
+        linkButton.topAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -20).isActive = true
         linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         linkButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         linkButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         // INFO BUTTON:
         infoButton.translatesAutoresizingMaskIntoConstraints = false
-        infoButton.topAnchor.constraint(equalTo: logoImageView.topAnchor).isActive = true
+        infoButton.topAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -20).isActive = true
         infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         infoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         infoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 1).isActive = true
@@ -166,6 +174,9 @@ final class ClubVC: UIViewController {
         
         // TAB BAR:
         tabBarController?.tabBar.isHidden = true
+        
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
         
         // LINK BUTTON:
         linkButton.setImage(UIImage(systemName: "link.circle.fill", withConfiguration: configurationImage), for: .normal)

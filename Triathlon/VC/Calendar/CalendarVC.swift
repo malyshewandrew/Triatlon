@@ -11,6 +11,7 @@ final class CalendarVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: CalendarPresenterProtocol!
+    private let backgroundImage = UIImageView()
     private let titleLabel = UILabel()
     private let calendarView = UIView()
     private var calendar = FSCalendar()
@@ -42,13 +43,20 @@ final class CalendarVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(titleLabel, calendarView, nameLabel, dateLabel, tableView)
+        view.addSubviews(backgroundImage, titleLabel, calendarView, nameLabel, dateLabel, tableView)
         calendarView.addSubviews(calendar)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // TITLE:
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
@@ -95,6 +103,9 @@ final class CalendarVC: UIViewController {
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
         
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
+        
         // TITLE:
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
@@ -139,7 +150,7 @@ final class CalendarVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(CalendarCell.self, forCellReuseIdentifier: "CalendarCell")
-        tableView.backgroundColor = .colorMain
+        tableView.backgroundColor = .clear
     }
     
     // MARK: - HELPERS:
@@ -195,6 +206,7 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         }
         let start = sortedDates[indexPath.row]
         cell.configure(name: start.event, daysLeft: calculateDaysLeft(to: start.date))
+        cell.backgroundColor = .clear
         return cell
     }
     

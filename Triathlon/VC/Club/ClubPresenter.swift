@@ -71,9 +71,6 @@ final class ClubPresenter: ClubPresenterProtocol {
     // LINK BUTTON TAPPED:
     func linkButtonTapped() -> UIAlertController {
         let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Сайт", style: .default, handler: { [weak self] _ in
-            self?.webButtonTapped()
-        }))
         alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { [weak self] _ in
             self?.telegramButtonTapped()
         }))
@@ -88,6 +85,9 @@ final class ClubPresenter: ClubPresenterProtocol {
         }))
         alert.addAction(UIAlertAction(title: "Email", style: .default, handler: { [weak self] _ in
             self?.emailButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Сайт", style: .default, handler: { [weak self] _ in
+            self?.webButtonTapped()
         }))
         alert.addAction(UIAlertAction(title: "Позвонить", style: .default, handler: { [weak self] _ in
             self?.phoneButtonTapped()
@@ -108,14 +108,14 @@ final class ClubPresenter: ClubPresenterProtocol {
         }
         
         let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Политика конфидециальности", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Договор оферты", style: .default, handler: { _ in
             if let url = URL(string: "https://google.com"), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
                 print("Cannot open the URL.")
             }
         }))
-        alert.addAction(UIAlertAction(title: "Условия использования", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Политика конфидециальности", style: .default, handler: { _ in
             if let url = URL(string: "https://google.com"), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
@@ -226,8 +226,8 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // TELEGRAM BUTTON TAPPED:
     func telegramButtonTapped() {
-        let appURL = URL(string: "tg://resolve?domain=Tristyleteam")
-        let webURL = URL(string: "https://t.me/Tristyleteam")
+        let appURL = URL(string: "tg://resolve?domain=tristyle")
+        let webURL = URL(string: "https://t.me/s/tristyle")
         guard let appURL = appURL else { return }
         if UIApplication.shared.canOpenURL(appURL) {
             UIApplication.shared.open(appURL, options: [:], completionHandler: nil)

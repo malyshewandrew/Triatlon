@@ -11,6 +11,7 @@ final class PeoplesVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: PeoplesPresenterProtocol!
+    private let backgroundImage = UIImageView()
     private var segmentedControl = UISegmentedControl()
     private let tableViewTrainer = UITableView()
     private let tableViewTeam = UITableView()
@@ -44,12 +45,19 @@ final class PeoplesVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(segmentedControl, tableViewTrainer, tableViewTeam)
+        view.addSubviews(backgroundImage, segmentedControl, tableViewTrainer, tableViewTeam)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         // SEGMENT CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -78,13 +86,16 @@ final class PeoplesVC: UIViewController {
         // VIEW:
         view.backgroundColor = .colorMain
         
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
+        
         // TABLE VIEW TRAINER:
-        tableViewTrainer.backgroundColor = .colorMain
+        tableViewTrainer.backgroundColor = .clear
         tableViewTrainer.isHidden = true
         tableViewTrainer.separatorStyle = .none
         
         // TABLE VIEW TEAM:
-        tableViewTeam.backgroundColor = .colorMain
+        tableViewTeam.backgroundColor = .clear
         tableViewTeam.isHidden = true
         tableViewTeam.separatorStyle = .none
         
@@ -129,6 +140,7 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
                 let trainer = trainerArray[indexPath.row]
                 cell.configure(with: trainer)
                 cell.presenter = presenter
+                cell.backgroundColor = .clear
                 return cell
             }
         } else if tableView == tableViewTeam {
@@ -136,6 +148,7 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
                 let trainer = teamArray[indexPath.row]
                 cell.configure(with: trainer)
                 cell.presenter = presenter
+                cell.backgroundColor = .clear
                 return cell
             }
         }

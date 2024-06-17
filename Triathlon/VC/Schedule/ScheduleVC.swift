@@ -10,6 +10,7 @@ final class ScheduleVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: SchedulePresenterProtocol!
+    private let backgroundImage = UIImageView()
     private let titleLabel = UILabel()
     private let tableView = UITableView()
     
@@ -25,12 +26,19 @@ final class ScheduleVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(titleLabel, tableView)
+        view.addSubviews(backgroundImage, titleLabel, tableView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
+        // BACKGROUND VIEW:
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // TITLE:
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -53,6 +61,9 @@ final class ScheduleVC: UIViewController {
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
         
+        // BACKGROUND VIEW:
+        backgroundImage.image = UIImage(resource: .background)
+        
         // TITLE:
         titleLabel.textColor = .white
         titleLabel.text = "Группы Tristyle:"
@@ -62,7 +73,7 @@ final class ScheduleVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: "ScheduleCell")
-        tableView.backgroundColor = .colorMain
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
     }
     
@@ -83,6 +94,7 @@ extension ScheduleVC: UITableViewDelegate, UITableViewDataSource {
         let group = arrayGroups[indexPath.row]
         cell.configure(schedule: group)
         cell.presenter = presenter
+        cell.backgroundColor = .clear
         return cell
     }
     
