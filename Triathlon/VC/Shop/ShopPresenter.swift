@@ -9,14 +9,15 @@ protocol ShopPresenterProtocol {
 
 final class ShopPresenter: ShopPresenterProtocol {
     // MARK: - PROPERTIES:
-    
+
     unowned let view: ShopVCProtocol
 
     // MARK: - INIT:
+
     init(view: ShopVCProtocol) {
         self.view = view
     }
-    
+
     // MARK: - METHODS:
 
     // SHOP BUTTON TAPPED:
@@ -27,22 +28,22 @@ final class ShopPresenter: ShopPresenterProtocol {
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    
+
     // SELECTED SEGMENTED CONTROL:
     func selectedSegmentControl(sender: UISegmentedControl) {
-            switch sender.selectedSegmentIndex {
-            case 0:
-                view.showClothesTableView()
-            case 1:
-                view.hideTableView()
-            case 2:
-                view.hideTableView()
-            case 3:
-                view.hideTableView()
-            case 4:
-                view.hideTableView()
-            default:
-                view.hideTableView()
-            }
+        switch sender.selectedSegmentIndex {
+        case 0:
+            view.showClothesTableView()
+        case 1:
+            view.hideTableView()
+        case 2:
+            view.hideTableView()
+        case 3:
+            view.hideTableView()
+        case 4:
+            view.hideTableView()
+        default:
+            view.hideTableView()
         }
+    }
 }

@@ -107,6 +107,13 @@ final class ClubPresenter: ClubPresenterProtocol {
         }
         
         let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Личный кабинет", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let accountVC = AccountVC()
+            let accountPresenter = AccountPresenter(view: accountVC)
+            accountVC.presenter = accountPresenter
+            self.view.navigateAccountVC(view: accountVC)
+        }))
         alert.addAction(UIAlertAction(title: "Договор оферты", style: .default, handler: { _ in
             if let url = URL(string: "https://google.com"), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)

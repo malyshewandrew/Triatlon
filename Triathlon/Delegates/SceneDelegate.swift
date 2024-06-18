@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -20,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = onboardingNavigationController
         }
         window.makeKeyAndVisible()
+        
+        // CHECK AUTH:
+        checkUserAuthenticationStatus()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -35,5 +39,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+    }
+    
+    // CHECK AUTH:
+    func checkUserAuthenticationStatus() {
+        if let user = Auth.auth().currentUser {
+            print("Пользователь аутентифицирован, email: \(user.email ?? "Не указан")")
+        } else {
+            print("Пользователь не аутентифицирован")
+        }
     }
 }

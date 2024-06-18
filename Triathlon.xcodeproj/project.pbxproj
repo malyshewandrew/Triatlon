@@ -22,6 +22,10 @@
 		FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB14270C2C18644B00D94901 /* CalendarCell.swift */; };
 		FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B612C11BB7D00AB19CC /* TabBarController.swift */; };
 		FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B632C11BD2800AB19CC /* Extensions.swift */; };
+		FB75B3892C21C98300AE360F /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75B3882C21C98300AE360F /* AccountVC.swift */; };
+		FB75B38B2C21C99000AE360F /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75B38A2C21C99000AE360F /* AccountPresenter.swift */; };
+		FB75B38F2C21E5C400AE360F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B38E2C21E5C400AE360F /* FirebaseAuth */; };
+		FB75B3912C21E5DA00AE360F /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B3902C21E5DA00AE360F /* FirebaseAuthCombine-Community */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
 		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
 		FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457112C20FC320070E6D4 /* CalendarModel.swift */; };
@@ -76,6 +80,8 @@
 		FB14270C2C18644B00D94901 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		FB703B612C11BB7D00AB19CC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FB75B3882C21C98300AE360F /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		FB75B38A2C21C99000AE360F /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		FBA457112C20FC320070E6D4 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
@@ -122,7 +128,9 @@
 				FBE94A5E2C207FFE007186DC /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				FBBC86442C1A3F5E00752195 /* Lottie in Frameworks */,
 				FB0F69792C2088980033E705 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				FB75B3912C21E5DA00AE360F /* FirebaseAuthCombine-Community in Frameworks */,
 				FBE94A582C207FFE007186DC /* FirebaseAnalytics in Frameworks */,
+				FB75B38F2C21E5C400AE360F /* FirebaseAuth in Frameworks */,
 				FB0F697B2C2088980033E705 /* FirebaseFirestoreSwift in Frameworks */,
 				FBA457182C20FDAC0070E6D4 /* FirebaseDatabaseSwift in Frameworks */,
 				FBA457162C20FDAC0070E6D4 /* FirebaseDatabase in Frameworks */,
@@ -193,6 +201,15 @@
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
+		FB75B3872C21C95B00AE360F /* AccountVC */ = {
+			isa = PBXGroup;
+			children = (
+				FB75B3882C21C98300AE360F /* AccountVC.swift */,
+				FB75B38A2C21C99000AE360F /* AccountPresenter.swift */,
+			);
+			path = AccountVC;
+			sourceTree = "<group>";
+		};
 		FBAD340C2C1120760014DE84 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +236,7 @@
 			children = (
 				FBAD34152C1125740014DE84 /* ClubVC.swift */,
 				FBAD34172C11257E0014DE84 /* ClubPresenter.swift */,
+				FB75B3872C21C95B00AE360F /* AccountVC */,
 				FB0F69842C20C8440033E705 /* CodexVC */,
 				FB0F69832C20C8360033E705 /* PhilosophyVC */,
 				FB0F69822C20C8260033E705 /* MedecineVC */,
@@ -362,6 +380,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				FB75B3932C21E5ED00AE360F /* PBXTargetDependency */,
+				FB75B38D2C21E55800AE360F /* PBXTargetDependency */,
 				FBA4571A2C20FDC40070E6D4 /* PBXTargetDependency */,
 				FBA4571C2C20FDC40070E6D4 /* PBXTargetDependency */,
 				FB0F69732C2088740033E705 /* PBXTargetDependency */,
@@ -384,6 +404,8 @@
 				FB0F697A2C2088980033E705 /* FirebaseFirestoreSwift */,
 				FBA457152C20FDAC0070E6D4 /* FirebaseDatabase */,
 				FBA457172C20FDAC0070E6D4 /* FirebaseDatabaseSwift */,
+				FB75B38E2C21E5C400AE360F /* FirebaseAuth */,
+				FB75B3902C21E5DA00AE360F /* FirebaseAuthCombine-Community */,
 			);
 			productName = Triathlon;
 			productReference = FBB89B822C10CC1400FBDF3B /* Triathlon.app */;
@@ -464,6 +486,7 @@
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FBBC86392C19B96900752195 /* TrainerCollectionView.swift in Sources */,
 				FBBC86462C1BAE0200752195 /* Arrays.swift in Sources */,
+				FB75B38B2C21C99000AE360F /* AccountPresenter.swift in Sources */,
 				FBBC86302C19082200752195 /* OnboardingOne.swift in Sources */,
 				FBBC863A2C19B96900752195 /* TrainerCell.swift in Sources */,
 				FB0F697D2C20C73D0033E705 /* AnonimVC.swift in Sources */,
@@ -480,6 +503,7 @@
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBA457142C20FD970070E6D4 /* FetchCalendarDates.swift in Sources */,
+				FB75B3892C21C98300AE360F /* AccountVC.swift in Sources */,
 				FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */,
 				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
 				FBE94A532C20775D007186DC /* ClubCardVC.swift in Sources */,
@@ -506,6 +530,14 @@
 		FB0F69752C2088740033E705 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = FB0F69742C2088740033E705 /* FirebaseFirestoreSwift */;
+		};
+		FB75B38D2C21E55800AE360F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FB75B38C2C21E55800AE360F /* FirebaseAuth */;
+		};
+		FB75B3932C21E5ED00AE360F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FB75B3922C21E5ED00AE360F /* FirebaseAuthCombine-Community */;
 		};
 		FBA4571A2C20FDC40070E6D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -807,6 +839,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB1427092C185D7A00D94901 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		FB75B38C2C21E55800AE360F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FB75B38E2C21E5C400AE360F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FB75B3902C21E5DA00AE360F /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		FB75B3922C21E5ED00AE360F /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
 		};
 		FBA457152C20FDAC0070E6D4 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
