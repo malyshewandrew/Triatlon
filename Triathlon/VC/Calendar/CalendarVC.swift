@@ -3,9 +3,7 @@ import UIKit
 
 // MARK: - PROTOCOL:
 
-protocol CalendarVCProtocol: AnyObject {
-    
-}
+protocol CalendarVCProtocol: AnyObject {}
  
 final class CalendarVC: UIViewController {
     // MARK: - PROPERTIES:
@@ -18,14 +16,13 @@ final class CalendarVC: UIViewController {
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
     private let tableView = UITableView()
-    private let markedDates: [Date: String] = [
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 21))!: "Ironman Minsk",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 24))!: "Indoor Triathlon",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 26))!: "Water Cup",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 17))!: "Презентация Tristyle",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 30))!: "Triathlon start",
-        Calendar.current.date(from: DateComponents(year: 2024, month: 6, day: 2))!: "Test date"
-    ]
+    private var eventDates: [CalendarModel] = []
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter
+    }()
+
     private var sortedDates: [(date: Date, event: String)] = []
     private let vibration = Vibration()
     
@@ -36,8 +33,12 @@ final class CalendarVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
-        sortedDates = markedDates.map { (date: $0.key, event: $0.value) }.sorted { $0.date < $1.date }
         filterDates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchEventDates()
     }
     
     // MARK: - ADD SUBVIEWS:
@@ -155,12 +156,30 @@ final class CalendarVC: UIViewController {
     
     // MARK: - HELPERS:
 
+    // FILTER DATES:
     private func filterDates() {
         let currentDate = Date()
-        sortedDates = markedDates.filter { $0.key > currentDate }
-            .map { (date: $0.key, event: $0.value) }
-            .sorted { $0.date < $1.date }
+        eventDates = eventDates
+            .filter { dateFormatter.date(from: $0.date) ?? Date.distantPast > currentDate }
+            .sorted { dateFormatter.date(from: $0.date)! < dateFormatter.date(from: $1.date)! }
         tableView.reloadData()
+    }
+    
+    // FETCH EVENT DATES:
+    private func fetchEventDates() {
+        FirebaseService.shared.fetchEventDates { [weak self] eventDates in
+            self?.eventDates = eventDates
+            DispatchQueue.main.async {
+                self?.filterDates()
+                self?.updateCalendarEvents()
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    // UPDATE CALENDAR EVENTS:
+    private func updateCalendarEvents() {
+        calendar.reloadData()
     }
 }
 
@@ -171,17 +190,18 @@ extension CalendarVC: CalendarVCProtocol {}
 // CALENDAR:
 extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return markedDates.keys.contains(date) ? 1 : 0
+        let dateString = dateFormatter.string(from: date)
+        return eventDates.filter { $0.date == dateString }.count
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        return markedDates.keys.contains(date) ? .red : .black
+        let dateString = dateFormatter.string(from: date)
+        return eventDates.contains(where: { $0.date == dateString }) ? .red : .black
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if let message = markedDates[date] {
-            vibration.vibrationStandart()
-            let alert = UIAlertController(title: "Старт Tristyle", message: message, preferredStyle: .alert)
+        if let eventDate = eventDates.first(where: { dateFormatter.date(from: $0.date) == date }) {
+            let alert = UIAlertController(title: "Мероприятие:", message: eventDate.name, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
@@ -190,22 +210,27 @@ extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        return markedDates.keys.contains(date)
+        let dateString = dateFormatter.string(from: date)
+        return eventDates.contains { $0.date == dateString }
     }
 }
 
 // TABLE VIEW:
 extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedDates.count
+        return eventDates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else {
             return UITableViewCell()
         }
-        let start = sortedDates[indexPath.row]
-        cell.configure(name: start.event, daysLeft: calculateDaysLeft(to: start.date))
+        let eventDate = eventDates[indexPath.row]
+        if let date = dateFormatter.date(from: eventDate.date) {
+            cell.configure(name: eventDate.name, daysLeft: calculateDaysLeft(to: date))
+        } else {
+            cell.configure(name: eventDate.name, daysLeft: 0)
+        }
         cell.backgroundColor = .clear
         return cell
     }

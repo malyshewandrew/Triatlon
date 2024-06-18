@@ -24,6 +24,10 @@
 		FB703B642C11BD2800AB19CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB703B632C11BD2800AB19CC /* Extensions.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
 		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
+		FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457112C20FC320070E6D4 /* CalendarModel.swift */; };
+		FBA457142C20FD970070E6D4 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457132C20FD970070E6D4 /* FirebaseService.swift */; };
+		FBA457162C20FDAC0070E6D4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FBA457152C20FDAC0070E6D4 /* FirebaseDatabase */; };
+		FBA457182C20FDAC0070E6D4 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FBA457172C20FDAC0070E6D4 /* FirebaseDatabaseSwift */; };
 		FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34112C11255B0014DE84 /* CalendarVC.swift */; };
 		FBAD34142C11256B0014DE84 /* CalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */; };
 		FBAD34162C1125740014DE84 /* ClubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD34152C1125740014DE84 /* ClubVC.swift */; };
@@ -74,6 +78,8 @@
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
+		FBA457112C20FC320070E6D4 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		FBA457132C20FD970070E6D4 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		FBAD34112C11255B0014DE84 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenter.swift; sourceTree = "<group>"; };
 		FBAD34152C1125740014DE84 /* ClubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubVC.swift; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 				FB0F69792C2088980033E705 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				FBE94A582C207FFE007186DC /* FirebaseAnalytics in Frameworks */,
 				FB0F697B2C2088980033E705 /* FirebaseFirestoreSwift in Frameworks */,
+				FBA457182C20FDAC0070E6D4 /* FirebaseDatabaseSwift in Frameworks */,
+				FBA457162C20FDAC0070E6D4 /* FirebaseDatabase in Frameworks */,
 				FBE94A602C207FFE007186DC /* FirebaseAppCheck in Frameworks */,
 				FB0F69772C2088980033E705 /* FirebaseFirestore in Frameworks */,
 				FB0F696D2C2088070033E705 /* FirebaseStorage in Frameworks */,
@@ -201,6 +209,7 @@
 				FBAD34112C11255B0014DE84 /* CalendarVC.swift */,
 				FBAD34132C11256B0014DE84 /* CalendarPresenter.swift */,
 				FB14270C2C18644B00D94901 /* CalendarCell.swift */,
+				FBA457132C20FD970070E6D4 /* FirebaseService.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 				FBBC86362C19B96900752195 /* HumanModel.swift */,
 				FBBC862A2C19080700752195 /* ScheduleModel.swift */,
 				FBBC86402C19C94100752195 /* ProductModel.swift */,
+				FBA457112C20FC320070E6D4 /* CalendarModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +362,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				FBA4571A2C20FDC40070E6D4 /* PBXTargetDependency */,
+				FBA4571C2C20FDC40070E6D4 /* PBXTargetDependency */,
 				FB0F69732C2088740033E705 /* PBXTargetDependency */,
 				FB0F69752C2088740033E705 /* PBXTargetDependency */,
 				FB0F69712C2088540033E705 /* PBXTargetDependency */,
@@ -370,6 +382,8 @@
 				FB0F69762C2088980033E705 /* FirebaseFirestore */,
 				FB0F69782C2088980033E705 /* FirebaseFirestoreCombine-Community */,
 				FB0F697A2C2088980033E705 /* FirebaseFirestoreSwift */,
+				FBA457152C20FDAC0070E6D4 /* FirebaseDatabase */,
+				FBA457172C20FDAC0070E6D4 /* FirebaseDatabaseSwift */,
 			);
 			productName = Triathlon;
 			productReference = FBB89B822C10CC1400FBDF3B /* Triathlon.app */;
@@ -435,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBAD34142C11256B0014DE84 /* CalendarPresenter.swift in Sources */,
+				FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */,
 				FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */,
 				FBB89B8A2C10CC1400FBDF3B /* ScheduleVC.swift in Sources */,
 				FBBC863B2C19B96900752195 /* HumanModel.swift in Sources */,
@@ -464,6 +479,7 @@
 				52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
+				FBA457142C20FD970070E6D4 /* FirebaseService.swift in Sources */,
 				FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */,
 				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
 				FBE94A532C20775D007186DC /* ClubCardVC.swift in Sources */,
@@ -490,6 +506,14 @@
 		FB0F69752C2088740033E705 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = FB0F69742C2088740033E705 /* FirebaseFirestoreSwift */;
+		};
+		FBA4571A2C20FDC40070E6D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FBA457192C20FDC40070E6D4 /* FirebaseDatabase */;
+		};
+		FBA4571C2C20FDC40070E6D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FBA4571B2C20FDC40070E6D4 /* FirebaseDatabaseSwift */;
 		};
 /* End PBXTargetDependency section */
 
@@ -783,6 +807,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB1427092C185D7A00D94901 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		FBA457152C20FDAC0070E6D4 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		FBA457172C20FDAC0070E6D4 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		FBA457192C20FDC40070E6D4 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		FBA4571B2C20FDC40070E6D4 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBE94A562C207FFE007186DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
 		};
 		FBBC86432C1A3F5E00752195 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

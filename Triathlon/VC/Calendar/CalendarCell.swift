@@ -55,6 +55,7 @@ final class CalendarCell: UITableViewCell {
     private func configureUI() {
         // CONTENT VIEW:
         contentView.backgroundColor = .clear
+        selectionStyle = .none
         
         // CONTAINER VIEW:
         containerView.layer.cornerRadius = cornerRadius
