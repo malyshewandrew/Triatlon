@@ -8,10 +8,13 @@ protocol AccountPresenterProtocol {
     func signInUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func deleteUser(completion: @escaping (Result<User, Error>) -> Void)
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void)
+    
+    func confirmExitAlert() -> UIAlertController
+    func confirmDeleteAlert() -> UIAlertController
 }
 
 final class AccountPresenter: AccountPresenterProtocol {
-    
+
     // MARK: - PROPERTIES:
     
     unowned let view: AccountVCProtocol
@@ -84,6 +87,20 @@ final class AccountPresenter: AccountPresenterProtocol {
         }
     }
     
+    // CONFIRM DELETE ALERT:
+    func confirmDeleteAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Удаление аккаунта", message: "Действительно удалить аккаунт?\nЭто действия нельзя будет отменить.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Удалить", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            view.deleteAccount()
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.view.dismissView()
+        }))
+        return alert
+    }
+    
     // EXIT USER:    
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
@@ -92,5 +109,19 @@ final class AccountPresenter: AccountPresenterProtocol {
         } catch let signOutError as NSError {
             completion(.failure(signOutError))
         }
+    }
+    
+    // CONFIRM EXIT ALERT:
+    func confirmExitAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Выход из аккаунта", message: "Действительно выйти из аккаунта?\nВы сможете зайти повторно под своей электронной почтой и паролем.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Выйти", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            view.exitAccount()
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.view.dismissView()
+        }))
+        return alert
     }
 }

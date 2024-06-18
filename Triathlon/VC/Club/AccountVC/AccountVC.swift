@@ -5,6 +5,8 @@ protocol AccountVCProtocol: AnyObject {
     func showRegistretionView()
     func showEnterView()
     func dismissView()
+    func deleteAccount()
+    func exitAccount()
 }
 
 final class AccountVC: UIViewController {
@@ -312,17 +314,7 @@ final class AccountVC: UIViewController {
         exitButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
-            self.activityIndicator.center = view.center
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(activityIndicator)
-            self.presenter.exitUser { result in
-                switch result {
-                case .success:
-                    self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта"), animated: true)
-                case .failure(let error):
-                    self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
-                }
-            }
+            self.present(self.presenter.confirmExitAlert(), animated: true)
         }), for: .touchUpInside)
         
         // DELETE BUTTON:
@@ -332,26 +324,12 @@ final class AccountVC: UIViewController {
         deleteButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
-            self.activityIndicator.center = view.center
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(activityIndicator)
-            self.presenter.deleteUser { result in
-                switch result {
-                case .success:
-                    self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт удален"), animated: true)
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.removeFromSuperview()
-                case .failure(let error):
-                    self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.removeFromSuperview()
-                }
-            }
+            self.present(self.presenter.confirmDeleteAlert(),animated: true)
         }), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
-    
+        
     // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         vibration.vibrationStandart()
@@ -371,6 +349,8 @@ final class AccountVC: UIViewController {
                 self.registrationView.isHidden = true
                 self.enterView.layer.opacity = 0.0
                 self.enterView.isHidden = true
+                self.exitButton.isHidden = false
+                self.deleteButton.isHidden = false
                 print("Пользователь аутентифицирован, email: \(user.email ?? "Не указан")")
             } else {
                 self.authTitleLabel.layer.opacity = 0.0
@@ -379,8 +359,10 @@ final class AccountVC: UIViewController {
                 self.segmentedControl.isHidden = false
                 self.registrationView.layer.opacity = 1
                 self.registrationView.isHidden = false
-                self.enterView.layer.opacity = 1
-                self.enterView.isHidden = false
+                self.enterView.layer.opacity = 0.0
+                self.enterView.isHidden = true
+                self.exitButton.isHidden = true
+                self.deleteButton.isHidden = true
                 print("Пользователь не аутентифицирован")
             }
         }
@@ -433,5 +415,39 @@ extension AccountVC: AccountVCProtocol {
     // DISMISS VIEW:
     func dismissView() {
         dismiss(animated: true)
+    }
+    
+    // DELETE ACCOUNT:
+    func deleteAccount() {
+        self.activityIndicator.center = view.center
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        self.presenter.deleteUser { result in
+            switch result {
+            case .success:
+                self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт удален"), animated: true)
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+            case .failure(let error):
+                self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+            }
+        }
+    }
+    
+    // EXIT ACCOUNT:
+    func exitAccount() {
+        self.activityIndicator.center = view.center
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        self.presenter.exitUser { result in
+            switch result {
+            case .success:
+                self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта"), animated: true)
+            case .failure(let error):
+                self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
+            }
+        }
     }
 }

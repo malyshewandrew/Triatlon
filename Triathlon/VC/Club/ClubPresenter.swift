@@ -107,7 +107,7 @@ final class ClubPresenter: ClubPresenterProtocol {
         }
         
         let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Вход / Регистрация", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Личный кабинет", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             let accountVC = AccountVC()
             let accountPresenter = AccountPresenter(view: accountVC)

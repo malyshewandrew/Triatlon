@@ -30,7 +30,7 @@ final class AnonimPresenter: AnonimPresenterProtocol {
                 "Сообщение": message
             ]) { [weak self] error in
                 if let error = error {
-                    let alert = UIAlertController(title: "Ошибка", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Ошибка", message: "\(error.localizedDescription).", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
                     self?.view.showAlert(alert: alert)
                 } else {
