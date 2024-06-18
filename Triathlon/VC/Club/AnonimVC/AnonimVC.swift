@@ -93,7 +93,7 @@ final class AnonimVC: UIViewController {
         // ANONIM TEXT VIEW:
         anonimTextView.layer.masksToBounds = true
         anonimTextView.layer.cornerRadius = cornerRadius
-        anonimTextView.layer.borderWidth = 1
+        anonimTextView.layer.borderWidth = 0.7
         anonimTextView.layer.borderColor = UIColor.white.cgColor
         anonimTextView.textColor = .white
         anonimTextView.backgroundColor = .colorBackground
