@@ -244,9 +244,10 @@ final class ClubVC: UIViewController {
         codexButton.layer.borderWidth = 2
         codexButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         codexButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
             let codexVC = CodexVC()
-            self?.present(codexVC, animated: true)
+            self.present(codexVC, animated: true)
         }), for: .touchUpInside)
         
         // PHILOSOPHY BUTTON:
@@ -257,9 +258,10 @@ final class ClubVC: UIViewController {
         philosophyButton.layer.borderWidth = 2
         philosophyButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         philosophyButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
             let philosophyVC = PhilosophyVC()
-            self?.present(philosophyVC, animated: true)
+            self.present(philosophyVC, animated: true)
         }), for: .touchUpInside)
         
         // JOIN BUTTON:
@@ -270,9 +272,10 @@ final class ClubVC: UIViewController {
         medecineButton.layer.borderWidth = 2
         medecineButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         medecineButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
             let medecineVC = MedecineVC()
-            self?.present(medecineVC, animated: true)
+            self.present(medecineVC, animated: true)
         }), for: .touchUpInside)
         
         // CLUB CARD:
@@ -283,9 +286,10 @@ final class ClubVC: UIViewController {
         clubCardButton.layer.borderWidth = 2
         clubCardButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         clubCardButton.addAction(UIAction(handler: { [weak self] _ in
-            self?.vibration.vibrationStandart()
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
             let clubCardVC = ClubCardVC()
-            self?.present(clubCardVC, animated: true)
+            self.present(clubCardVC, animated: true)
         }), for: .touchUpInside)
         
         // ANONIM MESSAGE:

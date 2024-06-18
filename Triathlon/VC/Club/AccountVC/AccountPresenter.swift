@@ -8,7 +8,6 @@ protocol AccountPresenterProtocol {
     func signInUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func deleteUser(completion: @escaping (Result<User, Error>) -> Void)
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void)
-    
     func confirmExitAlert() -> UIAlertController
     func confirmDeleteAlert() -> UIAlertController
 }
