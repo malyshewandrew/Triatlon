@@ -6,7 +6,7 @@ import WebKit
 // MARK: - PROTOCOL:
 
 protocol ClubVCProtocol: AnyObject {
-    
+    func navigateAccountVC(view: UIViewController)
 }
 
 final class ClubVC: UIViewController {
@@ -202,7 +202,7 @@ final class ClubVC: UIViewController {
         linkButton.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
         
         // INFO BUTTON:
-        infoButton.setImage(UIImage(systemName: "info.circle.fill", withConfiguration: configurationImage), for: .normal)
+        infoButton.setImage(UIImage(systemName: "list.bullet.circle.fill", withConfiguration: configurationImage), for: .normal)
         infoButton.tintColor = .white
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
 
@@ -346,9 +346,21 @@ final class ClubVC: UIViewController {
 // MARK: - EXTENSION:
 
 extension ClubVC: ClubVCProtocol {
+    
+    // SHOW ALERT:
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    // NAVIGATE TO ACCOUNT:
+    func navigateAccountVC(view: UIViewController) {
+        if let sheetController = view.sheetPresentationController {
+            sheetController.prefersGrabberVisible = true
+            sheetController.preferredCornerRadius = 100
+            sheetController.detents = [.medium()]
+        }
+        present(view, animated: true)
     }
 }

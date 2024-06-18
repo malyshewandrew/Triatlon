@@ -94,6 +94,7 @@ final class ShopVC: UIViewController {
     
     // MARK: - HELPERS:
     
+    // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         vibration.vibrationStandart()
         presenter.selectedSegmentControl(sender: sender)
