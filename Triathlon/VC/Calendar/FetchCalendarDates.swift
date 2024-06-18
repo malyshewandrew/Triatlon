@@ -1,8 +1,8 @@
-import UIKit
 import FirebaseDatabase
+import UIKit
 
-class FirebaseService {
-    static let shared = FirebaseService()
+class FetchCalendarDates {
+    static let shared = FetchCalendarDates()
     private let database = Database.database().reference()
     
     private init() {}
@@ -19,7 +19,8 @@ class FirebaseService {
             for (_, data) in value {
                 if let eventData = data as? [String: String],
                    let date = eventData["date"],
-                   let name = eventData["name"] {
+                   let name = eventData["name"]
+                {
                     let calendarModel = CalendarModel(date: date, name: name)
                     eventDates.append(calendarModel)
                 }
