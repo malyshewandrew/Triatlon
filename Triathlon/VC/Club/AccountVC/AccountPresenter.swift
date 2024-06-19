@@ -10,10 +10,11 @@ protocol AccountPresenterProtocol {
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void)
     func confirmExitAlert() -> UIAlertController
     func confirmDeleteAlert() -> UIAlertController
+    func confirmReset() -> UIAlertController
+    func resetPassword(email: String)
 }
 
 final class AccountPresenter: AccountPresenterProtocol {
-
     // MARK: - PROPERTIES:
     
     unowned let view: AccountVCProtocol
@@ -100,7 +101,7 @@ final class AccountPresenter: AccountPresenterProtocol {
         return alert
     }
     
-    // EXIT USER:    
+    // EXIT USER:
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
@@ -116,6 +117,32 @@ final class AccountPresenter: AccountPresenterProtocol {
         alert.addAction(UIAlertAction(title: "Выйти", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             view.exitAccount()
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.view.dismissView()
+        }))
+        return alert
+    }
+    
+    // RESET PASSWORD BUTTON:
+    func resetPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.view.errorReset(error: "\(error.localizedDescription).")
+                return
+            }
+            self.view.successReset()
+            print("Инструкция по сбросу пароля отправлена на ваш email")
+        }
+    }
+    
+    func confirmReset() -> UIAlertController {
+        let alert = UIAlertController(title: "Сброс пароля", message: "Введите Email.\nПоле для пароля оставьте пустым.\n\nФорма для сброса пароля придет на электронную почту.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Сбросить", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            view.resetPassword()
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] _ in
             guard let self = self else { return }

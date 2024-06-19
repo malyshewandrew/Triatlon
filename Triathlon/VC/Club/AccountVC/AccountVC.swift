@@ -7,6 +7,9 @@ protocol AccountVCProtocol: AnyObject {
     func dismissView()
     func deleteAccount()
     func exitAccount()
+    func resetPassword()
+    func successReset()
+    func errorReset(error: String)
 }
 
 final class AccountVC: UIViewController {
@@ -31,6 +34,7 @@ final class AccountVC: UIViewController {
     private let enterEmailTF = UITextField()
     private let enterPasswordTF = UITextField()
     private let enterButton = UIButton(type: .system)
+    private let resetPasswordButton = UIButton(type: .system)
     
     private let authView = UIView()
     private let authTitleLabel = UILabel()
@@ -53,7 +57,7 @@ final class AccountVC: UIViewController {
     private func addSubviews() {
         view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authTitleLabel, exitButton, deleteButton)
         registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationButton)
-        enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton)
+        enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -149,6 +153,11 @@ final class AccountVC: UIViewController {
         enterButton.centerXAnchor.constraint(equalTo: enterView.centerXAnchor).isActive = true
         enterButton.widthAnchor.constraint(equalTo: enterView.widthAnchor, multiplier: 0.5).isActive = true
         enterButton.heightAnchor.constraint(equalTo: enterButton.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // RESET PASSWORD BUTTON:
+        resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        resetPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        resetPasswordButton.bottomAnchor.constraint(equalTo: enterView.bottomAnchor, constant: -5).isActive = true
         
         // EXIT BUTTON:
         exitButton.translatesAutoresizingMaskIntoConstraints = false
@@ -331,6 +340,16 @@ final class AccountVC: UIViewController {
             }
         }), for: .touchUpInside)
         
+        // RESET PASSWORD BUTTON:
+        resetPasswordButton.setTitle("Не помню пароль", for: .normal)
+        resetPasswordButton.setTitleColor(.systemRed, for: .normal)
+        resetPasswordButton.titleLabel?.font = fontMediumStandard14
+        resetPasswordButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+            self.present(self.presenter.confirmReset(), animated: true)
+        }), for: .touchUpInside)
+        
         // EXIT BUTTON:
         exitButton.setTitle("Выйти из аккаунта", for: .normal)
         exitButton.setTitleColor(.systemRed, for: .normal)
@@ -396,6 +415,7 @@ final class AccountVC: UIViewController {
 // MARK: - EXTENSIONS:
 
 extension AccountVC: AccountVCProtocol {
+
     // SHOW REGISTRATION VIEW:
     func showRegistretionView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
@@ -473,5 +493,28 @@ extension AccountVC: AccountVCProtocol {
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
             }
         }
+    }
+    
+    // RESET PASSWORD:
+    func resetPassword() {
+        self.presenter.resetPassword(email: enterEmailTF.text ?? "")
+    }
+    
+    // SUCCESS RESET PASSWORD:
+    func successReset() {
+        let alert = UIAlertController(title: "Успешно", message: "Форма для сброса пароля отправлена на указанный Email", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: { [weak self] _ in
+            self?.dismissView()
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    // ERROR RESET PASSWORD:
+    func errorReset(error: String) {
+        let alert = UIAlertController(title: "Ошибка", message: "\(error).", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: { [weak self] _ in
+            self?.dismissView()
+        }))
+        self.present(alert, animated: true)
     }
 }
