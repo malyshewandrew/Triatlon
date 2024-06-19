@@ -27,7 +27,8 @@ final class ClubVC: UIViewController {
     private let sportsmenDescriptionLabel = UILabel()
     private let startCountLabel = UILabel()
     private let startDescriptionLabel = UILabel()
-    
+
+    private let scrollView = UIScrollView()
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
     private let medecineButton = UIButton(type: .system)
@@ -52,8 +53,9 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
+        scrollView.addSubviews(codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -135,9 +137,16 @@ final class ClubVC: UIViewController {
         startDescriptionLabel.topAnchor.constraint(equalTo: startCountLabel.bottomAnchor).isActive = true
         startDescriptionLabel.centerXAnchor.constraint(equalTo: startCountLabel.centerXAnchor).isActive = true
         
+        // SCROLL VIEW:
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 50).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75).isActive = true
+        
         // CODEX BUTTON:
         codexButton.translatesAutoresizingMaskIntoConstraints = false
-        codexButton.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 50).isActive = true
+        codexButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         codexButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         codexButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         codexButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
@@ -236,6 +245,10 @@ final class ClubVC: UIViewController {
         startDescriptionLabel.font = fontLightStandard12
         startDescriptionLabel.text = "Стартов"
         
+        // SCROLL VIEW:
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height / 1.5)
+        scrollView.isScrollEnabled = true
+        
         // CODEX BUTTON:
         codexButton.setTitle("Кодекс клуба", for: .normal)
         codexButton.setTitleColor(.white, for: .normal)
@@ -246,8 +259,10 @@ final class ClubVC: UIViewController {
         codexButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
+            DispatchQueue.main.async {
             let codexVC = CodexVC()
             self.present(codexVC, animated: true)
+            }
         }), for: .touchUpInside)
         
         // PHILOSOPHY BUTTON:
