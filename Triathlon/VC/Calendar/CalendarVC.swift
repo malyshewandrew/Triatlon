@@ -7,6 +7,8 @@ protocol CalendarVCProtocol: AnyObject {
     func reloadCalendar()
     func reloadTableView()
     func showAlert(title: String, message: String)
+    func showActivityIndicator()
+    func hideActivityIndicator()
 }
 
 final class CalendarVC: UIViewController {
@@ -20,6 +22,7 @@ final class CalendarVC: UIViewController {
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
     private let tableView = UITableView()
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
 
     // MARK: - LIFECYCLE:
     
@@ -153,18 +156,35 @@ final class CalendarVC: UIViewController {
 // MARK: - EXTENSIONS:
 
 extension CalendarVC: CalendarVCProtocol {
+
+    // RELOAD CALENDAR:
     func reloadCalendar() {
         calendar.reloadData()
     }
     
+    // RELOAD TABLE VIEW:
     func reloadTableView() {
         tableView.reloadData()
     }
     
+    // SHOW ALERT
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    // SHOW ACTIVITY INDICATOR:
+    func showActivityIndicator() {
+        self.activityIndicator.center = view.center
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+    }
+    
+    // HIDE ACTIVITY INDICATOR:
+    func hideActivityIndicator() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.removeFromSuperview()
     }
 }
 

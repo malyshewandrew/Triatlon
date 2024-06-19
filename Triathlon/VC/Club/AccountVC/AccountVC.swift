@@ -23,6 +23,7 @@ final class AccountVC: UIViewController {
     private let registrationTitleLabel = UILabel()
     private let registrationEmailTF = UITextField()
     private let registrationPasswordTF = UITextField()
+    private let registrationPasswordRepeatTF = UITextField()
     private let registrationButton = UIButton(type: .system)
     
     private let enterView = UIView()
@@ -51,7 +52,7 @@ final class AccountVC: UIViewController {
     
     private func addSubviews() {
         view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authTitleLabel, exitButton, deleteButton)
-        registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationEmailTF, registrationPasswordTF, registrationButton)
+        registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton)
     }
     
@@ -102,9 +103,16 @@ final class AccountVC: UIViewController {
         registrationPasswordTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.75).isActive = true
         registrationPasswordTF.heightAnchor.constraint(equalTo: registrationPasswordTF.widthAnchor, multiplier: 0.15).isActive = true
         
+        // REGISTRATION PASSWORD REPEAT:
+        registrationPasswordRepeatTF.translatesAutoresizingMaskIntoConstraints = false
+        registrationPasswordRepeatTF.topAnchor.constraint(equalTo: registrationPasswordTF.bottomAnchor, constant: 25).isActive = true
+        registrationPasswordRepeatTF.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
+        registrationPasswordRepeatTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.75).isActive = true
+        registrationPasswordRepeatTF.heightAnchor.constraint(equalTo: registrationPasswordRepeatTF.widthAnchor, multiplier: 0.15).isActive = true
+        
         // REGISTRATION BUTTON:
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.topAnchor.constraint(equalTo: registrationPasswordTF.bottomAnchor, constant: 25).isActive = true
+        registrationButton.topAnchor.constraint(equalTo: registrationPasswordRepeatTF.bottomAnchor, constant: 25).isActive = true
         registrationButton.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
         registrationButton.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.5).isActive = true
         registrationButton.heightAnchor.constraint(equalTo: registrationButton.widthAnchor, multiplier: 0.2).isActive = true
@@ -216,6 +224,18 @@ final class AccountVC: UIViewController {
         registrationPasswordTF.leftViewMode = .always
         registrationPasswordTF.layer.opacity = 1
         
+        // REGISTRATION PASSWORD REPEAT:
+        registrationPasswordRepeatTF.layer.masksToBounds = true
+        registrationPasswordRepeatTF.layer.cornerRadius = cornerRadius
+        registrationPasswordRepeatTF.layer.borderWidth = 0.7
+        registrationPasswordRepeatTF.layer.borderColor = UIColor.white.cgColor
+        registrationPasswordRepeatTF.textColor = .white
+        registrationPasswordRepeatTF.backgroundColor = .colorBackground
+        registrationPasswordRepeatTF.placeholder = "Повторите пароль"
+        registrationPasswordRepeatTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationPasswordRepeatTF.frame.height))
+        registrationPasswordRepeatTF.leftViewMode = .always
+        registrationPasswordRepeatTF.layer.opacity = 1
+        
         // REGISTRATION BUTTON:
         registrationButton.layer.masksToBounds = true
         registrationButton.layer.cornerRadius = cornerRadius
@@ -226,6 +246,10 @@ final class AccountVC: UIViewController {
         registrationButton.layer.opacity = 1
         registrationButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
+            guard self.registrationPasswordTF.text == self.registrationPasswordRepeatTF.text else {
+                present(self.presenter.showAlert(title: "Ошибка", message: "Пароли не совпадают"), animated: true)
+                return
+            }
             self.vibration.vibrationStandart()
             self.activityIndicator.center = view.center
             self.activityIndicator.startAnimating()
@@ -342,7 +366,7 @@ final class AccountVC: UIViewController {
             if let user = Auth.auth().currentUser {
                 self.authTitleLabel.layer.opacity = 1
                 self.authTitleLabel.isHidden = false
-                self.authTitleLabel.text = "Вы аутентифицированы\n\(user.email ?? "Не указан")"
+                self.authTitleLabel.text = "Аккаунт:\n\n\(user.email ?? "Не указан")"
                 self.segmentedControl.layer.opacity = 0.0
                 self.segmentedControl.isHidden = true
                 self.registrationView.layer.opacity = 0.0

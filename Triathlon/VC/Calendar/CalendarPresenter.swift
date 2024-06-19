@@ -36,6 +36,7 @@ final class CalendarPresenter: CalendarPresenterProtocol {
     }
     
     func viewWillAppear() {
+        view.showActivityIndicator()
         fetchEventDates()
     }
 
@@ -96,6 +97,7 @@ final class CalendarPresenter: CalendarPresenterProtocol {
             DispatchQueue.main.async {
                 self.view.reloadTableView()
                 self.view.reloadCalendar()
+                self.view.hideActivityIndicator()
             }
         }
     }

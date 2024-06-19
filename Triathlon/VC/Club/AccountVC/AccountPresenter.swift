@@ -88,7 +88,7 @@ final class AccountPresenter: AccountPresenterProtocol {
     
     // CONFIRM DELETE ALERT:
     func confirmDeleteAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Удаление аккаунта", message: "Действительно удалить аккаунт?\nЭто действия нельзя будет отменить.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Удаление аккаунта", message: "Действительно удалить аккаунт?\n\nЭто действия нельзя будет отменить.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Удалить", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             view.deleteAccount()
@@ -112,7 +112,7 @@ final class AccountPresenter: AccountPresenterProtocol {
     
     // CONFIRM EXIT ALERT:
     func confirmExitAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Выход из аккаунта", message: "Действительно выйти из аккаунта?\nВы сможете зайти повторно под своей электронной почтой и паролем.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Выход из аккаунта", message: "Действительно выйти из аккаунта?\n\nВы сможете зайти повторно с помощью своей электронной почты и пароля.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Выйти", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             view.exitAccount()
