@@ -1,10 +1,11 @@
 import FirebaseAuth
+import FirebaseFirestore
 import UIKit
 
 protocol AccountPresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
     func showAlert(title: String, message: String) -> UIAlertController
-    func registerUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
+    func registerUser(surname: String, name: String, email: String, password: String, group: String, completion: @escaping (Result<User, Error>) -> Void)
     func signInUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func deleteUser(completion: @escaping (Result<User, Error>) -> Void)
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void)
@@ -50,12 +51,26 @@ final class AccountPresenter: AccountPresenterProtocol {
     }
     
     // REGISTER USER:
-    func registerUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func registerUser(surname: String, name: String, email: String, password: String, group: String, completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 completion(.failure(error))
             } else if let user = authResult?.user {
                 completion(.success(user))
+                guard let user = authResult?.user else { return }
+                let db = Firestore.firestore()
+                db.collection("RegisterUsers").document(user.uid).setData([
+                    "Фамилия": surname,
+                    "Имя": name,
+                    "Группа": group,
+                    "Email": email
+                ]) { error in
+                    if let error = error {
+                        print("Error adding user to Firestore: \(error.localizedDescription)")
+                    } else {
+                        print("User added to Firestore with ID: \(user.uid)")
+                    }
+                }
             }
         }
     }

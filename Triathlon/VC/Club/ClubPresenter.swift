@@ -15,6 +15,7 @@ protocol ClubPresenterProtocol {
     func webButtonTapped()
     func phoneButtonTapped()
     func emailButtonTapped()
+    func writeButtonTapped()
 }
 
 final class ClubPresenter: ClubPresenterProtocol {
@@ -70,11 +71,20 @@ final class ClubPresenter: ClubPresenterProtocol {
     // LINK BUTTON TAPPED:
     func linkButtonTapped() -> UIAlertController {
         let alert = UIAlertController(title: "Tristyle", message: "Клуб триатлона и циклических видов спорта", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { [weak self] _ in
-            self?.telegramButtonTapped()
+        alert.addAction(UIAlertAction(title: "Написать менеджеру", style: .default, handler: { [weak self] _ in
+            self?.writeButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Позвонить менеджеру", style: .default, handler: { [weak self] _ in
+            self?.phoneButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Сайт", style: .default, handler: { [weak self] _ in
+            self?.webButtonTapped()
         }))
         alert.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { [weak self] _ in
             self?.instagramButtonTapped()
+        }))
+        alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { [weak self] _ in
+            self?.telegramButtonTapped()
         }))
         alert.addAction(UIAlertAction(title: "YouTube", style: .default, handler: { [weak self] _ in
             self?.youtubeButtonTapped()
@@ -82,14 +92,8 @@ final class ClubPresenter: ClubPresenterProtocol {
         alert.addAction(UIAlertAction(title: "Facebook", style: .default, handler: { [weak self] _ in
             self?.fbButtonTapped()
         }))
-        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Отправить Email", style: .default, handler: { [weak self] _ in
             self?.emailButtonTapped()
-        }))
-        alert.addAction(UIAlertAction(title: "Сайт", style: .default, handler: { [weak self] _ in
-            self?.webButtonTapped()
-        }))
-        alert.addAction(UIAlertAction(title: "Позвонить", style: .default, handler: { [weak self] _ in
-            self?.phoneButtonTapped()
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
         return alert
@@ -259,6 +263,19 @@ final class ClubPresenter: ClubPresenterProtocol {
         let email = "tristyletrainer@gmail.com"
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url)
+        }
+    }
+    
+    // WRITE BUTTON TAPPED:
+    func writeButtonTapped() {
+        let appURL = URL(string: "tg://resolve?domain=Tristyleteam")
+        let webURL = URL(string: "https://t.me/Tristyleteam")
+        guard let appURL = appURL else { return }
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            guard let webURL = webURL else { return }
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
     }
 }

@@ -67,6 +67,7 @@
 		FBE94A5C2C207FFE007186DC /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FBE94A5B2C207FFE007186DC /* FirebaseAnalyticsSwift */; };
 		FBE94A5E2C207FFE007186DC /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = FBE94A5D2C207FFE007186DC /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		FBE94A602C207FFE007186DC /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = FBE94A5F2C207FFE007186DC /* FirebaseAppCheck */; };
+		FBFE002D2C2397F50083DD50 /* RegistrationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFE002C2C2397F50083DD50 /* RegistrationGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		FBE94A502C2072D4007186DC /* MedecineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedecineVC.swift; sourceTree = "<group>"; };
 		FBE94A522C20775D007186DC /* ClubCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardVC.swift; sourceTree = "<group>"; };
 		FBE94A542C207E7B007186DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FBFE002C2C2397F50083DD50 /* RegistrationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 				FBBC862A2C19080700752195 /* ScheduleModel.swift */,
 				FBBC86402C19C94100752195 /* ProductModel.swift */,
 				FBA457112C20FC320070E6D4 /* CalendarModel.swift */,
+				FBFE002C2C2397F50083DD50 /* RegistrationGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				FBBC863D2C19B96900752195 /* PeoplesVC.swift in Sources */,
 				FBBC863C2C19B96900752195 /* PeoplesPresenter.swift in Sources */,
 				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
+				FBFE002D2C2397F50083DD50 /* RegistrationGroup.swift in Sources */,
 				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
 				52E746E22C19F9B4004D1AE3 /* TeamCell.swift in Sources */,

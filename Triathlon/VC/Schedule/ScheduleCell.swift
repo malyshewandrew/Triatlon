@@ -139,7 +139,6 @@ final class ScheduleCell: UITableViewCell {
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.backgroundColor = .systemBlue
-        joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
@@ -151,10 +150,5 @@ final class ScheduleCell: UITableViewCell {
         sportLabel.text = "Спорт: " + schedule.sport
         descriptionLabel.text = "Дни: " + schedule.days
         placeLabel.text = "Место: " + schedule.place
-    }
-    
-    // JOIN BUTTON TAPPED:
-    @objc func joinButtonTapped() {
-        presenter.joinButtonTapped()
     }
 }

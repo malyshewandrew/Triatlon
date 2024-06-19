@@ -1,4 +1,5 @@
 import FirebaseAuth
+import FirebaseFirestore
 import UIKit
 
 protocol AccountVCProtocol: AnyObject {
@@ -24,9 +25,13 @@ final class AccountVC: UIViewController {
     
     private let registrationView = UIView()
     private let registrationTitleLabel = UILabel()
+    private let registrationSurnameTF = UITextField()
+    private let registrationNameTF = UITextField()
     private let registrationEmailTF = UITextField()
     private let registrationPasswordTF = UITextField()
     private let registrationPasswordRepeatTF = UITextField()
+    private let registrationGroupTF = UITextField()
+    private let registrationGroupPV = UIPickerView()
     private let registrationButton = UIButton(type: .system)
     
     private let enterView = UIView()
@@ -50,13 +55,16 @@ final class AccountVC: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
+        configureGestures()
+        registrationGroupPV.delegate = self
+        registrationGroupPV.dataSource = self
     }
     
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
         view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authTitleLabel, exitButton, deleteButton)
-        registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationButton)
+        registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
     }
     
@@ -83,7 +91,7 @@ final class AccountVC: UIViewController {
         
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
-        registrationView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 15).isActive = true
+        registrationView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         registrationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         registrationView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         registrationView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
@@ -91,39 +99,62 @@ final class AccountVC: UIViewController {
         // REGISTRATION TITLE:
         registrationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         registrationTitleLabel.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
-        registrationTitleLabel.topAnchor.constraint(equalTo: registrationView.topAnchor, constant: 25).isActive = true
+        registrationTitleLabel.topAnchor.constraint(equalTo: registrationView.topAnchor).isActive = true
+        
+        // REGISTRATION SURNAME:
+        registrationSurnameTF.translatesAutoresizingMaskIntoConstraints = false
+        registrationSurnameTF.topAnchor.constraint(equalTo: registrationTitleLabel.bottomAnchor, constant: 25).isActive = true
+        registrationSurnameTF.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5).isActive = true
+        registrationSurnameTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
+        registrationSurnameTF.heightAnchor.constraint(equalTo: registrationSurnameTF.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // REGISTRATION NAME:
+        registrationNameTF.translatesAutoresizingMaskIntoConstraints = false
+        registrationNameTF.topAnchor.constraint(equalTo: registrationTitleLabel.bottomAnchor, constant: 25).isActive = true
+        registrationNameTF.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 5).isActive = true
+        registrationNameTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
+        registrationNameTF.heightAnchor.constraint(equalTo: registrationNameTF.widthAnchor, multiplier: 0.2).isActive = true
         
         // REGISTRATION EMAIL:
         registrationEmailTF.translatesAutoresizingMaskIntoConstraints = false
-        registrationEmailTF.topAnchor.constraint(equalTo: registrationTitleLabel.bottomAnchor, constant: 25).isActive = true
-        registrationEmailTF.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
-        registrationEmailTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.75).isActive = true
-        registrationEmailTF.heightAnchor.constraint(equalTo: registrationEmailTF.widthAnchor, multiplier: 0.15).isActive = true
+        registrationEmailTF.topAnchor.constraint(equalTo: registrationSurnameTF.bottomAnchor, constant: 15).isActive = true
+        registrationEmailTF.leadingAnchor.constraint(equalTo: registrationPasswordTF.leadingAnchor).isActive = true
+        registrationEmailTF.trailingAnchor.constraint(equalTo: registrationPasswordRepeatTF.trailingAnchor).isActive = true
+        registrationEmailTF.heightAnchor.constraint(equalTo: registrationEmailTF.widthAnchor, multiplier: 0.1).isActive = true
         
         // REGISTRATION PASSWORD:
         registrationPasswordTF.translatesAutoresizingMaskIntoConstraints = false
-        registrationPasswordTF.topAnchor.constraint(equalTo: registrationEmailTF.bottomAnchor, constant: 25).isActive = true
-        registrationPasswordTF.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
-        registrationPasswordTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.75).isActive = true
-        registrationPasswordTF.heightAnchor.constraint(equalTo: registrationPasswordTF.widthAnchor, multiplier: 0.15).isActive = true
+        registrationPasswordTF.topAnchor.constraint(equalTo: registrationEmailTF.bottomAnchor, constant: 15).isActive = true
+        registrationPasswordTF.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5).isActive = true
+        registrationPasswordTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
+        registrationPasswordTF.heightAnchor.constraint(equalTo: registrationPasswordTF.widthAnchor, multiplier: 0.2).isActive = true
         
         // REGISTRATION PASSWORD REPEAT:
         registrationPasswordRepeatTF.translatesAutoresizingMaskIntoConstraints = false
-        registrationPasswordRepeatTF.topAnchor.constraint(equalTo: registrationPasswordTF.bottomAnchor, constant: 25).isActive = true
-        registrationPasswordRepeatTF.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
-        registrationPasswordRepeatTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.75).isActive = true
-        registrationPasswordRepeatTF.heightAnchor.constraint(equalTo: registrationPasswordRepeatTF.widthAnchor, multiplier: 0.15).isActive = true
+        registrationPasswordRepeatTF.topAnchor.constraint(equalTo: registrationEmailTF.bottomAnchor, constant: 15).isActive = true
+        registrationPasswordRepeatTF.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 5).isActive = true
+        registrationPasswordRepeatTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
+        registrationPasswordRepeatTF.heightAnchor.constraint(equalTo: registrationPasswordRepeatTF.widthAnchor, multiplier: 0.2).isActive = true
+        
+        // REGISTRATION GROUP TEXT FIELD + PICKER VIEW:
+        registrationGroupTF.translatesAutoresizingMaskIntoConstraints = false
+        registrationGroupTF.topAnchor.constraint(equalTo: registrationPasswordTF.bottomAnchor, constant: 15).isActive = true
+        registrationGroupTF.leadingAnchor.constraint(equalTo: registrationPasswordTF.leadingAnchor).isActive = true
+        registrationGroupTF.trailingAnchor.constraint(equalTo: registrationPasswordRepeatTF.trailingAnchor).isActive = true
+        registrationGroupTF.heightAnchor.constraint(equalTo: registrationGroupTF.widthAnchor, multiplier: 0.1).isActive = true
+        
+        registrationGroupPV.translatesAutoresizingMaskIntoConstraints = false
         
         // REGISTRATION BUTTON:
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.topAnchor.constraint(equalTo: registrationPasswordRepeatTF.bottomAnchor, constant: 25).isActive = true
+        registrationButton.topAnchor.constraint(equalTo: registrationGroupTF.bottomAnchor, constant: 15).isActive = true
         registrationButton.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
         registrationButton.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.5).isActive = true
         registrationButton.heightAnchor.constraint(equalTo: registrationButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // ENTER VIEW:
         enterView.translatesAutoresizingMaskIntoConstraints = false
-        enterView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 15).isActive = true
+        enterView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         enterView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         enterView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
         enterView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
@@ -131,7 +162,7 @@ final class AccountVC: UIViewController {
         // ENTER TITLE:
         enterTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         enterTitleLabel.centerXAnchor.constraint(equalTo: enterView.centerXAnchor).isActive = true
-        enterTitleLabel.topAnchor.constraint(equalTo: enterView.topAnchor, constant: 25).isActive = true
+        enterTitleLabel.topAnchor.constraint(equalTo: enterView.topAnchor).isActive = true
         
         // ENTER EMAIL:
         enterEmailTF.translatesAutoresizingMaskIntoConstraints = false
@@ -209,6 +240,30 @@ final class AccountVC: UIViewController {
         registrationTitleLabel.text = "Регистрация"
         registrationTitleLabel.layer.opacity = 1
         
+        // REGISTRATION SURNAME:
+        registrationSurnameTF.layer.masksToBounds = true
+        registrationSurnameTF.layer.cornerRadius = cornerRadius
+        registrationSurnameTF.layer.borderWidth = 0.7
+        registrationSurnameTF.layer.borderColor = UIColor.white.cgColor
+        registrationSurnameTF.textColor = .white
+        registrationSurnameTF.backgroundColor = .colorBackground
+        registrationSurnameTF.placeholder = "Фамилия"
+        registrationSurnameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationSurnameTF.frame.height))
+        registrationSurnameTF.leftViewMode = .always
+        registrationSurnameTF.layer.opacity = 1
+        
+        // REGISTRATION NAME:
+        registrationNameTF.layer.masksToBounds = true
+        registrationNameTF.layer.cornerRadius = cornerRadius
+        registrationNameTF.layer.borderWidth = 0.7
+        registrationNameTF.layer.borderColor = UIColor.white.cgColor
+        registrationNameTF.textColor = .white
+        registrationNameTF.backgroundColor = .colorBackground
+        registrationNameTF.placeholder = "Имя"
+        registrationNameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationNameTF.frame.height))
+        registrationNameTF.leftViewMode = .always
+        registrationNameTF.layer.opacity = 1
+        
         // REGISTRATION EMAIL:
         registrationEmailTF.layer.masksToBounds = true
         registrationEmailTF.layer.cornerRadius = cornerRadius
@@ -245,6 +300,20 @@ final class AccountVC: UIViewController {
         registrationPasswordRepeatTF.leftViewMode = .always
         registrationPasswordRepeatTF.layer.opacity = 1
         
+        // REGISTRATION GROUP TEXT FIELD:
+        registrationGroupTF.layer.masksToBounds = true
+        registrationGroupTF.layer.cornerRadius = cornerRadius
+        registrationGroupTF.layer.borderWidth = 0.7
+        registrationGroupTF.layer.borderColor = UIColor.white.cgColor
+        registrationGroupTF.textColor = .white
+        registrationGroupTF.backgroundColor = .colorBackground
+        registrationGroupTF.placeholder = "Группа"
+        registrationGroupTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationGroupTF.frame.height))
+        registrationGroupTF.leftViewMode = .always
+        registrationGroupTF.layer.opacity = 1
+        registrationGroupTF.inputView = registrationGroupPV
+        registrationGroupPV.backgroundColor = .colorBackground
+        
         // REGISTRATION BUTTON:
         registrationButton.layer.masksToBounds = true
         registrationButton.layer.cornerRadius = cornerRadius
@@ -259,14 +328,27 @@ final class AccountVC: UIViewController {
                 present(self.presenter.showAlert(title: "Ошибка", message: "Пароли не совпадают"), animated: true)
                 return
             }
+            guard let surname = self.registrationSurnameTF.text, !surname.isEmpty,
+                  let name = self.registrationNameTF.text, !name.isEmpty,
+                  let email = self.registrationEmailTF.text, !email.isEmpty,
+                  let password = self.registrationPasswordTF.text, !password.isEmpty,
+                  let passwordRepeat = self.registrationPasswordRepeatTF.text, !passwordRepeat.isEmpty,
+                  let group = self.registrationGroupTF.text, !group.isEmpty
+            else {
+                present(self.presenter.showAlert(title: "Ошибка", message: "Заполните все поля"), animated: true)
+                return
+            }
             self.vibration.vibrationStandart()
             self.activityIndicator.center = view.center
             self.activityIndicator.startAnimating()
             self.view.addSubview(activityIndicator)
-            self.presenter.registerUser(email: self.registrationEmailTF.text ?? "", password: self.registrationPasswordTF.text ?? "") { result in
+            self.presenter.registerUser(surname: registrationSurnameTF.text ?? "", name: registrationNameTF.text ?? "", email: self.registrationEmailTF.text ?? "", password: self.registrationPasswordTF.text ?? "", group: registrationGroupTF.text ?? "") { result in
                 switch result {
                 case .success:
                     self.present(self.presenter.showAlert(title: "Выполнено", message: "Вы успешно зарегистрированы!"), animated: true)
+                    guard let group = self.registrationGroupTF.text else { return }
+                    UserDefaults.standard.set(group, forKey: "userGroup")
+                    print("USER DEFAULTS определил пользователя в группу: \(UserDefaults.standard.string(forKey: "userGroup") ?? "")")
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.removeFromSuperview()
                 case .failure(let error):
@@ -367,8 +449,16 @@ final class AccountVC: UIViewController {
         deleteButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
-            self.present(self.presenter.confirmDeleteAlert(),animated: true)
+            self.present(self.presenter.confirmDeleteAlert(), animated: true)
         }), for: .touchUpInside)
+    }
+    
+    // MARK: - CONFIGURE GESTURES:
+    
+    private func configureGestures() {
+        // TAP ON FREE SPACE FOR CLOSE ALL VIEWS:
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureDone))
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - HELPERS:
@@ -385,7 +475,6 @@ final class AccountVC: UIViewController {
             if let user = Auth.auth().currentUser {
                 self.authTitleLabel.layer.opacity = 1
                 self.authTitleLabel.isHidden = false
-                self.authTitleLabel.text = "Аккаунт:\n\n\(user.email ?? "Не указан")"
                 self.segmentedControl.layer.opacity = 0.0
                 self.segmentedControl.isHidden = true
                 self.registrationView.layer.opacity = 0.0
@@ -394,6 +483,11 @@ final class AccountVC: UIViewController {
                 self.enterView.isHidden = true
                 self.exitButton.isHidden = false
                 self.deleteButton.isHidden = false
+                if let userGroup = UserDefaults.standard.string(forKey: "userGroup") {
+                    self.authTitleLabel.text = "Аккаунт:\n\(user.email ?? "Не указан")\n\n\(userGroup)"
+                } else {
+                    self.authTitleLabel.text = "Аккаунт:\n\(user.email ?? "Не указан")\n\nГруппа не указана"
+                }
                 print("Пользователь аутентифицирован, email: \(user.email ?? "Не указан")")
             } else {
                 self.authTitleLabel.layer.opacity = 0.0
@@ -410,12 +504,16 @@ final class AccountVC: UIViewController {
             }
         }
     }
+    
+    // TAP ON FREE SPACE FOR CLOSE ALL VIEWS ACTION:
+    @objc private func tapGestureDone() {
+        view.endEditing(true)
+    }
 }
 
 // MARK: - EXTENSIONS:
 
 extension AccountVC: AccountVCProtocol {
-
     // SHOW REGISTRATION VIEW:
     func showRegistretionView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
@@ -425,6 +523,8 @@ extension AccountVC: AccountVCProtocol {
             self.enterView.isHidden = true
             self.registrationView.layer.opacity = 1
             self.registrationTitleLabel.layer.opacity = 1
+            self.registrationSurnameTF.layer.opacity = 1
+            self.registrationNameTF.layer.opacity = 1
             self.registrationEmailTF.layer.opacity = 1
             self.registrationPasswordTF.layer.opacity = 1
             self.registrationButton.layer.opacity = 1
@@ -445,6 +545,8 @@ extension AccountVC: AccountVCProtocol {
             self.enterView.isHidden = false
             self.registrationView.layer.opacity = 0
             self.registrationTitleLabel.layer.opacity = 0
+            self.registrationSurnameTF.layer.opacity = 0
+            self.registrationSurnameTF.layer.opacity = 0
             self.registrationEmailTF.layer.opacity = 0
             self.registrationPasswordTF.layer.opacity = 0
             self.registrationButton.layer.opacity = 0
@@ -463,15 +565,17 @@ extension AccountVC: AccountVCProtocol {
     
     // DELETE ACCOUNT:
     func deleteAccount() {
-        self.activityIndicator.center = view.center
-        self.activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
-        self.presenter.deleteUser { result in
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        presenter.deleteUser { result in
             switch result {
             case .success:
                 self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт удален"), animated: true)
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
+                UserDefaults.standard.removeObject(forKey: "userGroup")
+                print("Был удален аккаунт. UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
                 self.activityIndicator.stopAnimating()
@@ -482,22 +586,28 @@ extension AccountVC: AccountVCProtocol {
     
     // EXIT ACCOUNT:
     func exitAccount() {
-        self.activityIndicator.center = view.center
-        self.activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
-        self.presenter.exitUser { result in
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        presenter.exitUser { result in
             switch result {
             case .success:
                 self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта"), animated: true)
+                UserDefaults.standard.removeObject(forKey: "userGroup")
+                print("Был выполнен выход из учетной записи. UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
             }
         }
     }
     
     // RESET PASSWORD:
     func resetPassword() {
-        self.presenter.resetPassword(email: enterEmailTF.text ?? "")
+        presenter.resetPassword(email: enterEmailTF.text ?? "")
     }
     
     // SUCCESS RESET PASSWORD:
@@ -506,7 +616,7 @@ extension AccountVC: AccountVCProtocol {
         alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: { [weak self] _ in
             self?.dismissView()
         }))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     // ERROR RESET PASSWORD:
@@ -515,6 +625,27 @@ extension AccountVC: AccountVCProtocol {
         alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: { [weak self] _ in
             self?.dismissView()
         }))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
+    }
+}
+
+// MARK: - EXTENSIONS FOR PICKER VIEW DATA SOURSE:
+
+extension AccountVC: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return RegistrationGroup.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return RegistrationGroup.allCases[row].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        registrationGroupTF.text = RegistrationGroup.allCases[row].rawValue
+        view.endEditing(true)
     }
 }
