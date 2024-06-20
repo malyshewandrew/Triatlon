@@ -53,13 +53,13 @@ final class AnonimVC: UIViewController {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         
         // ANONIM TEXT VIEW:
         anonimTextView.translatesAutoresizingMaskIntoConstraints = false
-        anonimTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 25).isActive = true
+        anonimTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 35).isActive = true
         anonimTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        anonimTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        anonimTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         anonimTextView.heightAnchor.constraint(equalTo: anonimTextView.widthAnchor, multiplier: 0.4).isActive = true
         
         // SEND BUTTON:
@@ -88,7 +88,7 @@ final class AnonimVC: UIViewController {
         descriptionLabel.font = fontMediumLight14
         descriptionLabel.textAlignment = .center
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = "[Дополнительный текс рассказывающий зачем это нужно. Cообщения приходят в режиме реального времени в базу данных.]"
+        descriptionLabel.text = "Мы ценим ваше мнение.\nОставьте анонимную обратную связь, чтобы помочь нам стать лучше. Ваши честные отзывы важны для нас."
         
         // ANONIM TEXT VIEW:
         anonimTextView.layer.masksToBounds = true
@@ -101,7 +101,8 @@ final class AnonimVC: UIViewController {
         // SEND BUTTON:
         sendButton.layer.masksToBounds = true
         sendButton.layer.cornerRadius = cornerRadius
-        sendButton.setTitle("Отправить", for: .normal)
+        sendButton.setTitle("Отправить анонимно", for: .normal)
+        sendButton.titleLabel?.adjustsFontSizeToFitWidth = true
         sendButton.setTitleColor(.white, for: .normal)
         sendButton.titleLabel?.font = fontMediumStandard14
         sendButton.backgroundColor = .systemGreen
