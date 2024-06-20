@@ -227,8 +227,8 @@ final class ClubPresenter: ClubPresenterProtocol {
     
     // TELEGRAM BUTTON TAPPED:
     func telegramButtonTapped() {
-        let appURL = URL(string: "tg://resolve?domain=tristyle")
-        let webURL = URL(string: "https://t.me/s/tristyle")
+        let appURL = URL(string: "tg://resolve?domain=+3Svub5RPjX44ZGNi")
+        let webURL = URL(string: "https://t.me/s/+3Svub5RPjX44ZGNi")
         guard let appURL = appURL else { return }
         if UIApplication.shared.canOpenURL(appURL) {
             UIApplication.shared.open(appURL, options: [:], completionHandler: nil)

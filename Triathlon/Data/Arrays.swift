@@ -38,3 +38,19 @@ let clothesArray: [ProductModel] = [
     ProductModel(name: "Худи Age Group", description: "- Спущенная линия плеча\n- Расширенный капюшон\n- Два боковых кармана\n - Рукава с вырезами для большого пальца\n - Манжет по низу и рукаву", price: "70 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-149769668430-hudi-age-group-zhenskaya", photo: .hoodie),
     ProductModel(name: "Майка Female Triathlete", description: "- Приталенный силуэт\n- Принт шелкография", price: "35 BYN", link: "https://tristyleshop.by/sales/tproduct/162692404-793756860850-maika-female-triathlete-zhenskaya", photo: .tshirtFemaleTriathlete)
 ]
+
+// MARK: - CLUB CARD:
+
+// PARTNER:
+let partnerDiscountArray: [DiscountModel] = [DiscountModel(name: "Tristyle.Shop", 
+                                                           description: "Интернет-магазин спортивной одежды и аксессуаров для велоспорта, триатлона и бега.",
+                                                           percent: "10%",
+                                                           web: "https://instagram.com/ccnsport_belarus",
+                                                           contact: nil)]
+
+// MUTUAL:
+let mutualDiscountArray: [DiscountModel] = [DiscountModel(name: "John Galt Studio",
+                                                          description: "Создание роботов, которые заменяют или дополняют сотрудников, выполняющих рутинные процессы за компьютером, на их рабочих местах.",
+                                                          percent: "10%",
+                                                          web: "https://johngalt.tech",
+                                                          contact: "Захар Плодунов")]

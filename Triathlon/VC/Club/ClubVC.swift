@@ -304,6 +304,8 @@ final class ClubVC: UIViewController {
             guard let self = self else { return }
             self.vibration.vibrationStandart()
             let clubCardVC = ClubCardVC()
+            let presenterClubCard = ClubCardPresenter(view: clubCardVC)
+            clubCardVC.presenter = presenterClubCard
             self.present(clubCardVC, animated: true)
         }), for: .touchUpInside)
         

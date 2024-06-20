@@ -3,8 +3,8 @@ import UIKit
 // MARK: - PROTOCOL:
 
 protocol ShopPresenterProtocol {
-    func shopButtonTapped(with productLink: String?)
     func selectedSegmentControl(sender: UISegmentedControl)
+    func shopButtonTapped(with productLink: String?)
 }
 
 final class ShopPresenter: ShopPresenterProtocol {
@@ -19,15 +19,6 @@ final class ShopPresenter: ShopPresenterProtocol {
     }
 
     // MARK: - METHODS:
-
-    // SHOP BUTTON TAPPED:
-    func shopButtonTapped(with productLink: String?) {
-        guard let link = productLink, let url = URL(string: link), UIApplication.shared.canOpenURL(url) else {
-            print("Cannot open the URL.")
-            return
-        }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
 
     // SELECTED SEGMENTED CONTROL:
     func selectedSegmentControl(sender: UISegmentedControl) {
@@ -45,5 +36,14 @@ final class ShopPresenter: ShopPresenterProtocol {
         default:
             view.hideTableView()
         }
+    }
+    
+    // SHOP BUTTON TAPPED:
+    func shopButtonTapped(with productLink: String?) {
+        guard let link = productLink, let url = URL(string: link), UIApplication.shared.canOpenURL(url) else {
+            print("Cannot open the URL.")
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

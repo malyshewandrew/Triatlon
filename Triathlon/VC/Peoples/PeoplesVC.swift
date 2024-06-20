@@ -59,7 +59,7 @@ final class PeoplesVC: UIViewController {
         backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        // SEGMENT CONTROL:
+        // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
@@ -117,6 +117,8 @@ final class PeoplesVC: UIViewController {
     }
     
     // MARK: - HELPERS:
+    
+    // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         presenter.selectedSegmentControl(sender: sender)
     }

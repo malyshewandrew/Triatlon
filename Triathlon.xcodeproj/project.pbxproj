@@ -26,6 +26,10 @@
 		FB75B38B2C21C99000AE360F /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75B38A2C21C99000AE360F /* AccountPresenter.swift */; };
 		FB75B38F2C21E5C400AE360F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B38E2C21E5C400AE360F /* FirebaseAuth */; };
 		FB75B3912C21E5DA00AE360F /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B3902C21E5DA00AE360F /* FirebaseAuthCombine-Community */; };
+		FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D62C2430F700B28520 /* DiscountModel.swift */; };
+		FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */; };
+		FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DA2C2436C800B28520 /* PartnerCell.swift */; };
+		FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DC2C24375B00B28520 /* MutualCell.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
 		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
 		FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457112C20FC320070E6D4 /* CalendarModel.swift */; };
@@ -83,6 +87,10 @@
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FB75B3882C21C98300AE360F /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		FB75B38A2C21C99000AE360F /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
+		FB9631D62C2430F700B28520 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
+		FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardPresenter.swift; sourceTree = "<group>"; };
+		FB9631DA2C2436C800B28520 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
+		FB9631DC2C24375B00B28520 /* MutualCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualCell.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		FBA457112C20FC320070E6D4 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
@@ -167,6 +175,9 @@
 			isa = PBXGroup;
 			children = (
 				FBE94A522C20775D007186DC /* ClubCardVC.swift */,
+				FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */,
+				FB9631DA2C2436C800B28520 /* PartnerCell.swift */,
+				FB9631DC2C24375B00B28520 /* MutualCell.swift */,
 			);
 			path = ClubCardVC;
 			sourceTree = "<group>";
@@ -365,6 +376,7 @@
 				FBBC86402C19C94100752195 /* ProductModel.swift */,
 				FBA457112C20FC320070E6D4 /* CalendarModel.swift */,
 				FBFE002C2C2397F50083DD50 /* RegistrationGroup.swift */,
+				FB9631D62C2430F700B28520 /* DiscountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,12 +487,14 @@
 			files = (
 				FBAD34142C11256B0014DE84 /* CalendarPresenter.swift in Sources */,
 				FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */,
+				FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */,
 				FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */,
 				FBB89B8A2C10CC1400FBDF3B /* ScheduleVC.swift in Sources */,
 				FBBC863B2C19B96900752195 /* HumanModel.swift in Sources */,
 				FBAD34162C1125740014DE84 /* ClubVC.swift in Sources */,
 				FB0F697F2C20C75D0033E705 /* AnonimPresenter.swift in Sources */,
 				FBBC863D2C19B96900752195 /* PeoplesVC.swift in Sources */,
+				FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */,
 				FBBC863C2C19B96900752195 /* PeoplesPresenter.swift in Sources */,
 				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
 				FBFE002D2C2397F50083DD50 /* RegistrationGroup.swift in Sources */,
@@ -494,6 +508,7 @@
 				FBBC86302C19082200752195 /* OnboardingOne.swift in Sources */,
 				FBBC863A2C19B96900752195 /* TrainerCell.swift in Sources */,
 				FB0F697D2C20C73D0033E705 /* AnonimVC.swift in Sources */,
+				FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
 				FBBC862D2C19081000752195 /* ScheduleCell.swift in Sources */,
 				FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */,
@@ -505,6 +520,7 @@
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
 				52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
+				FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBA457142C20FD970070E6D4 /* FetchCalendarDates.swift in Sources */,
 				FB75B3892C21C98300AE360F /* AccountVC.swift in Sources */,
