@@ -45,7 +45,7 @@ final class ClubCardVC: UIViewController {
         // CLUB CARD IMAGE:
         clubCardImage.translatesAutoresizingMaskIntoConstraints = false
         clubCardImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        clubCardImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
+        clubCardImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         clubCardImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         clubCardImage.heightAnchor.constraint(equalTo: clubCardImage.widthAnchor, multiplier: 0.35).isActive = true
         
@@ -57,17 +57,17 @@ final class ClubCardVC: UIViewController {
         
         // PARTNER TABLE VIEW:
         partnerTableView.translatesAutoresizingMaskIntoConstraints = false
-        partnerTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 15).isActive = true
+        partnerTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         partnerTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         partnerTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        partnerTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -125).isActive = true
+        partnerTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         // MUTUAL TABLE VIEW:
         mutualTableView.translatesAutoresizingMaskIntoConstraints = false
-        mutualTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 15).isActive = true
+        mutualTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         mutualTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mutualTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        mutualTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -125).isActive = true
+        mutualTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:

@@ -46,32 +46,32 @@ final class PartnerCell: UITableViewCell {
         // NAME LABEL:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor, constant: -5).isActive = true
         
         // DESCRIPTION LABEL:
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.85).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
+        descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.80).isActive = true
         
         // PERCENT LABEL:
         percentLabel.translatesAutoresizingMaskIntoConstraints = false
-        percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5).isActive = true
-        percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5).isActive = true
-        percentLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.15).isActive = true
+        percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10).isActive = true
+        percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
+        percentLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 5).isActive = true
         
         // WEB BUTTON:
         webButton.translatesAutoresizingMaskIntoConstraints = false
         webButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
-        webButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5).isActive = true
+        webButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
         webButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.2).isActive = true
         webButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         
         // CONTACT LABEL:
         contactLabel.translatesAutoresizingMaskIntoConstraints = false
         contactLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
-        contactLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5).isActive = true
+        contactLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         contactLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.45).isActive = true
         contactLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
     }
