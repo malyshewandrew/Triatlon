@@ -122,6 +122,7 @@ final class TrainerCell: UITableViewCell {
         
         // IMAGE COLLECTION VIEW:
         imageCollectionView.layer.cornerRadius = cornerRadius
+        imageCollectionView.backgroundColor = .clear
     }
 
     // MARK: - HELPERS:

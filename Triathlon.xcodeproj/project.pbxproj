@@ -30,6 +30,7 @@
 		FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */; };
 		FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DA2C2436C800B28520 /* PartnerCell.swift */; };
 		FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DC2C24375B00B28520 /* MutualCell.swift */; };
+		FB9631DF2C24D90300B28520 /* AllGroupesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DE2C24D90300B28520 /* AllGroupesCell.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
 		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
 		FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457112C20FC320070E6D4 /* CalendarModel.swift */; };
@@ -50,7 +51,7 @@
 		FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */; };
 		FBBC86292C1907FD00752195 /* Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FBBC86282C1907FD00752195 /* Video.mp4 */; };
 		FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC862A2C19080700752195 /* ScheduleModel.swift */; };
-		FBBC862D2C19081000752195 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC862C2C19081000752195 /* ScheduleCell.swift */; };
+		FBBC862D2C19081000752195 /* MyGroupeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC862C2C19081000752195 /* MyGroupeCell.swift */; };
 		FBBC86302C19082200752195 /* OnboardingOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC862E2C19082200752195 /* OnboardingOne.swift */; };
 		FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC862F2C19082200752195 /* OnboardingPresenter.swift */; };
 		FBBC86392C19B96900752195 /* TrainerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC86342C19B96900752195 /* TrainerCollectionView.swift */; };
@@ -91,6 +92,7 @@
 		FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardPresenter.swift; sourceTree = "<group>"; };
 		FB9631DA2C2436C800B28520 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
 		FB9631DC2C24375B00B28520 /* MutualCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualCell.swift; sourceTree = "<group>"; };
+		FB9631DE2C24D90300B28520 /* AllGroupesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupesCell.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		FBA457112C20FC320070E6D4 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 		FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
 		FBBC86282C1907FD00752195 /* Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video.mp4; sourceTree = "<group>"; };
 		FBBC862A2C19080700752195 /* ScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
-		FBBC862C2C19081000752195 /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		FBBC862C2C19081000752195 /* MyGroupeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGroupeCell.swift; sourceTree = "<group>"; };
 		FBBC862E2C19082200752195 /* OnboardingOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOne.swift; sourceTree = "<group>"; };
 		FBBC862F2C19082200752195 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		FBBC86342C19B96900752195 /* TrainerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCollectionView.swift; sourceTree = "<group>"; };
@@ -227,8 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				FBB89B892C10CC1400FBDF3B /* ScheduleVC.swift */,
-				FBBC862C2C19081000752195 /* ScheduleCell.swift */,
 				FBB89B992C10CD0A00FBDF3B /* SchedulePresenter.swift */,
+				FBBC862C2C19081000752195 /* MyGroupeCell.swift */,
+				FB9631DE2C24D90300B28520 /* AllGroupesCell.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -510,8 +513,9 @@
 				FB0F697D2C20C73D0033E705 /* AnonimVC.swift in Sources */,
 				FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
-				FBBC862D2C19081000752195 /* ScheduleCell.swift in Sources */,
+				FBBC862D2C19081000752195 /* MyGroupeCell.swift in Sources */,
 				FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */,
+				FB9631DF2C24D90300B28520 /* AllGroupesCell.swift in Sources */,
 				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
 				FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */,
 				FBBC86412C19C94100752195 /* ProductModel.swift in Sources */,

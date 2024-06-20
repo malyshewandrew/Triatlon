@@ -3,6 +3,7 @@ import UIKit
 // MARK: - PROTOCOL:
 
 protocol SchedulePresenterProtocol {
+    func selectedSegmentControl(sender: UISegmentedControl)
 }
 
 final class SchedulePresenter: SchedulePresenterProtocol {
@@ -16,4 +17,16 @@ final class SchedulePresenter: SchedulePresenterProtocol {
     }
     
     // MARK: - METHODS:
+    
+    // SELECTED SEGMENTED CONTROL:
+    func selectedSegmentControl(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            view.showMyGroupe()
+        case 1:
+            view.hideMyGroupe()
+        default:
+            print("Не выбрано")
+        }
+    }
 }

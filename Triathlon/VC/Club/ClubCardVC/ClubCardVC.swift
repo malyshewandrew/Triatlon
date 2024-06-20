@@ -12,10 +12,12 @@ final class ClubCardVC: UIViewController {
 
     var presenter: ClubCardPresenterProtocol!
     private let backgroundImage = UIImageView()
+    private let titleLabel = UILabel()
     private let clubCardImage = UIImageView()
     private var segmentedControl = UISegmentedControl()
     private let partnerTableView = UITableView()
     private let mutualTableView = UITableView()
+    private let vibration = Vibration()
     
     // MARK: - LIFYCYCLE:
     
@@ -29,7 +31,7 @@ final class ClubCardVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, clubCardImage, segmentedControl, partnerTableView, mutualTableView)
+        view.addSubviews(backgroundImage, titleLabel, clubCardImage, segmentedControl, partnerTableView, mutualTableView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -42,10 +44,16 @@ final class ClubCardVC: UIViewController {
         backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
+        // TITLE LABEL:
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        
         // CLUB CARD IMAGE:
         clubCardImage.translatesAutoresizingMaskIntoConstraints = false
+        clubCardImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50).isActive = true
         clubCardImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        clubCardImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         clubCardImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         clubCardImage.heightAnchor.constraint(equalTo: clubCardImage.widthAnchor, multiplier: 0.35).isActive = true
         
@@ -76,9 +84,19 @@ final class ClubCardVC: UIViewController {
         // BACKGROUND VIEW:
         backgroundImage.image = UIImage(resource: .background)
         
+        // TITLE LABEL:
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.font = fontLightStandard12
+        titleLabel.text = "Благодаря спонсорам и партнёрам клуба мы создаём лучшие условия для наших спортсменов, поддерживаем профессиональный состав Tristyle, проводим старты и инвестируем в научную составляющую триатлона."
+        
         // CLUB CARD IMAGE:
         clubCardImage.image = UIImage(resource: .clubCard)
         clubCardImage.contentMode = .scaleAspectFill
+        clubCardImage.layer.shadowColor = UIColor.white.cgColor
+        clubCardImage.layer.shadowRadius = 50
+        clubCardImage.layer.shadowOpacity = 0.2
         
         // SEGMENTED CONTROL
         segmentedControl.backgroundColor = .colorBackground
@@ -110,6 +128,7 @@ final class ClubCardVC: UIViewController {
     
     // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
+        vibration.vibrationStandart()
         presenter.selectedSegmentControl(sender: sender)
     }
 }

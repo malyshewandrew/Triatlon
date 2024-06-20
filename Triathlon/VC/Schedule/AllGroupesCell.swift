@@ -1,6 +1,6 @@
 import UIKit
 
-final class ScheduleCell: UITableViewCell {
+final class AllGroupesCell: UITableViewCell {
     // MARK: - PROPERTIES:
 
     private let containerView = UIView()

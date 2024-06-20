@@ -119,6 +119,7 @@ final class TeamCell: UITableViewCell {
         
         // IMAGE COLLECTION VIEW:
         imageCollectionView.layer.cornerRadius = cornerRadius
+        imageCollectionView.backgroundColor = .clear
     }
     
     // MARK: - HELPERS:
