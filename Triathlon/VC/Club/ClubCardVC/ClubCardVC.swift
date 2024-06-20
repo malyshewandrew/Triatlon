@@ -164,6 +164,10 @@ extension ClubCardVC: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        vibration.vibrationStandart()
+    }
 }
 
 // PROTOCOL:

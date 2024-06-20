@@ -15,6 +15,7 @@ final class PeoplesVC: UIViewController {
     private var segmentedControl = UISegmentedControl()
     private let tableViewTrainer = UITableView()
     private let tableViewTeam = UITableView()
+    private let vibration = Vibration()
     
     // MARK: - LIFYCYCLE:
     
@@ -156,8 +157,13 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        vibration.vibrationStandart()
+    }
 }
 
+// MARK: - PROTOCOL:
 extension PeoplesVC: PeoplesVCProtocol {
     // SHOW TRAINERS:
     func showTrainerTableView() {

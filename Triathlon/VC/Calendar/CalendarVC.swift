@@ -23,6 +23,7 @@ final class CalendarVC: UIViewController {
     private let dateLabel = UILabel()
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
+    private let vibration = Vibration()
 
     // MARK: - LIFECYCLE:
     
@@ -223,5 +224,9 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
         cell.configure(name: eventDate.name, daysLeft: presenter.daysLeft(for: eventDate))
         cell.backgroundColor = .clear
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        vibration.vibrationStandart()
     }
 }

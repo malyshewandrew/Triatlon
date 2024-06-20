@@ -104,7 +104,7 @@ final class ShopCell: UITableViewCell {
         descriptionLabel.numberOfLines = 0
         
         // PRICE LABEL:
-        priceLabel.textColor = .white
+        priceLabel.textColor = .systemOrange
         priceLabel.font = fontBoldStandard22
         
         // BUY BUTTON:
