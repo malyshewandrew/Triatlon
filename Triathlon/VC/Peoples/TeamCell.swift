@@ -86,6 +86,7 @@ final class TeamCell: UITableViewCell {
         
         // CONTEN VIEW:
         contentView.backgroundColor = .clear
+        selectionStyle = .none
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground

@@ -89,6 +89,7 @@ final class TrainerCell: UITableViewCell {
     private func configureUI() {
         // CONTENT VIEW:
         contentView.backgroundColor = .clear
+        selectionStyle = .none
         
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground
