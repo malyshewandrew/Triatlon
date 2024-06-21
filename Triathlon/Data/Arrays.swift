@@ -1,5 +1,12 @@
 import UIKit
 
+// MARK: - PHILOSOPHY:
+let philosophyTitleArray: [UIImage] = [UIImage(resource: .philosophyTitle1), UIImage(resource: .philosophyTitle2), UIImage(resource: .philosophyTitle3), UIImage(resource: .philosophyTitle4), UIImage(resource: .philosophyTitle5)]
+let philosophyRuleOneArray: [UIImage] = [UIImage(resource: .philosophyRuleOne1), UIImage(resource: .philosophyRuleOne2), UIImage(resource: .philosophyRuleOne3), UIImage(resource: .philosophyRuleOne4), UIImage(resource: .philosophyRuleOne5)]
+let philosophyRuleTwoArray: [UIImage] = [UIImage(resource: .philosophyRuleTwo1), UIImage(resource: .philosophyRuleTwo2), UIImage(resource: .philosophyRuleTwo3), UIImage(resource: .philosophyRuleTwo4), UIImage(resource: .philosophyRuleTwo5)]
+let philosophyRuleThreeArray: [UIImage] = [UIImage(resource: .philosophyRuleThree1), UIImage(resource: .philosophyRuleThree2), UIImage(resource: .philosophyRuleThree3), UIImage(resource: .philosophyRuleThree4), UIImage(resource: .philosophyRuleThree5)]
+let philosophyRuleFourArray: [UIImage] = [UIImage(resource: .philosophyRuleFour1), UIImage(resource: .philosophyRuleFour2), UIImage(resource: .philosophyRuleFour3), UIImage(resource: .philosophyRuleFour4), UIImage(resource: .philosophyRuleFour5)]
+
 // MARK: - PEOPLES:
 
 // TRAINERS

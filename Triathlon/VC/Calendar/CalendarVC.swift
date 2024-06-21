@@ -147,7 +147,7 @@ final class CalendarVC: UIViewController {
         
         // TABLE VIEW:
         tableView.dataSource = self
-        tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(CalendarCell.self, forCellReuseIdentifier: "CalendarCell")
         tableView.backgroundColor = .clear

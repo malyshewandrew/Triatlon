@@ -121,6 +121,7 @@ final class PeoplesVC: UIViewController {
     
     // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
+        vibration.vibrationStandart()
         presenter.selectedSegmentControl(sender: sender)
     }
 }

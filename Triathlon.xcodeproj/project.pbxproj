@@ -31,6 +31,11 @@
 		FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DA2C2436C800B28520 /* PartnerCell.swift */; };
 		FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DC2C24375B00B28520 /* MutualCell.swift */; };
 		FB9631DF2C24D90300B28520 /* AllGroupesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DE2C24D90300B28520 /* AllGroupesCell.swift */; };
+		FB9631E12C24E56E00B28520 /* TitleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631E02C24E56E00B28520 /* TitleCollectionView.swift */; };
+		FB9631E32C24EC3400B28520 /* RuleOneCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631E22C24EC3400B28520 /* RuleOneCollectionView.swift */; };
+		FB9631E52C24EC3F00B28520 /* RuleThreeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631E42C24EC3F00B28520 /* RuleThreeCollectionView.swift */; };
+		FB9631E72C24EC4200B28520 /* RuleTwoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631E62C24EC4200B28520 /* RuleTwoCollectionView.swift */; };
+		FB9631E92C24EC4300B28520 /* RuleFourCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631E82C24EC4300B28520 /* RuleFourCollectionView.swift */; };
 		FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */; };
 		FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9BACD52C12723600D8E2B7 /* UIComponents.swift */; };
 		FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA457112C20FC320070E6D4 /* CalendarModel.swift */; };
@@ -93,6 +98,11 @@
 		FB9631DA2C2436C800B28520 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
 		FB9631DC2C24375B00B28520 /* MutualCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualCell.swift; sourceTree = "<group>"; };
 		FB9631DE2C24D90300B28520 /* AllGroupesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupesCell.swift; sourceTree = "<group>"; };
+		FB9631E02C24E56E00B28520 /* TitleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionView.swift; sourceTree = "<group>"; };
+		FB9631E22C24EC3400B28520 /* RuleOneCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleOneCollectionView.swift; sourceTree = "<group>"; };
+		FB9631E42C24EC3F00B28520 /* RuleThreeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleThreeCollectionView.swift; sourceTree = "<group>"; };
+		FB9631E62C24EC4200B28520 /* RuleTwoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTwoCollectionView.swift; sourceTree = "<group>"; };
+		FB9631E82C24EC4300B28520 /* RuleFourCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleFourCollectionView.swift; sourceTree = "<group>"; };
 		FB9BACD32C11F5F900D8E2B7 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		FB9BACD52C12723600D8E2B7 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		FBA457112C20FC320070E6D4 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
@@ -196,6 +206,11 @@
 			isa = PBXGroup;
 			children = (
 				FB1427052C17978100D94901 /* PhilosophyVC.swift */,
+				FB9631E02C24E56E00B28520 /* TitleCollectionView.swift */,
+				FB9631E22C24EC3400B28520 /* RuleOneCollectionView.swift */,
+				FB9631E62C24EC4200B28520 /* RuleTwoCollectionView.swift */,
+				FB9631E42C24EC3F00B28520 /* RuleThreeCollectionView.swift */,
+				FB9631E82C24EC4300B28520 /* RuleFourCollectionView.swift */,
 			);
 			path = PhilosophyVC;
 			sourceTree = "<group>";
@@ -504,6 +519,7 @@
 				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
 				52E746E22C19F9B4004D1AE3 /* TeamCell.swift in Sources */,
+				FB9631E92C24EC4300B28520 /* RuleFourCollectionView.swift in Sources */,
 				FBAD34202C1125A60014DE84 /* ShopPresenter.swift in Sources */,
 				FBBC86392C19B96900752195 /* TrainerCollectionView.swift in Sources */,
 				FBBC86462C1BAE0200752195 /* Arrays.swift in Sources */,
@@ -518,16 +534,20 @@
 				FB9631DF2C24D90300B28520 /* AllGroupesCell.swift in Sources */,
 				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
 				FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */,
+				FB9631E52C24EC3F00B28520 /* RuleThreeCollectionView.swift in Sources */,
 				FBBC86412C19C94100752195 /* ProductModel.swift in Sources */,
 				FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */,
 				FB9BACD62C12723600D8E2B7 /* UIComponents.swift in Sources */,
+				FB9631E32C24EC3400B28520 /* RuleOneCollectionView.swift in Sources */,
 				FB9BACD42C11F5F900D8E2B7 /* Vibration.swift in Sources */,
 				52E746E42C19F9E7004D1AE3 /* TeamImageCollectionCell.swift in Sources */,
+				FB9631E12C24E56E00B28520 /* TitleCollectionView.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBA457142C20FD970070E6D4 /* FetchCalendarDates.swift in Sources */,
 				FB75B3892C21C98300AE360F /* AccountVC.swift in Sources */,
+				FB9631E72C24EC4200B28520 /* RuleTwoCollectionView.swift in Sources */,
 				FBBC86312C19082200752195 /* OnboardingPresenter.swift in Sources */,
 				FB1427042C17959400D94901 /* CodexVC.swift in Sources */,
 				FBE94A532C20775D007186DC /* ClubCardVC.swift in Sources */,
