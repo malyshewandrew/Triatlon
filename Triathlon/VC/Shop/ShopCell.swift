@@ -6,13 +6,14 @@ final class ShopCell: UITableViewCell {
     private let containerView = UIView()
     private let nameLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let viewImageView = UIView()
     private let photoView = UIImageView()
     private let priceLabel = UILabel()
     private let buyButton = UIButton(type: .system)
     private var productLink: String?
     var presenter: ShopPresenterProtocol!
     
-    // MARK: - LIFYCYCLE:
+    // MARK: - LIFECYCLE:
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,7 +31,8 @@ final class ShopCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.addSubviews(containerView)
-        containerView.addSubviews(nameLabel, descriptionLabel, photoView, priceLabel, buyButton)
+        containerView.addSubviews(nameLabel, descriptionLabel, viewImageView, priceLabel, buyButton)
+        viewImageView.addSubviews(photoView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -39,35 +41,46 @@ final class ShopCell: UITableViewCell {
         // CONTAINER VIEW:
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        
+        // VIEW IMAGE VIEW:
+        viewImageView.translatesAutoresizingMaskIntoConstraints = false
+        viewImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        viewImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.45).isActive = true
+        viewImageView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        viewImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         
         // PHOTO VIEW:
         photoView.translatesAutoresizingMaskIntoConstraints = false
-        photoView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        photoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.45).isActive = true
-        photoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 1).isActive = true
+        photoView.topAnchor.constraint(equalTo: viewImageView.topAnchor).isActive = true
+        photoView.leadingAnchor.constraint(equalTo: viewImageView.leadingAnchor).isActive = true
+        photoView.trailingAnchor.constraint(equalTo: viewImageView.trailingAnchor).isActive = true
+        photoView.bottomAnchor.constraint(equalTo: viewImageView.bottomAnchor).isActive = true
+
+        let aspectRatioConstraint = photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor, multiplier: 3/4)
+        aspectRatioConstraint.priority = .defaultHigh
+        aspectRatioConstraint.isActive = true
         
         // NAME LABEL:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: viewImageView.trailingAnchor, constant: 10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         
         // DESCRIPTION LABEL:
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: viewImageView.trailingAnchor, constant: 10).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         
         // PRICE LABEL:
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
         priceLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
-        priceLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: viewImageView.trailingAnchor, constant: 10).isActive = true
         priceLabel.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -10).isActive = true
         
         // BUY BUTTON:
@@ -76,11 +89,9 @@ final class ShopCell: UITableViewCell {
         buyButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         buyButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         buyButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.2).isActive = true
-        buyButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        buyButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
-    
-    // MARK: - CONFIGURE UI:
-    
+
     private func configureUI() {
         // CONTENT VIEW:
         selectionStyle = .none
@@ -94,6 +105,7 @@ final class ShopCell: UITableViewCell {
         photoView.layer.masksToBounds = true
         photoView.layer.cornerRadius = cornerRadius
         photoView.contentMode = .scaleAspectFill
+        photoView.clipsToBounds = true
         
         // NAME LABEL:
         nameLabel.textColor = .systemBlue
@@ -102,22 +114,26 @@ final class ShopCell: UITableViewCell {
         
         // DESCRIPTION:
         descriptionLabel.textColor = .white
-        descriptionLabel.font = fontLightStandard12
+        descriptionLabel.font = fontLightStandard10
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.adjustsFontSizeToFitWidth = true
         
         // PRICE LABEL:
         priceLabel.textColor = .systemOrange
         priceLabel.font = fontBoldStandard22
+        priceLabel.adjustsFontSizeToFitWidth = true
         
         // BUY BUTTON:
         buyButton.setTitle("Купить", for: .normal)
         buyButton.setTitleColor(.white, for: .normal)
         buyButton.titleLabel?.font = fontMediumStandard14
+        buyButton.titleLabel?.adjustsFontSizeToFitWidth = true
         buyButton.layer.masksToBounds = true
         buyButton.layer.cornerRadius = cornerRadius
         buyButton.backgroundColor = .systemBlue
         buyButton.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
     }
+
     
     // MARK: - HELPERS:
     

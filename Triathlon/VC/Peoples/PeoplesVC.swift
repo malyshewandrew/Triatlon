@@ -71,14 +71,14 @@ final class PeoplesVC: UIViewController {
         tableViewTrainer.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
         tableViewTrainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         tableViewTrainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        tableViewTrainer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableViewTrainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         // TABLE VIEW TEAM:
         tableViewTeam.translatesAutoresizingMaskIntoConstraints = false
         tableViewTeam.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
         tableViewTeam.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         tableViewTeam.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        tableViewTeam.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableViewTeam.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:

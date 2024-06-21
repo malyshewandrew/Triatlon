@@ -13,14 +13,18 @@ final class ClubVC: UIViewController {
     // MARK: - PROPERTIES:
     
     var presenter: ClubPresenterProtocol!
-    private let loadingView = UIView()
+    private let loadingView = UIImageView()
     private let loadingImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
     private let loadingLottie = LottieAnimationView(name: "LoadingLottie")
     private let backgroundImage = UIImageView()
     private let linkButton = UIButton(type: .system)
     private let infoButton = UIButton(type: .system)
     private let configurationImage = UIImage.SymbolConfiguration(pointSize: 25)
+    
+    private let logoEffectLottie = LottieAnimationView(name: "LogoEffectLottie")
     private let logoImageView = UIImageView(image: UIImage(resource: .tristyleLogoWhite))
+    private let logoButton = UIButton(type: .system)
+    
     private let coachCountLabel = UILabel()
     private let coachDescriptionLabel = UILabel()
     private let sportsmenCountLabel = UILabel()
@@ -53,7 +57,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoImageView, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
+        view.addSubviews(backgroundImage, linkButton, infoButton, logoEffectLottie, logoImageView, logoButton, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
         scrollView.addSubviews(codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton)
     }
@@ -78,8 +82,8 @@ final class ClubVC: UIViewController {
         // LOADING LOTTIE:
         loadingLottie.translatesAutoresizingMaskIntoConstraints = false
         loadingLottie.centerXAnchor.constraint(equalTo: loadingImageView.centerXAnchor).isActive = true
-        loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
-        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.3).isActive = true
+        loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 150).isActive = true
+        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.4).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
         
         // BACKGROUND VIEW:
@@ -103,12 +107,26 @@ final class ClubVC: UIViewController {
         infoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         infoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        // LOGO EFFECT LOTTIE:
+        logoEffectLottie.translatesAutoresizingMaskIntoConstraints = false
+        logoEffectLottie.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor).isActive = true
+        logoEffectLottie.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor, constant: 10).isActive = true
+        logoEffectLottie.heightAnchor.constraint(equalTo: logoImageView.heightAnchor, multiplier: 1.5).isActive = true
+        logoEffectLottie.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 2).isActive = true
+        
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 1).isActive = true
+        
+        // LOGO BUTTON:
+        logoButton.translatesAutoresizingMaskIntoConstraints = false
+        logoButton.topAnchor.constraint(equalTo: logoImageView.topAnchor).isActive = true
+        logoButton.bottomAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
+        logoButton.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor).isActive = true
+        logoButton.trailingAnchor.constraint(equalTo: logoImageView.trailingAnchor).isActive = true
         
         // COACH:
         coachCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -184,7 +202,7 @@ final class ClubVC: UIViewController {
     
     private func configureUI() {
         // LOADING VIEW:
-        loadingView.backgroundColor = .colorMain
+        loadingView.image = UIImage(resource: .background)
         
         // LOADING LOTTTIE:
         loadingLottie.play()
@@ -215,8 +233,29 @@ final class ClubVC: UIViewController {
         infoButton.tintColor = .white
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
 
+        // LOGO EFFECT LOTTIE:
+        logoEffectLottie.play()
+        logoEffectLottie.loopMode = .loop
+        logoEffectLottie.contentMode = .scaleAspectFill
+        logoEffectLottie.animationSpeed = 0.5
+        logoEffectLottie.layer.opacity = 0.7
+        
         // IMAGE VIEW:
         logoImageView.contentMode = .scaleAspectFit
+        
+        // LOGO BUTTON:
+        logoButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+            self.startAnimationForCountsLabel()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.logoImageView.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.logoImageView.transform = .identity
+                }
+            })
+        }), for: .touchUpInside)
         
         // COACH:
         coachCountLabel.textColor = .white

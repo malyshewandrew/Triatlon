@@ -53,14 +53,14 @@ final class ScheduleVC: UIViewController {
         myGroupeTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         myGroupeTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         myGroupeTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        myGroupeTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        myGroupeTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
                 
         // ALL GROUPES TABLE VIEW:
         allGroupesTableView.translatesAutoresizingMaskIntoConstraints = false
         allGroupesTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
         allGroupesTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         allGroupesTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        allGroupesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        allGroupesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:

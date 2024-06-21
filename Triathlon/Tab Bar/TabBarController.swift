@@ -59,9 +59,9 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         // TAB BAR:
         self.setViewControllers([clubNavigationController, peoplesNavigationController, scheduleNavigationController, calendarNavigationController, shopNavigationController], animated: true)
-        self.tabBar.tintColor = .white
-        self.tabBar.backgroundColor = .colorMain
-        self.tabBar.unselectedItemTintColor = .colorBackground
+        self.tabBar.tintColor = .systemBlue
+        self.tabBar.backgroundColor = .clear
+        self.tabBar.unselectedItemTintColor = .white
         self.tabBar.layer.cornerRadius = 10
     }
     

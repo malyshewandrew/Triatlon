@@ -86,8 +86,8 @@ final class AccountVC: UIViewController {
         
         // AUTH LABEL:
         authTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        authTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
         authTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        authTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
@@ -225,7 +225,7 @@ final class AccountVC: UIViewController {
         authTitleLabel.textColor = .white
         authTitleLabel.textAlignment = .center
         authTitleLabel.numberOfLines = 0
-        authTitleLabel.font = fontBoldStandard22
+        authTitleLabel.font = fontBoldStandard16
         authTitleLabel.layer.opacity = 0.0
         authTitleLabel.isHidden = true
         

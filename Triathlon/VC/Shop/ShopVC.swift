@@ -52,7 +52,7 @@ final class ShopVC: UIViewController {
         clothesTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
         clothesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         clothesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        clothesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        clothesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
