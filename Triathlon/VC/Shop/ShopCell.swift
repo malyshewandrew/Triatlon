@@ -43,34 +43,36 @@ final class ShopCell: UITableViewCell {
         containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
         
         // PHOTO VIEW:
         photoView.translatesAutoresizingMaskIntoConstraints = false
         photoView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        photoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.4).isActive = true
+        photoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.45).isActive = true
         photoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 1).isActive = true
         
         // NAME LABEL:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         
         // DESCRIPTION LABEL:
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         
         // PRICE LABEL:
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.centerYAnchor.constraint(equalTo: buyButton.centerYAnchor).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
+        priceLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: photoView.trailingAnchor, constant: 10).isActive = true
-        priceLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.7).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -10).isActive = true
         
         // BUY BUTTON:
         buyButton.translatesAutoresizingMaskIntoConstraints = false
+        buyButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5).isActive = true
         buyButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         buyButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         buyButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.2).isActive = true
@@ -94,7 +96,7 @@ final class ShopCell: UITableViewCell {
         photoView.contentMode = .scaleAspectFill
         
         // NAME LABEL:
-        nameLabel.textColor = .white
+        nameLabel.textColor = .systemBlue
         nameLabel.font = fontBoldStandard22
         nameLabel.adjustsFontSizeToFitWidth = true
         

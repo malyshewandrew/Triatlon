@@ -98,6 +98,7 @@ final class CalendarPresenter: CalendarPresenterProtocol {
                 self.view.reloadTableView()
                 self.view.reloadCalendar()
                 self.view.hideActivityIndicator()
+                self.view.setCountLabel(countLabel: "Запланированных мероприятий: \(eventDates.count)")
             }
         }
     }

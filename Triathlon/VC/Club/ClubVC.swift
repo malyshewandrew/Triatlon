@@ -91,28 +91,28 @@ final class ClubVC: UIViewController {
         
         // LINK BUTTON:
         linkButton.translatesAutoresizingMaskIntoConstraints = false
-        linkButton.topAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -20).isActive = true
-        linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        linkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 55).isActive = true
+        linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         linkButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         linkButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         // INFO BUTTON:
         infoButton.translatesAutoresizingMaskIntoConstraints = false
-        infoButton.topAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -20).isActive = true
-        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        infoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 55).isActive = true
+        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         infoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         infoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 1).isActive = true
         
         // COACH:
         coachCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        coachCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
+        coachCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
         coachCountLabel.trailingAnchor.constraint(equalTo: sportsmenCountLabel.leadingAnchor, constant: -25).isActive = true
         
         coachDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -121,7 +121,7 @@ final class ClubVC: UIViewController {
         
         // SPORTSMEN:
         sportsmenCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        sportsmenCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
+        sportsmenCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
         sportsmenCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         sportsmenDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +130,7 @@ final class ClubVC: UIViewController {
         
         // START:
         startCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        startCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20).isActive = true
+        startCountLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
         startCountLabel.leadingAnchor.constraint(equalTo: sportsmenCountLabel.trailingAnchor, constant: 25).isActive = true
         
         startDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +139,7 @@ final class ClubVC: UIViewController {
         
         // SCROLL VIEW:
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 50).isActive = true
+        scrollView.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 35).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75).isActive = true

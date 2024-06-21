@@ -107,7 +107,7 @@ final class AllGroupesCell: UITableViewCell {
         photoView.contentMode = .scaleAspectFill
         
         // NAME LABEL:
-        nameLabel.textColor = .white
+        nameLabel.textColor = .systemBlue
         nameLabel.font = fontBoldStandard16
         nameLabel.adjustsFontSizeToFitWidth = true
         
@@ -132,10 +132,13 @@ final class AllGroupesCell: UITableViewCell {
         placeLabel.adjustsFontSizeToFitWidth = true
         
         // JOIN BUTTON:
-        joinButton.setTitle("Записаться", for: .normal)
+        joinButton.setTitle("Получить консультацию", for: .normal)
+        joinButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        joinButton.titleLabel?.numberOfLines = 0
+        joinButton.titleLabel?.textAlignment = .center
         joinButton.setTitleColor(.white, for: .normal)
         joinButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        joinButton.titleLabel?.font = fontMediumStandard14
+        joinButton.titleLabel?.font = fontLightStandard12
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.backgroundColor = .systemBlue
@@ -143,12 +146,13 @@ final class AllGroupesCell: UITableViewCell {
     
     // MARK: - HELPERS:
 
+    // CONFIGURE:
     func configure(schedule: ScheduleModel) {
         photoView.image = schedule.photo
         nameLabel.text = schedule.name
         trainerName.text = "Тренер: " + schedule.trainer
-        sportLabel.text = "Спорт: " + schedule.sport
-        descriptionLabel.text = "Дни: " + schedule.days
-        placeLabel.text = "Место: " + schedule.place
+        sportLabel.text = "Направление: " + schedule.sport
+        descriptionLabel.text = "Расписание: " + schedule.days
+        placeLabel.text = "Локация: " + schedule.place
     }
 }

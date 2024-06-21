@@ -9,6 +9,7 @@ protocol CalendarVCProtocol: AnyObject {
     func showAlert(title: String, message: String)
     func showActivityIndicator()
     func hideActivityIndicator()
+    func setCountLabel(countLabel: String)
 }
 
 final class CalendarVC: UIViewController {
@@ -19,6 +20,7 @@ final class CalendarVC: UIViewController {
     private let titleLabel = UILabel()
     private let calendarView = UIView()
     private var calendar = FSCalendar()
+    private let countLabel = UILabel()
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
     private let tableView = UITableView()
@@ -43,7 +45,7 @@ final class CalendarVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, titleLabel, calendarView, nameLabel, dateLabel, tableView)
+        view.addSubviews(backgroundImage, titleLabel, calendarView, countLabel, nameLabel, dateLabel, tableView)
         calendarView.addSubviews(calendar)
     }
     
@@ -75,6 +77,11 @@ final class CalendarVC: UIViewController {
         calendar.bottomAnchor.constraint(equalTo: calendarView.bottomAnchor).isActive = true
         calendar.centerXAnchor.constraint(equalTo: calendarView.centerXAnchor).isActive = true
         calendar.widthAnchor.constraint(equalTo: calendarView.widthAnchor, multiplier: 0.95).isActive = true
+        
+        // COUNT LABEL:
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
+        countLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        countLabel.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 20).isActive = true
         
         // NAME LABEL:
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -135,14 +142,19 @@ final class CalendarVC: UIViewController {
         appearance.headerTitleFont = fontBoldStandard16
         appearance.borderRadius = 1
         
+        // COUNT LABEL:
+        countLabel.textColor = .white
+        countLabel.textAlignment = .center
+        countLabel.font = fontLightStandard12
+        
         // NAME LABEL:
         nameLabel.textColor = .white
-        nameLabel.text = "Название события:"
+        nameLabel.text = "Название:"
         nameLabel.font = fontMediumStandard14
         
         // DATE LABEL:
         dateLabel.textColor = .white
-        dateLabel.text = "Осталось дней:"
+        dateLabel.text = "Осталось:"
         dateLabel.font = fontMediumStandard14
         
         // TABLE VIEW:
@@ -186,6 +198,11 @@ extension CalendarVC: CalendarVCProtocol {
     func hideActivityIndicator() {
         self.activityIndicator.stopAnimating()
         self.activityIndicator.removeFromSuperview()
+    }
+    
+    // SET COUNT LABEL:
+    func setCountLabel(countLabel: String) {
+        self.countLabel.text = countLabel
     }
 }
 
