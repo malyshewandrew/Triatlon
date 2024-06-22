@@ -12,6 +12,7 @@ protocol CalendarPresenterProtocol {
     func numberOfRows() -> Int
     func event(at index: Int) -> CalendarModel
     func daysLeft(for event: CalendarModel) -> Int
+    func date(from string: String) -> Date?
 }
 
 final class CalendarPresenter: CalendarPresenterProtocol {
@@ -67,6 +68,10 @@ final class CalendarPresenter: CalendarPresenterProtocol {
 
     func event(at index: Int) -> CalendarModel {
         return eventDates[index]
+    }
+    
+    func date(from string: String) -> Date? {
+        return dateFormatter.date(from: string)
     }
 
     // DAYS LEFT:

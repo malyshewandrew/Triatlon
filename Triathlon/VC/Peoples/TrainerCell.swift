@@ -68,7 +68,7 @@ final class TrainerCell: UITableViewCell {
         achievementsLabel.translatesAutoresizingMaskIntoConstraints = false
         achievementsLabel.topAnchor.constraint(equalTo: imageCollectionView.bottomAnchor, constant: 10).isActive = true
         achievementsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
-        achievementsLabel.trailingAnchor.constraint(equalTo: workLabel.leadingAnchor, constant: -20).isActive = true
+        achievementsLabel.trailingAnchor.constraint(equalTo: profileButton.leadingAnchor, constant: -5).isActive = true
         achievementsLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
                 
         // WORK LABEL:
@@ -96,14 +96,14 @@ final class TrainerCell: UITableViewCell {
         containerView.layer.cornerRadius = cornerRadius
         
         // NAME LABEL:
-        nameLabel.textColor = .white
+        nameLabel.textColor = .systemBlue
         nameLabel.font = fontBoldStandard22
         
         // COUNTRY LABEL:
         countryLabel.font = .systemFont(ofSize: 30)
         
         // WORK LABE:
-        workLabel.textColor = .white
+        workLabel.textColor = .systemOrange
         workLabel.font = fontMediumStandard14
         workLabel.textAlignment = .right
         workLabel.adjustsFontSizeToFitWidth = true
@@ -147,6 +147,7 @@ final class TrainerCell: UITableViewCell {
         achievementsLabel.text = trainer.achievements
         workLabel.text = trainer.work
         profileLink = trainer.url
+        imageCollectionView.reloadData()
     }
     
     // MARK: - HELPERS:

@@ -5,9 +5,11 @@ import UIKit
 protocol ClubCardPresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
     func webButtonTapped(with webLink: String?)
+    func startBounce(cellView: UIView)
 }
 
 final class ClubCardPresenter: ClubCardPresenterProtocol {
+    
     // MARK: - PROPERTIES:
 
     unowned let view: ClubCardVCProtocol
@@ -39,5 +41,16 @@ final class ClubCardPresenter: ClubCardPresenterProtocol {
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    // START BOUNCE:
+    func startBounce(cellView: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            cellView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                cellView.transform = .identity
+            }
+        })
     }
 }

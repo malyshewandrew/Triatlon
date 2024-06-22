@@ -57,7 +57,7 @@ final class ClubVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, linkButton, infoButton, logoEffectLottie, logoImageView, logoButton, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
+        view.addSubviews(backgroundImage, logoEffectLottie, linkButton, infoButton, logoImageView, logoButton, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
         scrollView.addSubviews(codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton)
     }
@@ -76,14 +76,14 @@ final class ClubVC: UIViewController {
         loadingImageView.translatesAutoresizingMaskIntoConstraints = false
         loadingImageView.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor).isActive = true
         loadingImageView.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor, constant: -50).isActive = true
-        loadingImageView.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
+        loadingImageView.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.6).isActive = true
         loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor, multiplier: 1).isActive = true
         
         // LOADING LOTTIE:
         loadingLottie.translatesAutoresizingMaskIntoConstraints = false
-        loadingLottie.centerXAnchor.constraint(equalTo: loadingImageView.centerXAnchor).isActive = true
-        loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 150).isActive = true
-        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.4).isActive = true
+        loadingLottie.centerXAnchor.constraint(equalTo: loadingImageView.centerXAnchor, constant: -15).isActive = true
+        loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
+        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
         
         // BACKGROUND VIEW:
@@ -109,10 +109,10 @@ final class ClubVC: UIViewController {
         
         // LOGO EFFECT LOTTIE:
         logoEffectLottie.translatesAutoresizingMaskIntoConstraints = false
-        logoEffectLottie.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor).isActive = true
-        logoEffectLottie.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor, constant: 10).isActive = true
-        logoEffectLottie.heightAnchor.constraint(equalTo: logoImageView.heightAnchor, multiplier: 1.5).isActive = true
-        logoEffectLottie.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 2).isActive = true
+        logoEffectLottie.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor, constant: -5).isActive = true
+        logoEffectLottie.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor, constant: 15).isActive = true
+        logoEffectLottie.heightAnchor.constraint(equalTo: logoImageView.heightAnchor, multiplier: 2).isActive = true
+        logoEffectLottie.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 3).isActive = true
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -207,6 +207,7 @@ final class ClubVC: UIViewController {
         // LOADING LOTTTIE:
         loadingLottie.play()
         loadingLottie.loopMode = .loop
+        loadingLottie.animationSpeed = 0.4
         
         perform(#selector(closeAnimationView), with: nil, afterDelay: 2)
         
@@ -237,7 +238,7 @@ final class ClubVC: UIViewController {
         logoEffectLottie.play()
         logoEffectLottie.loopMode = .loop
         logoEffectLottie.contentMode = .scaleAspectFill
-        logoEffectLottie.animationSpeed = 0.5
+        logoEffectLottie.animationSpeed = 0.7
         logoEffectLottie.layer.opacity = 0.7
         
         // IMAGE VIEW:
@@ -375,14 +376,23 @@ final class ClubVC: UIViewController {
     // CLOSED ANIMATION VIEW:
     @objc private func closeAnimationView() {
         tabBarController?.tabBar.isHidden = false
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.loadingView.alpha = 0.0
+            self?.loadingView.transform = CGAffineTransform(scaleX: 2, y: 2)
         }, completion: { [weak self] _ in
-            self?.loadingView.removeFromSuperview()
-            self?.startAnimationForCountsLabel()
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.2, animations: {
+                self.loadingView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                    self?.loadingView.transform = .identity
+                    self?.loadingView.removeFromSuperview()
+                    self?.startAnimationForCountsLabel()
+                })
+            })
         })
     }
-    
+
     // START ANIMATION FOR COUNTS LABEL:
     private func startAnimationForCountsLabel() {
         presenter.animateCountLabel(label: coachCountLabel, to: 16, duration: 0.5)

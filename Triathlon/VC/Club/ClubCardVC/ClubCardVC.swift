@@ -1,5 +1,5 @@
-import UIKit
 import Lottie
+import UIKit
 
 // MARK: - PROTOCOL:
 
@@ -18,6 +18,7 @@ final class ClubCardVC: UIViewController {
     private let clubCardLottie = LottieAnimationView(name: "ClubCardLottie")
     private let clubCardImage = UIImageView()
     private let clubCardTitleLabel = UILabel()
+    private let clubCardButtom = UIButton(type: .system)
     private var segmentedControl = UISegmentedControl()
     private let partnerTableView = UITableView()
     private let mutualTableView = UITableView()
@@ -36,7 +37,7 @@ final class ClubCardVC: UIViewController {
     
     private func addSubviews() {
         view.addSubviews(backgroundImage, titleLabel, clubCardView, segmentedControl, partnerTableView, mutualTableView)
-        clubCardView.addSubviews(clubCardLottie, clubCardImage, clubCardTitleLabel)
+        clubCardView.addSubviews(clubCardLottie, clubCardImage, clubCardTitleLabel, clubCardButtom)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -80,6 +81,13 @@ final class ClubCardVC: UIViewController {
         clubCardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         clubCardTitleLabel.centerXAnchor.constraint(equalTo: clubCardView.centerXAnchor).isActive = true
         clubCardTitleLabel.bottomAnchor.constraint(equalTo: clubCardView.bottomAnchor, constant: -50).isActive = true
+        
+        // CLUB CARD BUTTOM:
+        clubCardButtom.translatesAutoresizingMaskIntoConstraints = false
+        clubCardButtom.topAnchor.constraint(equalTo: clubCardView.topAnchor).isActive = true
+        clubCardButtom.bottomAnchor.constraint(equalTo: clubCardView.bottomAnchor).isActive = true
+        clubCardButtom.leadingAnchor.constraint(equalTo: clubCardView.leadingAnchor).isActive = true
+        clubCardButtom.trailingAnchor.constraint(equalTo: clubCardView.trailingAnchor).isActive = true
         
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -138,6 +146,12 @@ final class ClubCardVC: UIViewController {
         clubCardTitleLabel.textAlignment = .center
         clubCardTitleLabel.font = fontLightStandard12
         clubCardTitleLabel.text = "Клубная карта Tristyle"
+        
+        // CLUB CARD BUTTOM:
+        clubCardButtom.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+        }), for: .touchUpInside)
         
         // SEGMENTED CONTROL
         segmentedControl.backgroundColor = .colorBackground
@@ -208,6 +222,9 @@ extension ClubCardVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vibration.vibrationStandart()
+        if let cell = tableView.cellForRow(at: indexPath) {
+            presenter.startBounce(cellView: cell)
+        }
     }
 }
 
@@ -218,6 +235,7 @@ extension ClubCardVC: ClubCardVCProtocol {
         partnerTableView.isHidden = false
         mutualTableView.isHidden = true
     }
+
     // HIDE TABLE VIEW:
     func hidePartnerTableView() {
         partnerTableView.isHidden = true

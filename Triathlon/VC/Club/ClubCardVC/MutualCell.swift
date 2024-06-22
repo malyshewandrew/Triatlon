@@ -57,7 +57,7 @@ final class MutualCell: UITableViewCell {
         
         // PERCENT LABEL:
         percentLabel.translatesAutoresizingMaskIntoConstraints = false
-        percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10).isActive = true
+        percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5).isActive = true
         percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10).isActive = true
         percentLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 5).isActive = true
         
@@ -91,7 +91,7 @@ final class MutualCell: UITableViewCell {
         nameLabel.textColor = .systemBlue
         nameLabel.textAlignment = .left
         nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.font = fontBoldStandard32
+        nameLabel.font = fontBoldStandard26
         
         // DESCRIPTION LABEL:
         descriptionLabel.textColor = .white

@@ -4,6 +4,7 @@ import UIKit
 
 protocol SchedulePresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
+    func writeButtonTapped()
 }
 
 final class SchedulePresenter: SchedulePresenterProtocol {
@@ -27,6 +28,19 @@ final class SchedulePresenter: SchedulePresenterProtocol {
             view.hideMyGroupe()
         default:
             print("Не выбрано")
+        }
+    }
+    
+    // WRITE BUTTON TAPPED:
+    func writeButtonTapped() {
+        let appURL = URL(string: "tg://resolve?domain=Tristyleteam")
+        let webURL = URL(string: "https://t.me/Tristyleteam")
+        guard let appURL = appURL else { return }
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            guard let webURL = webURL else { return }
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
         }
     }
 }

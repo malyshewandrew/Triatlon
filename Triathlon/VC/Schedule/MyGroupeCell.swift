@@ -49,8 +49,6 @@ final class MyGroupeCell: UITableViewCell {
         // CONTAINER VIEW:
         containerView.backgroundColor = .colorBackground
         containerView.layer.cornerRadius = cornerRadius
-        
-        
     }
     
     // MARK: - HELPERS:

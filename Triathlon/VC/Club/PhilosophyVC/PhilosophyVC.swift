@@ -77,8 +77,8 @@ final class PhilosophyVC: UIViewController {
         // TITLE COLLECTION VIEW:
         titleCollectionView.translatesAutoresizingMaskIntoConstraints = false
         titleCollectionView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 25).isActive = true
-        titleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        titleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        titleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        titleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         titleCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE ONE TITLE:
@@ -96,8 +96,8 @@ final class PhilosophyVC: UIViewController {
         // RULE ONE COLLECTION VIEW:
         ruleOneCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleOneCollectionView.topAnchor.constraint(equalTo: ruleOneDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleOneCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        ruleOneCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        ruleOneCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        ruleOneCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         ruleOneCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE TWO TITLE:
@@ -115,8 +115,8 @@ final class PhilosophyVC: UIViewController {
         // RULE TWO COLLECTION VIEW:
         ruleTwoCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleTwoCollectionView.topAnchor.constraint(equalTo: ruleTwoDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleTwoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        ruleTwoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        ruleTwoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        ruleTwoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         ruleTwoCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE THREE TITLE:
@@ -134,8 +134,8 @@ final class PhilosophyVC: UIViewController {
         // RULE THREE COLLECTION VIEW:
         ruleThreeCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleThreeCollectionView.topAnchor.constraint(equalTo: ruleThreeDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleThreeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        ruleThreeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        ruleThreeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        ruleThreeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         ruleThreeCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE FOUR TITLE:
@@ -153,8 +153,8 @@ final class PhilosophyVC: UIViewController {
         // RULE FOUR COLLECTION VIEW:
         ruleFourCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleFourCollectionView.topAnchor.constraint(equalTo: ruleFourDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleFourCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        ruleFourCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        ruleFourCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        ruleFourCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         ruleFourCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
     

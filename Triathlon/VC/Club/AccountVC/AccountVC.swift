@@ -42,7 +42,10 @@ final class AccountVC: UIViewController {
     private let resetPasswordButton = UIButton(type: .system)
     
     private let authView = UIView()
+    private let authLogoImageView = UIImageView()
+    private let authNameLabel = UILabel()
     private let authTitleLabel = UILabel()
+    private let authGroupeLabel = UILabel()
     
     private let exitButton = UIButton(type: .system)
     private let deleteButton = UIButton(type: .system)
@@ -63,7 +66,7 @@ final class AccountVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authTitleLabel, exitButton, deleteButton)
+        view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authLogoImageView, authNameLabel, authTitleLabel, authGroupeLabel, exitButton, deleteButton)
         registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
     }
@@ -84,10 +87,27 @@ final class AccountVC: UIViewController {
         segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         
+        // AUTH LOGO IMAGE VIEW:
+        authLogoImageView.translatesAutoresizingMaskIntoConstraints = false
+        authLogoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: -5).isActive = true
+        authLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        authLogoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
+        authLogoImageView.heightAnchor.constraint(equalTo: authLogoImageView.widthAnchor, multiplier: 1).isActive = true
+        
+        // AUTH NAME LABEL:
+        authNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        authNameLabel.topAnchor.constraint(equalTo: authLogoImageView.bottomAnchor, constant: 10).isActive = true
+        authNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         // AUTH LABEL:
         authTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        authTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        authTitleLabel.topAnchor.constraint(equalTo: authNameLabel.bottomAnchor, constant: 25).isActive = true
         authTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        // AUTH GROUPE LABEL:
+        authGroupeLabel.translatesAutoresizingMaskIntoConstraints = false
+        authGroupeLabel.topAnchor.constraint(equalTo: authTitleLabel.bottomAnchor, constant: 25).isActive = true
+        authGroupeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
@@ -221,6 +241,18 @@ final class AccountVC: UIViewController {
         segmentedControl.isHidden = false
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
+        // AUTH LOGO IMAGE VIEW:
+        authLogoImageView.image = UIImage(resource: .tristyleLogoWhite)
+        authLogoImageView.isHidden = true
+        
+        // AUTH NAME LABEL:
+        authNameLabel.textColor = .systemBlue
+        authNameLabel.textAlignment = .center
+        authNameLabel.numberOfLines = 0
+        authNameLabel.font = fontBoldStandard26
+        authNameLabel.layer.opacity = 0.0
+        authNameLabel.isHidden = true
+        
         // AUTH LABEL:
         authTitleLabel.textColor = .white
         authTitleLabel.textAlignment = .center
@@ -228,6 +260,14 @@ final class AccountVC: UIViewController {
         authTitleLabel.font = fontBoldStandard16
         authTitleLabel.layer.opacity = 0.0
         authTitleLabel.isHidden = true
+        
+        // AUTH GROUPE LABEL:
+        authGroupeLabel.textColor = .white
+        authGroupeLabel.textAlignment = .center
+        authGroupeLabel.numberOfLines = 0
+        authGroupeLabel.font = fontBoldStandard16
+        authGroupeLabel.layer.opacity = 0.0
+        authGroupeLabel.isHidden = true
         
         // REGISTRATION VIEW:
         registrationView.layer.opacity = 1
@@ -324,6 +364,10 @@ final class AccountVC: UIViewController {
         registrationButton.layer.opacity = 1
         registrationButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
+            self.vibration.vibrationStandart()
+            self.activityIndicator.center = view.center
+            self.activityIndicator.startAnimating()
+            self.view.addSubview(activityIndicator)
             guard self.registrationPasswordTF.text == self.registrationPasswordRepeatTF.text else {
                 present(self.presenter.showAlert(title: "Ошибка", message: "Пароли не совпадают"), animated: true)
                 return
@@ -338,17 +382,11 @@ final class AccountVC: UIViewController {
                 present(self.presenter.showAlert(title: "Ошибка", message: "Заполните все поля"), animated: true)
                 return
             }
-            self.vibration.vibrationStandart()
-            self.activityIndicator.center = view.center
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(activityIndicator)
             self.presenter.registerUser(surname: registrationSurnameTF.text ?? "", name: registrationNameTF.text ?? "", email: self.registrationEmailTF.text ?? "", password: self.registrationPasswordTF.text ?? "", group: registrationGroupTF.text ?? "") { result in
                 switch result {
                 case .success:
                     self.present(self.presenter.showAlert(title: "Выполнено", message: "Вы успешно зарегистрированы!"), animated: true)
-                    guard let group = self.registrationGroupTF.text else { return }
-                    UserDefaults.standard.set(group, forKey: "userGroup")
-                    print("USER DEFAULTS определил пользователя в группу: \(UserDefaults.standard.string(forKey: "userGroup") ?? "")")
+                    self.checkUserAuthenticationStatus()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.removeFromSuperview()
                 case .failure(let error):
@@ -412,6 +450,7 @@ final class AccountVC: UIViewController {
                 switch result {
                 case .success:
                     self.present(self.presenter.showAlert(title: "Выполнено", message: "Вы успешно вошли!"), animated: true)
+                    self.checkUserAuthenticationStatus()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.removeFromSuperview()
                 case .failure(let error):
@@ -473,8 +512,18 @@ final class AccountVC: UIViewController {
     func checkUserAuthenticationStatus() {
         DispatchQueue.main.async {
             if let user = Auth.auth().currentUser {
+                self.activityIndicator.center = self.view.center
+                self.activityIndicator.startAnimating()
+                self.view.addSubview(self.activityIndicator)
+                fetchGroupFromFirestoreAndSaveToUserDefaults()
+                self.authLogoImageView.layer.opacity = 1
+                self.authLogoImageView.isHidden = false
+                self.authNameLabel.layer.opacity = 1
+                self.authNameLabel.isHidden = false
                 self.authTitleLabel.layer.opacity = 1
                 self.authTitleLabel.isHidden = false
+                self.authGroupeLabel.layer.opacity = 1
+                self.authGroupeLabel.isHidden = false
                 self.segmentedControl.layer.opacity = 0.0
                 self.segmentedControl.isHidden = true
                 self.registrationView.layer.opacity = 0.0
@@ -483,15 +532,16 @@ final class AccountVC: UIViewController {
                 self.enterView.isHidden = true
                 self.exitButton.isHidden = false
                 self.deleteButton.isHidden = false
-                if let userGroup = UserDefaults.standard.string(forKey: "userGroup") {
-                    self.authTitleLabel.text = "Аккаунт:\n\(user.email ?? "Не указан")\n\n\(userGroup)"
-                } else {
-                    self.authTitleLabel.text = "Аккаунт:\n\(user.email ?? "Не указан")\n\nГруппа не указана"
-                }
-                print("Пользователь аутентифицирован, email: \(user.email ?? "Не указан")")
+                self.authTitleLabel.text = "\(user.email ?? "Не указан")"
             } else {
+                self.authLogoImageView.layer.opacity = 0.0
+                self.authLogoImageView.isHidden = true
+                self.authNameLabel.layer.opacity = 0.0
+                self.authNameLabel.isHidden = true
                 self.authTitleLabel.layer.opacity = 0.0
                 self.authTitleLabel.isHidden = true
+                self.authGroupeLabel.layer.opacity = 0.0
+                self.authGroupeLabel.isHidden = true
                 self.segmentedControl.layer.opacity = 1
                 self.segmentedControl.isHidden = false
                 self.registrationView.layer.opacity = 1
@@ -501,6 +551,40 @@ final class AccountVC: UIViewController {
                 self.exitButton.isHidden = true
                 self.deleteButton.isHidden = true
                 print("Пользователь не аутентифицирован")
+            }
+        }
+        
+        func fetchGroupFromFirestoreAndSaveToUserDefaults() {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("Пользователь не аутентифицирован")
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+                return
+            }
+            let db = Firestore.firestore()
+            let docRef = db.collection("RegisterUsers").document(userId)
+            docRef.getDocument { document, error in
+                if let document = document, document.exists {
+                    if let group = document.data()?["Группа"] as? String,
+                       let firstName = document.data()?["Имя"] as? String,
+                       let lastName = document.data()?["Фамилия"] as? String
+                    {
+                        UserDefaults.standard.set(group, forKey: "userGroup")
+                        self.authNameLabel.text = "\(lastName) \(firstName) "
+                        self.authGroupeLabel.text = "\(group)"
+                        print("Группа \(group) сохранена в UserDefaults")
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.removeFromSuperview()
+                    } else {
+                        print("Некоторые поля не найдены в документе")
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.removeFromSuperview()
+                    }
+                } else {
+                    print("Документ не существует: \(String(describing: error))")
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.removeFromSuperview()
+                }
             }
         }
     }
@@ -518,7 +602,10 @@ extension AccountVC: AccountVCProtocol {
     func showRegistretionView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
             guard let self = self else { return }
+            self.authLogoImageView.isHidden = true
+            self.authNameLabel.isHidden = true
             self.authTitleLabel.isHidden = true
+            self.authGroupeLabel.isHidden = true
             self.registrationView.isHidden = false
             self.enterView.isHidden = true
             self.registrationView.layer.opacity = 1
@@ -540,7 +627,10 @@ extension AccountVC: AccountVCProtocol {
     func showEnterView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
             guard let self = self else { return }
+            self.authLogoImageView.isHidden = true
+            self.authNameLabel.isHidden = true
             self.authTitleLabel.isHidden = true
+            self.authGroupeLabel.isHidden = true
             self.registrationView.isHidden = true
             self.enterView.isHidden = false
             self.registrationView.layer.opacity = 0
@@ -575,7 +665,6 @@ extension AccountVC: AccountVCProtocol {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 UserDefaults.standard.removeObject(forKey: "userGroup")
-                print("Был удален аккаунт. UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
                 self.activityIndicator.stopAnimating()
@@ -593,10 +682,9 @@ extension AccountVC: AccountVCProtocol {
             switch result {
             case .success:
                 self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта"), animated: true)
-                UserDefaults.standard.removeObject(forKey: "userGroup")
-                print("Был выполнен выход из учетной записи. UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
+                UserDefaults.standard.removeObject(forKey: "userGroup")
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
                 self.activityIndicator.stopAnimating()

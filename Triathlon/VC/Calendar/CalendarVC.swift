@@ -24,8 +24,10 @@ final class CalendarVC: UIViewController {
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
     private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let vibration = Vibration()
+    private var date = Date()
 
     // MARK: - LIFECYCLE:
     
@@ -163,6 +165,8 @@ final class CalendarVC: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(CalendarCell.self, forCellReuseIdentifier: "CalendarCell")
         tableView.backgroundColor = .clear
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
 }
 
@@ -180,7 +184,7 @@ extension CalendarVC: CalendarVCProtocol {
         tableView.reloadData()
     }
     
-    // SHOW ALERT
+    // SHOW ALERT:
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
@@ -204,6 +208,13 @@ extension CalendarVC: CalendarVCProtocol {
     func setCountLabel(countLabel: String) {
         self.countLabel.text = countLabel
     }
+    
+    // REFRESH TABLE VIEW FOR SWIPE:
+    @objc private func refreshData(_ sender: Any) {
+        vibration.vibrationStandart()
+        presenter.viewDidLoad()
+        refreshControl.endRefreshing()
+    }
 }
 
 // MARK: - CALENDAR:
@@ -219,6 +230,7 @@ extension CalendarVC: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         presenter.didSelect(date: date)
+        self.date = date
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
@@ -245,5 +257,10 @@ extension CalendarVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vibration.vibrationStandart()
+        let selectedEvent = presenter.event(at: indexPath.row)
+        if let eventDate = presenter.date(from: selectedEvent.date) {
+            self.date = eventDate
+            presenter.didSelect(date: eventDate)
+        }
     }
 }

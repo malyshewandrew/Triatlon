@@ -45,8 +45,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func checkUserAuthenticationStatus() {
         if let user = Auth.auth().currentUser {
             print("Пользователь аутентифицирован, email: \(user.email ?? "Не указан")")
+            print("UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
         } else {
             print("Пользователь не аутентифицирован")
+            print("UserDefaults: \(String(describing: UserDefaults.standard.string(forKey: "userGroup")))")
         }
     }
 }

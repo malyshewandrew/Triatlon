@@ -142,6 +142,10 @@ final class AllGroupesCell: UITableViewCell {
         joinButton.layer.masksToBounds = true
         joinButton.layer.cornerRadius = cornerRadius
         joinButton.backgroundColor = .systemBlue
+        joinButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.presenter.writeButtonTapped()
+        }), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:

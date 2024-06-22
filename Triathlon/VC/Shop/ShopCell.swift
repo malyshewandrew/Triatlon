@@ -109,7 +109,7 @@ final class ShopCell: UITableViewCell {
         
         // NAME LABEL:
         nameLabel.textColor = .systemBlue
-        nameLabel.font = fontBoldStandard22
+        nameLabel.font = fontBoldStandard20
         nameLabel.adjustsFontSizeToFitWidth = true
         
         // DESCRIPTION:
