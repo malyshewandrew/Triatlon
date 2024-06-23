@@ -8,4 +8,5 @@ struct HumanModel {
     let achievements: String
     let work: String
     let url: String
+    let youtube: String
 }

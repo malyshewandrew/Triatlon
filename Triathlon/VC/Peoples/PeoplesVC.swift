@@ -215,6 +215,17 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vibration.vibrationStandart()
+        let detailPeopleVC = DetailPeopleVC()
+        let trainer = trainerArray[indexPath.row]
+        if !trainer.youtube.isEmpty {
+            detailPeopleVC.configure(model: trainer)
+            if let sheetController = detailPeopleVC.sheetPresentationController {
+                sheetController.prefersGrabberVisible = true
+                sheetController.preferredCornerRadius = cornerRadius
+                sheetController.detents = [.medium()]
+            }
+            self.present(detailPeopleVC, animated: true)
+        }
     }
 }
 

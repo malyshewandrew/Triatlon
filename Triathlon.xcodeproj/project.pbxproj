@@ -30,6 +30,7 @@
 		FB88FFD52C28541B00342AE0 /* SportsmensCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */; };
 		FB88FFD72C28558500342AE0 /* TristyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD62C28558500342AE0 /* TristyleCell.swift */; };
 		FB88FFD92C28559800342AE0 /* TristyleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */; };
+		FB88FFDB2C28CCB900342AE0 /* DetailPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFDA2C28CCB900342AE0 /* DetailPeopleVC.swift */; };
 		FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D62C2430F700B28520 /* DiscountModel.swift */; };
 		FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */; };
 		FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DA2C2436C800B28520 /* PartnerCell.swift */; };
@@ -101,6 +102,7 @@
 		FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsmensCollectionView.swift; sourceTree = "<group>"; };
 		FB88FFD62C28558500342AE0 /* TristyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TristyleCell.swift; sourceTree = "<group>"; };
 		FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TristyleCollectionView.swift; sourceTree = "<group>"; };
+		FB88FFDA2C28CCB900342AE0 /* DetailPeopleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPeopleVC.swift; sourceTree = "<group>"; };
 		FB9631D62C2430F700B28520 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
 		FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardPresenter.swift; sourceTree = "<group>"; };
 		FB9631DA2C2436C800B28520 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */,
 				FB88FFD62C28558500342AE0 /* TristyleCell.swift */,
 				FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */,
+				FB88FFDA2C28CCB900342AE0 /* DetailPeopleVC.swift */,
 			);
 			path = Peoples;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				FB9631E12C24E56E00B28520 /* TitleCollectionView.swift in Sources */,
 				FB1427062C17978100D94901 /* PhilosophyVC.swift in Sources */,
 				FB9631DD2C24375B00B28520 /* MutualCell.swift in Sources */,
+				FB88FFDB2C28CCB900342AE0 /* DetailPeopleVC.swift in Sources */,
 				FBB89B9A2C10CD0A00FBDF3B /* SchedulePresenter.swift in Sources */,
 				FBA457142C20FD970070E6D4 /* FetchCalendarDates.swift in Sources */,
 				FB75B3892C21C98300AE360F /* AccountVC.swift in Sources */,
