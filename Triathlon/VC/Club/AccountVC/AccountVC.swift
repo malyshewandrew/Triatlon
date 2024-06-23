@@ -45,8 +45,11 @@ final class AccountVC: UIViewController {
     
     private let authView = UIView()
     private let authLogoImageView = UIImageView()
+    private let authNameButton = UIButton()
     private let authNameLabel = UILabel()
+    private let authTitleButton = UIButton()
     private let authTitleLabel = UILabel()
+    private let authGroupeButton = UIButton()
     private let authGroupeLabel = UILabel()
     
     private let exitButton = UIButton(type: .system)
@@ -71,7 +74,10 @@ final class AccountVC: UIViewController {
         view.addSubviews(backgroundLottie, backgroundImage, segmentedControl, registrationView, enterView, authView)
         registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
-        authView.addSubviews(authLogoImageView, authNameLabel, authTitleLabel, authGroupeLabel, exitButton, deleteButton)
+        authView.addSubviews(authLogoImageView, authNameButton, authTitleButton, authGroupeButton, exitButton, deleteButton)
+        authNameButton.addSubviews(authNameLabel)
+        authTitleButton.addSubviews(authTitleLabel)
+        authGroupeButton.addSubviews(authGroupeLabel)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -111,20 +117,47 @@ final class AccountVC: UIViewController {
         authLogoImageView.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.3).isActive = true
         authLogoImageView.heightAnchor.constraint(equalTo: authLogoImageView.widthAnchor, multiplier: 1).isActive = true
         
+        // AUTH NAME BUTTON:
+        authNameButton.translatesAutoresizingMaskIntoConstraints = false
+        authNameButton.topAnchor.constraint(equalTo: authLogoImageView.bottomAnchor, constant: 10).isActive = true
+        authNameButton.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authNameButton.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.8).isActive = true
+        authNameButton.heightAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.15).isActive = true
+        
         // AUTH NAME LABEL:
         authNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        authNameLabel.topAnchor.constraint(equalTo: authLogoImageView.bottomAnchor, constant: 10).isActive = true
-        authNameLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authNameLabel.topAnchor.constraint(equalTo: authNameButton.topAnchor, constant: 12).isActive = true
+        authNameLabel.leadingAnchor.constraint(equalTo: authNameButton.leadingAnchor, constant: 0).isActive = true
+        authNameLabel.trailingAnchor.constraint(equalTo: authNameButton.trailingAnchor, constant: 0).isActive = true
+        authNameLabel.bottomAnchor.constraint(equalTo: authNameButton.bottomAnchor, constant: 0).isActive = true
+        
+        // AUTH TITLE BUTTON:
+        authTitleButton.translatesAutoresizingMaskIntoConstraints = false
+        authTitleButton.topAnchor.constraint(equalTo: authNameButton.bottomAnchor, constant: 10).isActive = true
+        authTitleButton.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authTitleButton.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.8).isActive = true
+        authTitleButton.heightAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.15).isActive = true
         
         // AUTH LABEL:
         authTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        authTitleLabel.topAnchor.constraint(equalTo: authNameLabel.bottomAnchor, constant: 25).isActive = true
-        authTitleLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authTitleLabel.topAnchor.constraint(equalTo: authTitleButton.topAnchor, constant: 12).isActive = true
+        authTitleLabel.leadingAnchor.constraint(equalTo: authTitleButton.leadingAnchor, constant: 0).isActive = true
+        authTitleLabel.trailingAnchor.constraint(equalTo: authTitleButton.trailingAnchor, constant: 0).isActive = true
+        authTitleLabel.bottomAnchor.constraint(equalTo: authTitleButton.bottomAnchor, constant: 0).isActive = true
+        
+        // AUTH GROUPE BUTTON:
+        authGroupeButton.translatesAutoresizingMaskIntoConstraints = false
+        authGroupeButton.topAnchor.constraint(equalTo: authTitleButton.bottomAnchor, constant: 10).isActive = true
+        authGroupeButton.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authGroupeButton.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.8).isActive = true
+        authGroupeButton.heightAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.15).isActive = true
         
         // AUTH GROUPE LABEL:
         authGroupeLabel.translatesAutoresizingMaskIntoConstraints = false
-        authGroupeLabel.topAnchor.constraint(equalTo: authTitleLabel.bottomAnchor, constant: 25).isActive = true
-        authGroupeLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authGroupeLabel.topAnchor.constraint(equalTo: authGroupeButton.topAnchor, constant: 12).isActive = true
+        authGroupeLabel.leadingAnchor.constraint(equalTo: authGroupeButton.leadingAnchor, constant: 0).isActive = true
+        authGroupeLabel.trailingAnchor.constraint(equalTo: authGroupeButton.trailingAnchor, constant: 0).isActive = true
+        authGroupeLabel.bottomAnchor.constraint(equalTo: authGroupeButton.bottomAnchor, constant: 0).isActive = true
         
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
@@ -270,6 +303,22 @@ final class AccountVC: UIViewController {
         
         // AUTH LOGO IMAGE VIEW:
         authLogoImageView.image = UIImage(resource: .tristyleLogoWhite)
+        authLogoImageView.layer.shadowRadius = 25
+        authLogoImageView.layer.shadowColor = UIColor.systemBlue.cgColor
+        authLogoImageView.layer.shadowOpacity = 1
+        
+        // AUTH NAME BUTTON:
+        authNameButton.setTitle(NSLocalizedString("Спортсмен:", comment: "") + ":", for: .normal)
+        authNameButton.setTitleColor(.lightGray, for: .normal)
+        authNameButton.setTitleColor(.systemBlue, for: .highlighted)
+        authNameButton.titleLabel?.font = fontLightStandard12
+        authNameButton.contentVerticalAlignment = .top
+        authNameButton.backgroundColor = .colorBackground
+        authNameButton.layer.cornerRadius = cornerRadius
+        authNameButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+        }), for: .touchUpInside)
         
         // AUTH NAME LABEL:
         authNameLabel.textColor = .systemBlue
@@ -277,11 +326,37 @@ final class AccountVC: UIViewController {
         authNameLabel.numberOfLines = 0
         authNameLabel.font = fontBoldStandard26
         
-        // AUTH LABEL:
+        // AUTH TITLE BUTTON:
+        authTitleButton.setTitle(NSLocalizedString("Email:", comment: "") + ":", for: .normal)
+        authTitleButton.setTitleColor(.lightGray, for: .normal)
+        authTitleButton.setTitleColor(.systemBlue, for: .highlighted)
+        authTitleButton.titleLabel?.font = fontLightStandard12
+        authTitleButton.contentVerticalAlignment = .top
+        authTitleButton.backgroundColor = .colorBackground
+        authTitleButton.layer.cornerRadius = cornerRadius
+        authTitleButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+        }), for: .touchUpInside)
+        
+        // AUTH TITLE LABEL:
         authTitleLabel.textColor = .white
         authTitleLabel.textAlignment = .center
         authTitleLabel.numberOfLines = 0
         authTitleLabel.font = fontBoldStandard16
+        
+        // AUTH GROUPE BUTTON:
+        authGroupeButton.setTitle(NSLocalizedString("Группа:", comment: "") + ":", for: .normal)
+        authGroupeButton.setTitleColor(.lightGray, for: .normal)
+        authGroupeButton.setTitleColor(.systemBlue, for: .highlighted)
+        authGroupeButton.titleLabel?.font = fontLightStandard12
+        authGroupeButton.contentVerticalAlignment = .top
+        authGroupeButton.backgroundColor = .colorBackground
+        authGroupeButton.layer.cornerRadius = cornerRadius
+        authGroupeButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.vibration.vibrationStandart()
+        }), for: .touchUpInside)
         
         // AUTH GROUPE LABEL:
         authGroupeLabel.textColor = .systemOrange

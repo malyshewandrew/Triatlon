@@ -83,7 +83,7 @@ final class ClubVC: UIViewController {
         loadingLottie.translatesAutoresizingMaskIntoConstraints = false
         loadingLottie.centerXAnchor.constraint(equalTo: loadingImageView.centerXAnchor, constant: -15).isActive = true
         loadingLottie.centerYAnchor.constraint(equalTo: loadingImageView.centerYAnchor, constant: 125).isActive = true
-        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.5).isActive = true
+        loadingLottie.widthAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 0.4).isActive = true
         loadingLottie.heightAnchor.constraint(equalTo: loadingView.widthAnchor, multiplier: 1).isActive = true
         
         // BACKGROUND VIEW:
