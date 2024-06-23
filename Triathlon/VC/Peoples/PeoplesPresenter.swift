@@ -28,10 +28,11 @@ final class PeoplesPresenter: PeoplesPresenterProtocol {
             case 1:
                 view.showTeamTableView()
             case 2:
-                view.hideAllTableViews()
+                view.showSportsmensTableView()
             case 3:
-                view.hideAllTableViews()
+                view.showTristyleTableView()
             default:
+                view.hideAllTableViews()
                 print("Не выбрано")
             }
         }

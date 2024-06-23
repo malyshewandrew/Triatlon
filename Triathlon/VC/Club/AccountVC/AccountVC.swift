@@ -1,6 +1,7 @@
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
+import Lottie
 
 protocol AccountVCProtocol: AnyObject {
     func showRegistretionView()
@@ -20,6 +21,7 @@ final class AccountVC: UIViewController {
     private let vibration = Vibration()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let backgroundImage = UIImageView()
+    private let backgroundLottie = LottieAnimationView(name: "AccountLottie")
     
     private var segmentedControl = UISegmentedControl()
     
@@ -66,7 +68,7 @@ final class AccountVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authView)
+        view.addSubviews(backgroundLottie, backgroundImage, segmentedControl, registrationView, enterView, authView)
         registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
         authView.addSubviews(authLogoImageView, authNameLabel, authTitleLabel, authGroupeLabel, exitButton, deleteButton)
@@ -81,6 +83,13 @@ final class AccountVC: UIViewController {
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        // BACKGROUND LOTTIE:
+        backgroundLottie.translatesAutoresizingMaskIntoConstraints = false
+        backgroundLottie.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundLottie.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundLottie.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundLottie.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -234,6 +243,13 @@ final class AccountVC: UIViewController {
     private func configureUI() {
         // BACKGROUND VIEW:
         backgroundImage.image = UIImage(resource: .background)
+        backgroundImage.layer.opacity = 0.85
+        
+        // BACKGROUND LOTTIE:
+        backgroundLottie.play()
+        backgroundLottie.loopMode = .loop
+        backgroundLottie.contentMode = .scaleAspectFill
+        backgroundLottie.animationSpeed = 1
         
         // SEGMENT CONTROL
         segmentedControl.backgroundColor = .clear
@@ -268,7 +284,7 @@ final class AccountVC: UIViewController {
         authTitleLabel.font = fontBoldStandard16
         
         // AUTH GROUPE LABEL:
-        authGroupeLabel.textColor = .white
+        authGroupeLabel.textColor = .systemOrange
         authGroupeLabel.textAlignment = .center
         authGroupeLabel.numberOfLines = 0
         authGroupeLabel.font = fontBoldStandard16
@@ -496,8 +512,8 @@ final class AccountVC: UIViewController {
         
     // SEGMENTED CONTROL VALUE CHANGED:
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
-        vibration.vibrationStandart()
-        presenter.selectedSegmentControl(sender: sender)
+        self.vibration.vibrationStandart()
+        self.presenter.selectedSegmentControl(sender: sender)
     }
     
     // CHECK AUTH:
@@ -607,10 +623,10 @@ extension AccountVC: AccountVCProtocol {
     
     // DELETE ACCOUNT:
     func deleteAccount() {
-        activityIndicator.center = view.center
-        activityIndicator.startAnimating()
+        self.activityIndicator.center = view.center
+        self.activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
-        presenter.deleteUser { result in
+        self.presenter.deleteUser { result in
             switch result {
             case .success:
                 self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт успешно удален."), animated: true)
@@ -627,10 +643,10 @@ extension AccountVC: AccountVCProtocol {
     
     // EXIT ACCOUNT:
     func exitAccount() {
-        activityIndicator.center = view.center
-        activityIndicator.startAnimating()
+        self.activityIndicator.center = view.center
+        self.activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
-        presenter.exitUser { result in
+        self.presenter.exitUser { result in
             switch result {
             case .success:
                 self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта."), animated: true)
@@ -647,7 +663,7 @@ extension AccountVC: AccountVCProtocol {
     
     // RESET PASSWORD:
     func resetPassword() {
-        presenter.resetPassword(email: enterEmailTF.text ?? "")
+        self.presenter.resetPassword(email: enterEmailTF.text ?? "")
     }
     
     // SUCCESS RESET PASSWORD:

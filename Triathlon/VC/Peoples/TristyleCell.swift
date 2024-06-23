@@ -1,6 +1,6 @@
 import UIKit
 
-final class TeamCell: UITableViewCell {
+final class TristyleCell: UITableViewCell {
     
     // MARK: - PROPERTIES:
 
@@ -137,19 +137,18 @@ final class TeamCell: UITableViewCell {
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: 150, height: 200)
         imageCollectionView.collectionViewLayout = layout
-        imageCollectionView.register(TeamCollectionView.self, forCellWithReuseIdentifier: "TeamCollectionView")
+        imageCollectionView.register(TristyleCollectionView.self, forCellWithReuseIdentifier: "TristyleCollectionView")
     }
     
     // CONFIGURE:
-    func configure(with team: HumanModel) {
-        nameLabel.text = team.name
-        countryLabel.text = team.country
-        imagesArray = team.photo
-        achievementsLabel.text = team.achievements
-        workLabel.text = team.work
-        profileLink = team.url
+    func configure(with sportsmen: HumanModel) {
+        nameLabel.text = sportsmen.name
+        countryLabel.text = sportsmen.country
+        imagesArray = sportsmen.photo
+        achievementsLabel.text = sportsmen.achievements
+        workLabel.text = sportsmen.work
+        profileLink = sportsmen.url
         imageCollectionView.reloadData()
-        
     }
     
     // PROFILE BUTTON:
@@ -159,13 +158,13 @@ final class TeamCell: UITableViewCell {
 }
 
 // MARK: - EXTENSION:
-extension TeamCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TristyleCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionView", for: indexPath) as? TeamCollectionView {
+        if let imageCell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "TristyleCollectionView", for: indexPath) as? TristyleCollectionView {
             imageCell.setImage(imagesArray[indexPath.row])
             return imageCell
         }

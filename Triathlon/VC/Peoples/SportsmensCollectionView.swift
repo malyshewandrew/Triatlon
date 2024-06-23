@@ -1,6 +1,6 @@
 import UIKit
 
-final class TeamCollectionView: UICollectionViewCell {
+final class SportsmensCollectionView: UICollectionViewCell {
     // MARK: - PROPERTIES:
 
     private let imageView = UIImageView()
@@ -22,7 +22,6 @@ final class TeamCollectionView: UICollectionViewCell {
     // MARK: - CONFIGURE CONSTRAINTS:
 
     private func configureConstraints() {
-        
         // IMAGE VIEW:
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true

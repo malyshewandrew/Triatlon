@@ -150,8 +150,6 @@ final class TrainerCell: UITableViewCell {
         imageCollectionView.reloadData()
     }
     
-    // MARK: - HELPERS:
-    
     // PROFILE BUTTON:
     @objc private func profileButtonTapped() {
         presenter.profileButtonTapped(with: profileLink)

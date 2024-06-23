@@ -4,6 +4,8 @@ import UIKit
 protocol PeoplesVCProtocol: AnyObject {
     func showTrainerTableView()
     func showTeamTableView()
+    func showSportsmensTableView()
+    func showTristyleTableView()
     func hideAllTableViews()
 }
 
@@ -13,8 +15,10 @@ final class PeoplesVC: UIViewController {
     var presenter: PeoplesPresenterProtocol!
     private let backgroundImage = UIImageView()
     private var segmentedControl = UISegmentedControl()
-    private let tableViewTrainer = UITableView()
-    private let tableViewTeam = UITableView()
+    private let trainerTableView = UITableView()
+    private let teamTableView = UITableView()
+    private let sportsmensTableView = UITableView()
+    private let tristyleTableView = UITableView()
     private let vibration = Vibration()
     
     // MARK: - LIFYCYCLE:
@@ -35,18 +39,24 @@ final class PeoplesVC: UIViewController {
     
     // MARK: - CONFIGURE TABLE VIEWS
     private func configureTableView() {
-        tableViewTrainer.delegate = self
-        tableViewTrainer.dataSource = self
-        tableViewTrainer.register(TrainerCell.self, forCellReuseIdentifier: "TrainerCell")
-        tableViewTeam.delegate = self
-        tableViewTeam.dataSource = self
-        tableViewTeam.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
+        trainerTableView.delegate = self
+        trainerTableView.dataSource = self
+        trainerTableView.register(TrainerCell.self, forCellReuseIdentifier: "TrainerCell")
+        teamTableView.delegate = self
+        teamTableView.dataSource = self
+        teamTableView.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
+        sportsmensTableView.delegate = self
+        sportsmensTableView.dataSource = self
+        sportsmensTableView.register(SportsmensCell.self, forCellReuseIdentifier: "SportsmensCell")
+        tristyleTableView.delegate = self
+        tristyleTableView.dataSource = self
+        tristyleTableView.register(TristyleCell.self, forCellReuseIdentifier: "TristyleCell")
     }
     
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, segmentedControl, tableViewTrainer, tableViewTeam)
+        view.addSubviews(backgroundImage, segmentedControl, trainerTableView, teamTableView, sportsmensTableView, tristyleTableView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -67,18 +77,32 @@ final class PeoplesVC: UIViewController {
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
         // TABLE VIEW TRAINER:
-        tableViewTrainer.translatesAutoresizingMaskIntoConstraints = false
-        tableViewTrainer.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
-        tableViewTrainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        tableViewTrainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        tableViewTrainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        trainerTableView.translatesAutoresizingMaskIntoConstraints = false
+        trainerTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
+        trainerTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        trainerTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        trainerTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         // TABLE VIEW TEAM:
-        tableViewTeam.translatesAutoresizingMaskIntoConstraints = false
-        tableViewTeam.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
-        tableViewTeam.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        tableViewTeam.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        tableViewTeam.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        teamTableView.translatesAutoresizingMaskIntoConstraints = false
+        teamTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
+        teamTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        teamTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        teamTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        // TABLE VIEW SPORTSMENS:
+        sportsmensTableView.translatesAutoresizingMaskIntoConstraints = false
+        sportsmensTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
+        sportsmensTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        sportsmensTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        sportsmensTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        // TABLE VIEW TRISTYLE:
+        tristyleTableView.translatesAutoresizingMaskIntoConstraints = false
+        tristyleTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20).isActive = true
+        tristyleTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        tristyleTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        tristyleTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -91,14 +115,24 @@ final class PeoplesVC: UIViewController {
         backgroundImage.image = UIImage(resource: .background)
         
         // TABLE VIEW TRAINER:
-        tableViewTrainer.backgroundColor = .clear
-        tableViewTrainer.isHidden = true
-        tableViewTrainer.separatorStyle = .none
+        trainerTableView.backgroundColor = .clear
+        trainerTableView.isHidden = true
+        trainerTableView.separatorStyle = .none
         
         // TABLE VIEW TEAM:
-        tableViewTeam.backgroundColor = .clear
-        tableViewTeam.isHidden = true
-        tableViewTeam.separatorStyle = .none
+        teamTableView.backgroundColor = .clear
+        teamTableView.isHidden = true
+        teamTableView.separatorStyle = .none
+        
+        // TABLE VIEW SPORTSMENS:
+        sportsmensTableView.backgroundColor = .clear
+        sportsmensTableView.isHidden = true
+        sportsmensTableView.separatorStyle = .none
+        
+        // TABLE VIEW TRISTYLE:
+        tristyleTableView.backgroundColor = .clear
+        tristyleTableView.isHidden = true
+        tristyleTableView.separatorStyle = .none
         
         // NAVIGATION CONTROLLER:
         navigationItem.title = ""
@@ -130,27 +164,47 @@ final class PeoplesVC: UIViewController {
 
 extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == tableViewTrainer {
+        if tableView == trainerTableView {
             return trainerArray.count
-        } else if tableView == tableViewTeam {
+        } else if tableView == teamTableView {
             return teamArray.count
+        } else if tableView == sportsmensTableView {
+            return sportsmensArray.count
+        } else if tableView == tristyleTableView {
+            return tristyleArray.count
         }
        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == tableViewTrainer {
-            if let cell = tableViewTrainer.dequeueReusableCell(withIdentifier: "TrainerCell", for: indexPath) as? TrainerCell {
+        if tableView == trainerTableView {
+            if let cell = trainerTableView.dequeueReusableCell(withIdentifier: "TrainerCell", for: indexPath) as? TrainerCell {
                 let trainer = trainerArray[indexPath.row]
                 cell.configure(with: trainer)
                 cell.presenter = presenter
                 cell.backgroundColor = .clear
                 return cell
             }
-        } else if tableView == tableViewTeam {
-            if let cell = tableViewTeam.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as? TeamCell {
-                let trainer = teamArray[indexPath.row]
-                cell.configure(with: trainer)
+        } else if tableView == teamTableView {
+            if let cell = teamTableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as? TeamCell {
+                let team = teamArray[indexPath.row]
+                cell.configure(with: team)
+                cell.presenter = presenter
+                cell.backgroundColor = .clear
+                return cell
+            } 
+        } else if tableView == sportsmensTableView {
+            if let cell = teamTableView.dequeueReusableCell(withIdentifier: "SportsmensCell", for: indexPath) as? SportsmensCell {
+                let sportsmen = teamArray[indexPath.row]
+                cell.configure(with: sportsmen)
+                cell.presenter = presenter
+                cell.backgroundColor = .clear
+                return cell
+            }
+        } else if tableView == tristyleTableView {
+            if let cell = teamTableView.dequeueReusableCell(withIdentifier: "TristyleCell", for: indexPath) as? TristyleCell {
+                let tristyle = teamArray[indexPath.row]
+                cell.configure(with: tristyle)
                 cell.presenter = presenter
                 cell.backgroundColor = .clear
                 return cell
@@ -168,17 +222,41 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
 extension PeoplesVC: PeoplesVCProtocol {
     // SHOW TRAINERS:
     func showTrainerTableView() {
-        tableViewTrainer.isHidden = false
-        tableViewTeam.isHidden = true
+        trainerTableView.isHidden = false
+        teamTableView.isHidden = true
+        sportsmensTableView.isHidden = true
+        tristyleTableView.isHidden = true
     }
+    
     // SHOW TEAM:
     func showTeamTableView() {
-        tableViewTrainer.isHidden = true
-        tableViewTeam.isHidden = false
+        trainerTableView.isHidden = true
+        teamTableView.isHidden = false
+        sportsmensTableView.isHidden = true
+        tristyleTableView.isHidden = true
     }
+    
+    // SHOW SPORTSMNES:
+    func showSportsmensTableView() {
+        trainerTableView.isHidden = true
+        teamTableView.isHidden = true
+        sportsmensTableView.isHidden = false
+        tristyleTableView.isHidden = true
+    }
+    
+    // SHOW TRISTYLE:
+    func showTristyleTableView() {
+        trainerTableView.isHidden = true
+        teamTableView.isHidden = true
+        sportsmensTableView.isHidden = true
+        tristyleTableView.isHidden = false
+    }
+    
     // HIDE ALL:
     func hideAllTableViews() {
-        tableViewTrainer.isHidden = true
-        tableViewTeam.isHidden = true
+        trainerTableView.isHidden = true
+        teamTableView.isHidden = true
+        sportsmensTableView.isHidden = true
+        tristyleTableView.isHidden = true
     }
 }

@@ -26,6 +26,10 @@
 		FB75B38B2C21C99000AE360F /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75B38A2C21C99000AE360F /* AccountPresenter.swift */; };
 		FB75B38F2C21E5C400AE360F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B38E2C21E5C400AE360F /* FirebaseAuth */; };
 		FB75B3912C21E5DA00AE360F /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FB75B3902C21E5DA00AE360F /* FirebaseAuthCombine-Community */; };
+		FB88FFD32C2853F000342AE0 /* SportsmensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD22C2853F000342AE0 /* SportsmensCell.swift */; };
+		FB88FFD52C28541B00342AE0 /* SportsmensCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */; };
+		FB88FFD72C28558500342AE0 /* TristyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD62C28558500342AE0 /* TristyleCell.swift */; };
+		FB88FFD92C28559800342AE0 /* TristyleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */; };
 		FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D62C2430F700B28520 /* DiscountModel.swift */; };
 		FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */; };
 		FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9631DA2C2436C800B28520 /* PartnerCell.swift */; };
@@ -93,6 +97,10 @@
 		FB703B632C11BD2800AB19CC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FB75B3882C21C98300AE360F /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		FB75B38A2C21C99000AE360F /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
+		FB88FFD22C2853F000342AE0 /* SportsmensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsmensCell.swift; sourceTree = "<group>"; };
+		FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsmensCollectionView.swift; sourceTree = "<group>"; };
+		FB88FFD62C28558500342AE0 /* TristyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TristyleCell.swift; sourceTree = "<group>"; };
+		FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TristyleCollectionView.swift; sourceTree = "<group>"; };
 		FB9631D62C2430F700B28520 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
 		FB9631D82C24330B00B28520 /* ClubCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCardPresenter.swift; sourceTree = "<group>"; };
 		FB9631DA2C2436C800B28520 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
@@ -286,6 +294,10 @@
 				FBBC86342C19B96900752195 /* TrainerCollectionView.swift */,
 				52E746E12C19F9B4004D1AE3 /* TeamCell.swift */,
 				52E746E32C19F9E7004D1AE3 /* TeamImageCollectionCell.swift */,
+				FB88FFD22C2853F000342AE0 /* SportsmensCell.swift */,
+				FB88FFD42C28541B00342AE0 /* SportsmensCollectionView.swift */,
+				FB88FFD62C28558500342AE0 /* TristyleCell.swift */,
+				FB88FFD82C28559800342AE0 /* TristyleCollectionView.swift */,
 			);
 			path = Peoples;
 			sourceTree = "<group>";
@@ -507,6 +519,7 @@
 				FBA457122C20FC320070E6D4 /* CalendarModel.swift in Sources */,
 				FB9631D92C24330B00B28520 /* ClubCardPresenter.swift in Sources */,
 				FBAD34122C11255B0014DE84 /* CalendarVC.swift in Sources */,
+				FB88FFD72C28558500342AE0 /* TristyleCell.swift in Sources */,
 				FBB89B8A2C10CC1400FBDF3B /* ScheduleVC.swift in Sources */,
 				FBBC863B2C19B96900752195 /* HumanModel.swift in Sources */,
 				FBAD34162C1125740014DE84 /* ClubVC.swift in Sources */,
@@ -515,6 +528,7 @@
 				FB9631DB2C2436C800B28520 /* PartnerCell.swift in Sources */,
 				FBBC863C2C19B96900752195 /* PeoplesPresenter.swift in Sources */,
 				FBAD34182C11257E0014DE84 /* ClubPresenter.swift in Sources */,
+				FB88FFD32C2853F000342AE0 /* SportsmensCell.swift in Sources */,
 				FBFE002D2C2397F50083DD50 /* RegistrationGroup.swift in Sources */,
 				FBAD341E2C11259B0014DE84 /* ShopVC.swift in Sources */,
 				FBB89B862C10CC1400FBDF3B /* AppDelegate.swift in Sources */,
@@ -528,12 +542,14 @@
 				FBBC863A2C19B96900752195 /* TrainerCell.swift in Sources */,
 				FB0F697D2C20C73D0033E705 /* AnonimVC.swift in Sources */,
 				FB9631D72C2430F700B28520 /* DiscountModel.swift in Sources */,
+				FB88FFD52C28541B00342AE0 /* SportsmensCollectionView.swift in Sources */,
 				FB703B622C11BB7D00AB19CC /* TabBarController.swift in Sources */,
 				FBBC862D2C19081000752195 /* MyGroupeCell.swift in Sources */,
 				FB14270D2C18644B00D94901 /* CalendarCell.swift in Sources */,
 				FB9631DF2C24D90300B28520 /* AllGroupesCell.swift in Sources */,
 				FBB89B882C10CC1400FBDF3B /* SceneDelegate.swift in Sources */,
 				FBBC862B2C19080700752195 /* ScheduleModel.swift in Sources */,
+				FB88FFD92C28559800342AE0 /* TristyleCollectionView.swift in Sources */,
 				FB9631E52C24EC3F00B28520 /* RuleThreeCollectionView.swift in Sources */,
 				FBBC86412C19C94100752195 /* ProductModel.swift in Sources */,
 				FBBC863F2C19C73700752195 /* ShopCell.swift in Sources */,

@@ -92,7 +92,7 @@ final class ClubPresenter: ClubPresenterProtocol {
         alert.addAction(UIAlertAction(title: "Facebook", style: .default, handler: { [weak self] _ in
             self?.fbButtonTapped()
         }))
-        alert.addAction(UIAlertAction(title: "Отправить Email", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: { [weak self] _ in
             self?.emailButtonTapped()
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
