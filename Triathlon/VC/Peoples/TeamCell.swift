@@ -149,7 +149,6 @@ final class TeamCell: UITableViewCell {
         workLabel.text = team.work
         profileLink = team.url
         imageCollectionView.reloadData()
-        
     }
     
     // PROFILE BUTTON:

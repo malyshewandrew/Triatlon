@@ -14,11 +14,15 @@ final class ClubCardVC: UIViewController {
     var presenter: ClubCardPresenterProtocol!
     private let backgroundImage = UIImageView()
     private let titleLabel = UILabel()
-    private let clubCardView = UIView()
-    private let clubCardLottie = LottieAnimationView(name: "ClubCardLottie")
-    private let clubCardImage = UIImageView()
-    private let clubCardTitleLabel = UILabel()
-    private let clubCardButtom = UIButton(type: .system)
+    private let cardsContainerView = UIView()
+    private let clubCardOneView = UIView()
+    private let clubCardOneLottie = LottieAnimationView(name: "ClubCardOneLottie")
+    private let clubCardOneImage = UIImageView()
+    private let clubCardOneTitleLabel = UILabel()
+    private let clubCardButton = UIButton(type: .system)
+    private let clubCardTwoView = UIView()
+    private let clubCardTwoLottie = LottieAnimationView(name: "ClubCardTwoLottie")
+    private let clubCardTwoImage = UIImageView()
     private var segmentedControl = UISegmentedControl()
     private let partnerTableView = UITableView()
     private let mutualTableView = UITableView()
@@ -36,8 +40,10 @@ final class ClubCardVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, titleLabel, clubCardView, segmentedControl, partnerTableView, mutualTableView)
-        clubCardView.addSubviews(clubCardLottie, clubCardImage, clubCardTitleLabel, clubCardButtom)
+        view.addSubviews(backgroundImage, titleLabel, cardsContainerView, segmentedControl, partnerTableView, mutualTableView)
+        cardsContainerView.addSubviews(clubCardTwoView, clubCardOneView, clubCardButton)
+        clubCardOneView.addSubviews(clubCardOneLottie, clubCardOneImage, clubCardOneTitleLabel)
+        clubCardTwoView.addSubviews(clubCardTwoLottie, clubCardTwoImage)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -56,42 +62,70 @@ final class ClubCardVC: UIViewController {
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         
-        // CLUB CARD VIEW:
-        clubCardView.translatesAutoresizingMaskIntoConstraints = false
-        clubCardView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
-        clubCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        clubCardView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        clubCardView.heightAnchor.constraint(equalTo: clubCardView.widthAnchor, multiplier: 0.5).isActive = true
+        // CLUB CARDS CONTAINER VIEW:
+        cardsContainerView.translatesAutoresizingMaskIntoConstraints = false
+        cardsContainerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
+        cardsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cardsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        cardsContainerView.heightAnchor.constraint(equalTo: cardsContainerView.widthAnchor, multiplier: 0.5).isActive = true
         
-        // CLUB CARD LOTTIE:
-        clubCardLottie.translatesAutoresizingMaskIntoConstraints = false
-        clubCardLottie.topAnchor.constraint(equalTo: clubCardView.topAnchor).isActive = true
-        clubCardLottie.bottomAnchor.constraint(equalTo: clubCardView.bottomAnchor).isActive = true
-        clubCardLottie.leadingAnchor.constraint(equalTo: clubCardView.leadingAnchor).isActive = true
-        clubCardLottie.trailingAnchor.constraint(equalTo: clubCardView.trailingAnchor).isActive = true
+        // CLUB CARD ONE VIEW:
+        clubCardOneView.translatesAutoresizingMaskIntoConstraints = false
+        clubCardOneView.topAnchor.constraint(equalTo: cardsContainerView.topAnchor).isActive = true
+        clubCardOneView.bottomAnchor.constraint(equalTo: cardsContainerView.bottomAnchor).isActive = true
+        clubCardOneView.leadingAnchor.constraint(equalTo: cardsContainerView.leadingAnchor).isActive = true
+        clubCardOneView.trailingAnchor.constraint(equalTo: cardsContainerView.trailingAnchor).isActive = true
         
-        // CLUB CARD IMAGE:
-        clubCardImage.translatesAutoresizingMaskIntoConstraints = false
-        clubCardImage.centerXAnchor.constraint(equalTo: clubCardView.centerXAnchor).isActive = true
-        clubCardImage.centerYAnchor.constraint(equalTo: clubCardView.centerYAnchor).isActive = true
-        clubCardImage.widthAnchor.constraint(equalTo: clubCardView.widthAnchor, multiplier: 0.8).isActive = true
-        clubCardImage.heightAnchor.constraint(equalTo: clubCardImage.widthAnchor, multiplier: 0.35).isActive = true
+        // CLUB CARD ONE LOTTIE:
+        clubCardOneLottie.translatesAutoresizingMaskIntoConstraints = false
+        clubCardOneLottie.topAnchor.constraint(equalTo: clubCardOneView.topAnchor).isActive = true
+        clubCardOneLottie.bottomAnchor.constraint(equalTo: clubCardOneView.bottomAnchor).isActive = true
+        clubCardOneLottie.leadingAnchor.constraint(equalTo: clubCardOneView.leadingAnchor).isActive = true
+        clubCardOneLottie.trailingAnchor.constraint(equalTo: clubCardOneView.trailingAnchor).isActive = true
         
-        // CLUB CARD TITLE LABEL:
-        clubCardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        clubCardTitleLabel.centerXAnchor.constraint(equalTo: clubCardView.centerXAnchor).isActive = true
-        clubCardTitleLabel.bottomAnchor.constraint(equalTo: clubCardView.bottomAnchor, constant: -50).isActive = true
+        // CLUB CARD ONE IMAGE:
+        clubCardOneImage.translatesAutoresizingMaskIntoConstraints = false
+        clubCardOneImage.centerXAnchor.constraint(equalTo: clubCardOneView.centerXAnchor).isActive = true
+        clubCardOneImage.centerYAnchor.constraint(equalTo: clubCardOneView.centerYAnchor).isActive = true
+        clubCardOneImage.widthAnchor.constraint(equalTo: clubCardOneView.widthAnchor, multiplier: 0.8).isActive = true
+        clubCardOneImage.heightAnchor.constraint(equalTo: clubCardOneImage.widthAnchor, multiplier: 0.35).isActive = true
         
-        // CLUB CARD BUTTOM:
-        clubCardButtom.translatesAutoresizingMaskIntoConstraints = false
-        clubCardButtom.topAnchor.constraint(equalTo: clubCardView.topAnchor).isActive = true
-        clubCardButtom.bottomAnchor.constraint(equalTo: clubCardView.bottomAnchor).isActive = true
-        clubCardButtom.leadingAnchor.constraint(equalTo: clubCardView.leadingAnchor).isActive = true
-        clubCardButtom.trailingAnchor.constraint(equalTo: clubCardView.trailingAnchor).isActive = true
+        // CLUB CARD ONE TITLE LABEL:
+        clubCardOneTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        clubCardOneTitleLabel.centerXAnchor.constraint(equalTo: clubCardOneView.centerXAnchor).isActive = true
+        clubCardOneTitleLabel.bottomAnchor.constraint(equalTo: clubCardOneView.bottomAnchor, constant: -50).isActive = true
+        
+        // CLUB CARD BUTTON:
+        clubCardButton.translatesAutoresizingMaskIntoConstraints = false
+        clubCardButton.topAnchor.constraint(equalTo: clubCardOneView.topAnchor).isActive = true
+        clubCardButton.bottomAnchor.constraint(equalTo: clubCardOneView.bottomAnchor).isActive = true
+        clubCardButton.leadingAnchor.constraint(equalTo: clubCardOneView.leadingAnchor).isActive = true
+        clubCardButton.trailingAnchor.constraint(equalTo: clubCardOneView.trailingAnchor).isActive = true
+        
+        // CLUB CARD TWO VIEW:
+        clubCardTwoView.translatesAutoresizingMaskIntoConstraints = false
+        clubCardTwoView.topAnchor.constraint(equalTo: cardsContainerView.topAnchor).isActive = true
+        clubCardTwoView.bottomAnchor.constraint(equalTo: cardsContainerView.bottomAnchor).isActive = true
+        clubCardTwoView.leadingAnchor.constraint(equalTo: cardsContainerView.leadingAnchor).isActive = true
+        clubCardTwoView.trailingAnchor.constraint(equalTo: cardsContainerView.trailingAnchor).isActive = true
+        
+        // CLUB CARD TWO LOTTIE:
+        clubCardTwoLottie.translatesAutoresizingMaskIntoConstraints = false
+        clubCardTwoLottie.topAnchor.constraint(equalTo: clubCardTwoView.topAnchor).isActive = true
+        clubCardTwoLottie.bottomAnchor.constraint(equalTo: clubCardTwoView.bottomAnchor).isActive = true
+        clubCardTwoLottie.leadingAnchor.constraint(equalTo: clubCardTwoView.leadingAnchor).isActive = true
+        clubCardTwoLottie.trailingAnchor.constraint(equalTo: clubCardTwoView.trailingAnchor).isActive = true
+        
+        // CLUB CARD TWO IMAGE VIEW:
+        clubCardTwoImage.translatesAutoresizingMaskIntoConstraints = false
+        clubCardTwoImage.centerXAnchor.constraint(equalTo: clubCardTwoView.centerXAnchor).isActive = true
+        clubCardTwoImage.centerYAnchor.constraint(equalTo: clubCardTwoView.centerYAnchor).isActive = true
+        clubCardTwoImage.widthAnchor.constraint(equalTo: clubCardTwoView.widthAnchor, multiplier: 0.3).isActive = true
+        clubCardTwoImage.heightAnchor.constraint(equalTo: clubCardTwoView.widthAnchor, multiplier: 1).isActive = true
         
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.topAnchor.constraint(equalTo: clubCardView.bottomAnchor, constant: 25).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: clubCardOneView.bottomAnchor, constant: 25).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
@@ -124,34 +158,54 @@ final class ClubCardVC: UIViewController {
         titleLabel.text = "Благодаря спонсорам и партнёрам клуба мы создаём лучшие условия для наших спортсменов, поддерживаем профессиональный состав Tristyle, проводим старты и инвестируем в научную составляющую триатлона."
         
         // CLUB CARD VIEW:
-        clubCardView.backgroundColor = .systemBlue
-        clubCardView.layer.masksToBounds = true
-        clubCardView.layer.cornerRadius = cornerRadius
+        clubCardOneView.backgroundColor = .systemBlue
+        clubCardOneView.layer.masksToBounds = true
+        clubCardOneView.layer.cornerRadius = cornerRadius
         
         // CLUB CARD LOTTIE:
-        clubCardLottie.play()
-        clubCardLottie.loopMode = .loop
-        clubCardLottie.contentMode = .scaleAspectFill
-        clubCardLottie.layer.opacity = 0.8
+        clubCardOneLottie.play()
+        clubCardOneLottie.loopMode = .loop
+        clubCardOneLottie.contentMode = .scaleAspectFill
+        clubCardOneLottie.layer.opacity = 0.8
         
         // CLUB CARD IMAGE:
-        clubCardImage.image = UIImage(resource: .clubCard)
-        clubCardImage.contentMode = .scaleAspectFill
-        clubCardImage.layer.shadowColor = UIColor.white.cgColor
-        clubCardImage.layer.shadowRadius = 50
-        clubCardImage.layer.shadowOpacity = 0.2
+        clubCardOneImage.image = UIImage(resource: .clubCard)
+        clubCardOneImage.contentMode = .scaleAspectFill
+        clubCardOneImage.layer.shadowRadius = 25
+        clubCardOneImage.layer.shadowColor = UIColor.black.cgColor
+        clubCardOneImage.layer.shadowOpacity = 1
         
         // CLUB CARD TITLE LABEL:
-        clubCardTitleLabel.textColor = .white
-        clubCardTitleLabel.textAlignment = .center
-        clubCardTitleLabel.font = fontLightStandard12
-        clubCardTitleLabel.text = "Клубная карта Tristyle"
+        clubCardOneTitleLabel.textColor = .white
+        clubCardOneTitleLabel.textAlignment = .center
+        clubCardOneTitleLabel.font = fontLightStandard12
+        clubCardOneTitleLabel.text = "Клубная карта Tristyle"
         
         // CLUB CARD BUTTOM:
-        clubCardButtom.addAction(UIAction(handler: { [weak self] _ in
+        clubCardButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
+            self.presenter.flipCard(oneView: self.clubCardOneView, twoView: self.clubCardTwoView)
         }), for: .touchUpInside)
+        
+        // CLUB CARD TWO VIEW:
+        clubCardTwoView.backgroundColor = .red
+        clubCardTwoView.backgroundColor = .colorBackground
+        clubCardTwoView.layer.cornerRadius = cornerRadius
+        clubCardTwoView.layer.masksToBounds = true
+        
+        // CLUB CARD TWO LOTTIE:
+        clubCardTwoLottie.play()
+        clubCardTwoLottie.loopMode = .loop
+        clubCardTwoLottie.contentMode = .scaleAspectFill
+        clubCardTwoLottie.animationSpeed = 0.2
+        
+        // CLUB CARD TWO IMAGE VIEW:
+        clubCardTwoImage.image = UIImage(resource: .tristyleLogo)
+        clubCardTwoImage.contentMode = .scaleAspectFit
+        clubCardTwoImage.layer.shadowRadius = 25
+        clubCardTwoImage.layer.shadowColor = UIColor.black.cgColor
+        clubCardTwoImage.layer.shadowOpacity = 1
         
         // SEGMENTED CONTROL
         segmentedControl.backgroundColor = .colorBackground

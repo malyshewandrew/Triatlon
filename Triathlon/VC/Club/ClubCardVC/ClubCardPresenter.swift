@@ -6,6 +6,7 @@ protocol ClubCardPresenterProtocol {
     func selectedSegmentControl(sender: UISegmentedControl)
     func webButtonTapped(with webLink: String?)
     func startBounce(cellView: UIView)
+    func flipCard(oneView: UIView, twoView: UIView)
 }
 
 final class ClubCardPresenter: ClubCardPresenterProtocol {
@@ -13,6 +14,7 @@ final class ClubCardPresenter: ClubCardPresenterProtocol {
     // MARK: - PROPERTIES:
 
     unowned let view: ClubCardVCProtocol
+    private var isFlippedMissionsView = false
 
     // MARK: - INIT:
 
@@ -53,4 +55,12 @@ final class ClubCardPresenter: ClubCardPresenterProtocol {
             }
         })
     }
+    
+    func flipCard(oneView: UIView, twoView: UIView) {
+        isFlippedMissionsView = !isFlippedMissionsView
+        let fromView = isFlippedMissionsView ? oneView : twoView
+        let toView = isFlippedMissionsView ? twoView : oneView
+        UIView.transition(from: fromView, to: toView, duration: 1, options: [.curveEaseOut, .transitionFlipFromRight, .showHideTransitionViews])
+    }
+    
 }

@@ -118,7 +118,7 @@ final class CalendarVC: UIViewController {
         // TITLE:
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.text = "Календарь Tristyle:"
+        titleLabel.text = "Календарь Tristyle"
         titleLabel.font = fontBoldStandard16
         
         // CALENDAR VIEW:
