@@ -66,9 +66,10 @@ final class AccountVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authLogoImageView, authNameLabel, authTitleLabel, authGroupeLabel, exitButton, deleteButton)
+        view.addSubviews(backgroundImage, segmentedControl, registrationView, enterView, authView)
         registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
         enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
+        authView.addSubviews(authLogoImageView, authNameLabel, authTitleLabel, authGroupeLabel, exitButton, deleteButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -87,27 +88,34 @@ final class AccountVC: UIViewController {
         segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         
+        // AUTH VIEW:
+        authView.translatesAutoresizingMaskIntoConstraints = false
+        authView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        authView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        authView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        authView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         // AUTH LOGO IMAGE VIEW:
         authLogoImageView.translatesAutoresizingMaskIntoConstraints = false
-        authLogoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: -5).isActive = true
-        authLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        authLogoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
+        authLogoImageView.topAnchor.constraint(equalTo: authView.topAnchor, constant: -5).isActive = true
+        authLogoImageView.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
+        authLogoImageView.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.3).isActive = true
         authLogoImageView.heightAnchor.constraint(equalTo: authLogoImageView.widthAnchor, multiplier: 1).isActive = true
         
         // AUTH NAME LABEL:
         authNameLabel.translatesAutoresizingMaskIntoConstraints = false
         authNameLabel.topAnchor.constraint(equalTo: authLogoImageView.bottomAnchor, constant: 10).isActive = true
-        authNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        authNameLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
         
         // AUTH LABEL:
         authTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         authTitleLabel.topAnchor.constraint(equalTo: authNameLabel.bottomAnchor, constant: 25).isActive = true
-        authTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        authTitleLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
         
         // AUTH GROUPE LABEL:
         authGroupeLabel.translatesAutoresizingMaskIntoConstraints = false
         authGroupeLabel.topAnchor.constraint(equalTo: authTitleLabel.bottomAnchor, constant: 25).isActive = true
-        authGroupeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        authGroupeLabel.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
         
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
@@ -241,33 +249,29 @@ final class AccountVC: UIViewController {
         segmentedControl.isHidden = false
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         
+        // AUTH VIEW:
+        authView.isHidden = true
+        
         // AUTH LOGO IMAGE VIEW:
         authLogoImageView.image = UIImage(resource: .tristyleLogoWhite)
-        authLogoImageView.isHidden = true
         
         // AUTH NAME LABEL:
         authNameLabel.textColor = .systemBlue
         authNameLabel.textAlignment = .center
         authNameLabel.numberOfLines = 0
         authNameLabel.font = fontBoldStandard26
-        authNameLabel.layer.opacity = 0.0
-        authNameLabel.isHidden = true
         
         // AUTH LABEL:
         authTitleLabel.textColor = .white
         authTitleLabel.textAlignment = .center
         authTitleLabel.numberOfLines = 0
         authTitleLabel.font = fontBoldStandard16
-        authTitleLabel.layer.opacity = 0.0
-        authTitleLabel.isHidden = true
         
         // AUTH GROUPE LABEL:
         authGroupeLabel.textColor = .white
         authGroupeLabel.textAlignment = .center
         authGroupeLabel.numberOfLines = 0
         authGroupeLabel.font = fontBoldStandard16
-        authGroupeLabel.layer.opacity = 0.0
-        authGroupeLabel.isHidden = true
         
         // REGISTRATION VIEW:
         registrationView.layer.opacity = 1
@@ -278,7 +282,6 @@ final class AccountVC: UIViewController {
         registrationTitleLabel.textAlignment = .center
         registrationTitleLabel.font = fontBoldStandard22
         registrationTitleLabel.text = "Регистрация"
-        registrationTitleLabel.layer.opacity = 1
         
         // REGISTRATION SURNAME:
         registrationSurnameTF.layer.masksToBounds = true
@@ -290,7 +293,6 @@ final class AccountVC: UIViewController {
         registrationSurnameTF.placeholder = "Фамилия"
         registrationSurnameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationSurnameTF.frame.height))
         registrationSurnameTF.leftViewMode = .always
-        registrationSurnameTF.layer.opacity = 1
         
         // REGISTRATION NAME:
         registrationNameTF.layer.masksToBounds = true
@@ -302,7 +304,6 @@ final class AccountVC: UIViewController {
         registrationNameTF.placeholder = "Имя"
         registrationNameTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationNameTF.frame.height))
         registrationNameTF.leftViewMode = .always
-        registrationNameTF.layer.opacity = 1
         
         // REGISTRATION EMAIL:
         registrationEmailTF.layer.masksToBounds = true
@@ -314,7 +315,6 @@ final class AccountVC: UIViewController {
         registrationEmailTF.placeholder = "Электронная почта"
         registrationEmailTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationEmailTF.frame.height))
         registrationEmailTF.leftViewMode = .always
-        registrationEmailTF.layer.opacity = 1
         
         // REGISTRATION PASSWORD:
         registrationPasswordTF.layer.masksToBounds = true
@@ -326,7 +326,6 @@ final class AccountVC: UIViewController {
         registrationPasswordTF.placeholder = "Пароль"
         registrationPasswordTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationPasswordTF.frame.height))
         registrationPasswordTF.leftViewMode = .always
-        registrationPasswordTF.layer.opacity = 1
         
         // REGISTRATION PASSWORD REPEAT:
         registrationPasswordRepeatTF.layer.masksToBounds = true
@@ -338,7 +337,6 @@ final class AccountVC: UIViewController {
         registrationPasswordRepeatTF.placeholder = "Повторите пароль"
         registrationPasswordRepeatTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationPasswordRepeatTF.frame.height))
         registrationPasswordRepeatTF.leftViewMode = .always
-        registrationPasswordRepeatTF.layer.opacity = 1
         
         // REGISTRATION GROUP TEXT FIELD:
         registrationGroupTF.layer.masksToBounds = true
@@ -350,7 +348,6 @@ final class AccountVC: UIViewController {
         registrationGroupTF.placeholder = "Группа"
         registrationGroupTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationGroupTF.frame.height))
         registrationGroupTF.leftViewMode = .always
-        registrationGroupTF.layer.opacity = 1
         registrationGroupTF.inputView = registrationGroupPV
         registrationGroupPV.backgroundColor = .colorBackground
         
@@ -361,7 +358,6 @@ final class AccountVC: UIViewController {
         registrationButton.setTitle("Зарегистрироваться", for: .normal)
         registrationButton.titleLabel?.font = fontMediumStandard14
         registrationButton.setTitleColor(.white, for: .normal)
-        registrationButton.layer.opacity = 1
         registrationButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
@@ -406,7 +402,6 @@ final class AccountVC: UIViewController {
         enterTitleLabel.textAlignment = .center
         enterTitleLabel.font = fontBoldStandard22
         enterTitleLabel.text = "Вход"
-        enterTitleLabel.layer.opacity = 0.0
         
         // ENTER EMAIL:
         enterEmailTF.layer.masksToBounds = true
@@ -418,7 +413,6 @@ final class AccountVC: UIViewController {
         enterEmailTF.placeholder = "Электронная почта"
         enterEmailTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationEmailTF.frame.height))
         enterEmailTF.leftViewMode = .always
-        enterEmailTF.layer.opacity = 0.0
         
         // ENTER PASSWORD:
         enterPasswordTF.layer.masksToBounds = true
@@ -430,7 +424,6 @@ final class AccountVC: UIViewController {
         enterPasswordTF.placeholder = "Пароль"
         enterPasswordTF.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: registrationPasswordTF.frame.height))
         enterPasswordTF.leftViewMode = .always
-        enterPasswordTF.layer.opacity = 0.0
         
         // ENTER BUTTON:
         enterButton.layer.masksToBounds = true
@@ -439,7 +432,6 @@ final class AccountVC: UIViewController {
         enterButton.setTitle("Войти", for: .normal)
         enterButton.titleLabel?.font = fontMediumStandard14
         enterButton.setTitleColor(.white, for: .normal)
-        enterButton.layer.opacity = 0.0
         enterButton.addAction(UIAction(handler: { [weak self] _ in
             guard let self = self else { return }
             self.vibration.vibrationStandart()
@@ -516,40 +508,24 @@ final class AccountVC: UIViewController {
                 self.activityIndicator.startAnimating()
                 self.view.addSubview(self.activityIndicator)
                 fetchGroupFromFirestoreAndSaveToUserDefaults()
-                self.authLogoImageView.layer.opacity = 1
-                self.authLogoImageView.isHidden = false
-                self.authNameLabel.layer.opacity = 1
-                self.authNameLabel.isHidden = false
-                self.authTitleLabel.layer.opacity = 1
-                self.authTitleLabel.isHidden = false
-                self.authGroupeLabel.layer.opacity = 1
-                self.authGroupeLabel.isHidden = false
-                self.segmentedControl.layer.opacity = 0.0
+                self.authView.isHidden = false
+                self.authView.layer.opacity = 1
                 self.segmentedControl.isHidden = true
-                self.registrationView.layer.opacity = 0.0
+                self.segmentedControl.layer.opacity = 0.0
                 self.registrationView.isHidden = true
-                self.enterView.layer.opacity = 0.0
+                self.registrationView.layer.opacity = 0.0
                 self.enterView.isHidden = true
-                self.exitButton.isHidden = false
-                self.deleteButton.isHidden = false
+                self.enterView.layer.opacity = 0.0
                 self.authTitleLabel.text = "\(user.email ?? "Не указан")"
             } else {
-                self.authLogoImageView.layer.opacity = 0.0
-                self.authLogoImageView.isHidden = true
-                self.authNameLabel.layer.opacity = 0.0
-                self.authNameLabel.isHidden = true
-                self.authTitleLabel.layer.opacity = 0.0
-                self.authTitleLabel.isHidden = true
-                self.authGroupeLabel.layer.opacity = 0.0
-                self.authGroupeLabel.isHidden = true
-                self.segmentedControl.layer.opacity = 1
+                self.authView.isHidden = true
+                self.authView.layer.opacity = 0
                 self.segmentedControl.isHidden = false
-                self.registrationView.layer.opacity = 1
+                self.segmentedControl.layer.opacity = 1
                 self.registrationView.isHidden = false
-                self.enterView.layer.opacity = 0.0
+                self.registrationView.layer.opacity = 1
                 self.enterView.isHidden = true
-                self.exitButton.isHidden = true
-                self.deleteButton.isHidden = true
+                self.enterView.layer.opacity = 0.0
                 print("Пользователь не аутентифицирован")
             }
         }
@@ -557,8 +533,8 @@ final class AccountVC: UIViewController {
         func fetchGroupFromFirestoreAndSaveToUserDefaults() {
             guard let userId = Auth.auth().currentUser?.uid else {
                 print("Пользователь не аутентифицирован")
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
                 return
             }
             let db = Firestore.firestore()
@@ -602,24 +578,12 @@ extension AccountVC: AccountVCProtocol {
     func showRegistretionView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
             guard let self = self else { return }
-            self.authLogoImageView.isHidden = true
-            self.authNameLabel.isHidden = true
-            self.authTitleLabel.isHidden = true
-            self.authGroupeLabel.isHidden = true
+            self.authView.isHidden = true
+            self.authView.layer.opacity = 0
             self.registrationView.isHidden = false
-            self.enterView.isHidden = true
             self.registrationView.layer.opacity = 1
-            self.registrationTitleLabel.layer.opacity = 1
-            self.registrationSurnameTF.layer.opacity = 1
-            self.registrationNameTF.layer.opacity = 1
-            self.registrationEmailTF.layer.opacity = 1
-            self.registrationPasswordTF.layer.opacity = 1
-            self.registrationButton.layer.opacity = 1
+            self.enterView.isHidden = true
             self.enterView.layer.opacity = 0
-            self.enterTitleLabel.layer.opacity = 0
-            self.enterEmailTF.layer.opacity = 0
-            self.enterPasswordTF.layer.opacity = 0
-            self.enterButton.layer.opacity = 0
         }
     }
     
@@ -627,24 +591,12 @@ extension AccountVC: AccountVCProtocol {
     func showEnterView() {
         UIView.animate(withDuration: 0.5) { [weak self] in
             guard let self = self else { return }
-            self.authLogoImageView.isHidden = true
-            self.authNameLabel.isHidden = true
-            self.authTitleLabel.isHidden = true
-            self.authGroupeLabel.isHidden = true
+            self.authView.isHidden = true
+            self.authView.layer.opacity = 0
             self.registrationView.isHidden = true
-            self.enterView.isHidden = false
             self.registrationView.layer.opacity = 0
-            self.registrationTitleLabel.layer.opacity = 0
-            self.registrationSurnameTF.layer.opacity = 0
-            self.registrationSurnameTF.layer.opacity = 0
-            self.registrationEmailTF.layer.opacity = 0
-            self.registrationPasswordTF.layer.opacity = 0
-            self.registrationButton.layer.opacity = 0
+            self.enterView.isHidden = false
             self.enterView.layer.opacity = 1
-            self.enterTitleLabel.layer.opacity = 1
-            self.enterEmailTF.layer.opacity = 1
-            self.enterPasswordTF.layer.opacity = 1
-            self.enterButton.layer.opacity = 1
         }
     }
     
@@ -661,7 +613,7 @@ extension AccountVC: AccountVCProtocol {
         presenter.deleteUser { result in
             switch result {
             case .success:
-                self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт удален"), animated: true)
+                self.present(self.presenter.showAlert(title: "Успешно", message: "Аккаунт успешно удален."), animated: true)
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 UserDefaults.standard.removeObject(forKey: "userGroup")
@@ -681,7 +633,7 @@ extension AccountVC: AccountVCProtocol {
         presenter.exitUser { result in
             switch result {
             case .success:
-                self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта"), animated: true)
+                self.present(self.presenter.showAlert(title: "Успешно", message: "Вы вышли из аккаунта."), animated: true)
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 UserDefaults.standard.removeObject(forKey: "userGroup")
@@ -700,7 +652,7 @@ extension AccountVC: AccountVCProtocol {
     
     // SUCCESS RESET PASSWORD:
     func successReset() {
-        let alert = UIAlertController(title: "Успешно", message: "Форма для сброса пароля отправлена на указанный Email", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Успешно", message: "Форма для сброса пароля отправлена на указанный Email.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: { [weak self] _ in
             self?.dismissView()
         }))

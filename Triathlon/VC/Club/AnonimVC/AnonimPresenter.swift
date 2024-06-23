@@ -26,7 +26,7 @@ final class AnonimPresenter: AnonimPresenterProtocol {
             view.showAlert(alert: alert)
         } else {
             let db = Firestore.firestore()
-            db.collection("anonymousMessages").addDocument(data: [
+            db.collection("AnonymousMessages").addDocument(data: [
                 "Сообщение": message
             ]) { [weak self] error in
                 if let error = error {

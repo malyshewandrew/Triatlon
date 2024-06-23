@@ -7,7 +7,7 @@ protocol AccountPresenterProtocol {
     func showAlert(title: String, message: String) -> UIAlertController
     func registerUser(surname: String, name: String, email: String, password: String, group: String, completion: @escaping (Result<User, Error>) -> Void)
     func signInUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
-    func deleteUser(completion: @escaping (Result<User, Error>) -> Void)
+    func deleteUser(completion: @escaping (Result<Void, Error>) -> Void)
     func exitUser(completion: @escaping (Result<Void, Error>) -> Void)
     func confirmExitAlert() -> UIAlertController
     func confirmDeleteAlert() -> UIAlertController
@@ -87,17 +87,28 @@ final class AccountPresenter: AccountPresenterProtocol {
     }
     
     // DELETE USER:
-    func deleteUser(completion: @escaping (Result<User, Error>) -> Void) {
+    func deleteUser(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let user = Auth.auth().currentUser else {
             let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Пользователь не аутентифицирован"])
             completion(.failure(error))
             return
         }
-        user.delete { error in
+        let userId = user.uid
+        let db = Firestore.firestore()
+        let batch = db.batch()
+        let userDocRef = db.collection("RegisterUsers").document(userId)
+        batch.deleteDocument(userDocRef)
+        batch.commit { error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(user))
+                user.delete { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(()))
+                    }
+                }
             }
         }
     }
