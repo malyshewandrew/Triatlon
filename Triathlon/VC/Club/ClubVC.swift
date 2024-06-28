@@ -33,6 +33,7 @@ final class ClubVC: UIViewController {
     private let startDescriptionLabel = UILabel()
 
     private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let codexButton = UIButton(type: .system)
     private let philosophyButton = UIButton(type: .system)
     private let medecineButton = UIButton(type: .system)
@@ -59,7 +60,8 @@ final class ClubVC: UIViewController {
     private func addSubviews() {
         view.addSubviews(backgroundImage, logoEffectLottie, linkButton, infoButton, logoImageView, logoButton, coachCountLabel, coachDescriptionLabel, sportsmenCountLabel, sportsmenDescriptionLabel, startCountLabel, startDescriptionLabel, scrollView, loadingView)
         loadingView.addSubviews(loadingImageView, loadingLottie)
-        scrollView.addSubviews(codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton)
+        scrollView.addSubviews(contentView)
+        contentView.addSubviews(codexButton, philosophyButton, medecineButton, clubCardButton, anonimMessageButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -160,42 +162,51 @@ final class ClubVC: UIViewController {
         scrollView.topAnchor.constraint(equalTo: startDescriptionLabel.bottomAnchor, constant: 35).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        
+        // CONTENT VIEW:
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         // CODEX BUTTON:
         codexButton.translatesAutoresizingMaskIntoConstraints = false
-        codexButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        codexButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        codexButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        codexButton.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        codexButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        codexButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         codexButton.heightAnchor.constraint(equalTo: codexButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // PHILOSOPHY BUTTON:
         philosophyButton.translatesAutoresizingMaskIntoConstraints = false
         philosophyButton.topAnchor.constraint(equalTo: codexButton.bottomAnchor, constant: 25).isActive = true
-        philosophyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        philosophyButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        philosophyButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        philosophyButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         philosophyButton.heightAnchor.constraint(equalTo: philosophyButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // MEDECINE BUTTON:
         medecineButton.translatesAutoresizingMaskIntoConstraints = false
         medecineButton.topAnchor.constraint(equalTo: philosophyButton.bottomAnchor, constant: 25).isActive = true
-        medecineButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        medecineButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        medecineButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        medecineButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         medecineButton.heightAnchor.constraint(equalTo: medecineButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // CLUB CARD:
         clubCardButton.translatesAutoresizingMaskIntoConstraints = false
         clubCardButton.topAnchor.constraint(equalTo: medecineButton.bottomAnchor, constant: 25).isActive = true
-        clubCardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        clubCardButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        clubCardButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        clubCardButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         clubCardButton.heightAnchor.constraint(equalTo: clubCardButton.widthAnchor, multiplier: 0.2).isActive = true
         
         // ANONIM MESSAGE:
         anonimMessageButton.translatesAutoresizingMaskIntoConstraints = false
         anonimMessageButton.topAnchor.constraint(equalTo: clubCardButton.bottomAnchor, constant: 25).isActive = true
-        anonimMessageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        anonimMessageButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        anonimMessageButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        anonimMessageButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         anonimMessageButton.heightAnchor.constraint(equalTo: anonimMessageButton.widthAnchor, multiplier: 0.2).isActive = true
+        anonimMessageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -284,10 +295,6 @@ final class ClubVC: UIViewController {
         startDescriptionLabel.textColor = .white
         startDescriptionLabel.font = fontLightStandard12
         startDescriptionLabel.text = "Стартов"
-        
-        // SCROLL VIEW:
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height / 1.5)
-        scrollView.isScrollEnabled = true
         
         // CODEX BUTTON:
         codexButton.setTitle("Кодекс клуба", for: .normal)

@@ -145,7 +145,7 @@ final class TristyleCell: UITableViewCell {
         if human.youtube.isEmpty {
             nameLabel.text = human.name
         } else {
-            nameLabel.text = "🖥️  " + human.name
+            nameLabel.text = "🖥️ " + human.name
         }
         countryLabel.text = human.country
         imagesArray = human.photo

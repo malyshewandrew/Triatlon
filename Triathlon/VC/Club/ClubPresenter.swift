@@ -216,6 +216,9 @@ final class ClubPresenter: ClubPresenterProtocol {
         
         appleLottie.play()
         appleLottie.loopMode = .playOnce
+        appleLottie.layer.shadowRadius = 10
+        appleLottie.layer.shadowColor = UIColor.systemBlue.cgColor
+        appleLottie.layer.shadowOpacity = 0.5
         
         viewController.present(alert, animated: true)
     }

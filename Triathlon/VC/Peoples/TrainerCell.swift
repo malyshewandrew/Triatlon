@@ -144,7 +144,7 @@ final class TrainerCell: UITableViewCell {
         if trainer.youtube.isEmpty {
             nameLabel.text = trainer.name
         } else {
-            nameLabel.text = "🖥️  " + trainer.name
+            nameLabel.text = "🖥️ " + trainer.name
         }
         countryLabel.text = trainer.country
         imagesArray = trainer.photo

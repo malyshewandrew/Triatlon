@@ -145,7 +145,7 @@ final class TeamCell: UITableViewCell {
         if team.youtube.isEmpty {
             nameLabel.text = team.name
         } else {
-            nameLabel.text = "🖥️  " + team.name
+            nameLabel.text = "🖥️ " + team.name
         }
         countryLabel.text = team.country
         imagesArray = team.photo
