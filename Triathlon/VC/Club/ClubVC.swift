@@ -95,14 +95,14 @@ final class ClubVC: UIViewController {
         
         // LINK BUTTON:
         linkButton.translatesAutoresizingMaskIntoConstraints = false
-        linkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 55).isActive = true
+        linkButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         linkButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         linkButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         // INFO BUTTON:
         infoButton.translatesAutoresizingMaskIntoConstraints = false
-        infoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 55).isActive = true
+        infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         infoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         infoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -116,7 +116,7 @@ final class ClubVC: UIViewController {
         
         // IMAGE VIEW:
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 1).isActive = true

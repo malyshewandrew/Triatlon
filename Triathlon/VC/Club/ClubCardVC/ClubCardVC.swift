@@ -1,5 +1,7 @@
 import Lottie
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 // MARK: - PROTOCOL:
 
@@ -23,10 +25,12 @@ final class ClubCardVC: UIViewController {
     private let clubCardTwoView = UIView()
     private let clubCardTwoLottie = LottieAnimationView(name: "ClubCardTwoLottie")
     private let clubCardTwoImage = UIImageView()
+    private let clubCardTwoNameLabel = UILabel()
     private var segmentedControl = UISegmentedControl()
     private let partnerTableView = UITableView()
     private let mutualTableView = UITableView()
     private let vibration = Vibration()
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
     
     // MARK: - LIFYCYCLE:
     
@@ -43,7 +47,7 @@ final class ClubCardVC: UIViewController {
         view.addSubviews(backgroundImage, titleLabel, cardsContainerView, segmentedControl, partnerTableView, mutualTableView)
         cardsContainerView.addSubviews(clubCardTwoView, clubCardOneView, clubCardButton)
         clubCardOneView.addSubviews(clubCardOneLottie, clubCardOneImage, clubCardOneTitleLabel)
-        clubCardTwoView.addSubviews(clubCardTwoLottie, clubCardTwoImage)
+        clubCardTwoView.addSubviews(clubCardTwoLottie, clubCardTwoImage, clubCardTwoNameLabel)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -123,6 +127,11 @@ final class ClubCardVC: UIViewController {
         clubCardTwoImage.widthAnchor.constraint(equalTo: clubCardTwoView.widthAnchor, multiplier: 0.3).isActive = true
         clubCardTwoImage.heightAnchor.constraint(equalTo: clubCardTwoView.widthAnchor, multiplier: 1).isActive = true
         
+        // CLUB CARD TWO NAME LABEL:
+        clubCardTwoNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        clubCardTwoNameLabel.bottomAnchor.constraint(equalTo: clubCardTwoView.bottomAnchor, constant: -10).isActive = true
+        clubCardTwoNameLabel.leadingAnchor.constraint(equalTo: clubCardTwoView.leadingAnchor, constant: 15).isActive = true
+        
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.topAnchor.constraint(equalTo: clubCardOneView.bottomAnchor, constant: 25).isActive = true
@@ -186,6 +195,7 @@ final class ClubCardVC: UIViewController {
             guard let self = self else { return }
             self.vibration.vibrationStandart()
             self.presenter.flipCard(oneView: self.clubCardOneView, twoView: self.clubCardTwoView)
+            self.getNameForCardTwo()
         }), for: .touchUpInside)
         
         // CLUB CARD TWO VIEW:
@@ -206,6 +216,12 @@ final class ClubCardVC: UIViewController {
         clubCardTwoImage.layer.shadowRadius = 25
         clubCardTwoImage.layer.shadowColor = UIColor.black.cgColor
         clubCardTwoImage.layer.shadowOpacity = 1
+        
+        // CLUB CARD TWO NAME LABEL:
+        clubCardTwoNameLabel.textColor = .white
+        clubCardTwoNameLabel.textAlignment = .center
+        clubCardTwoNameLabel.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
+        clubCardTwoNameLabel.adjustsFontSizeToFitWidth = true
         
         // SEGMENTED CONTROL
         segmentedControl.backgroundColor = .colorBackground
@@ -239,6 +255,17 @@ final class ClubCardVC: UIViewController {
     @objc private func segmentedControlValueChanged(sender: UISegmentedControl) {
         vibration.vibrationStandart()
         presenter.selectedSegmentControl(sender: sender)
+    }
+    
+    // GET NAME FOR NAME USER:
+    func getNameForCardTwo() {
+        if let name = UserDefaults.standard.string(forKey: "userName"), !name.isEmpty {
+            clubCardTwoNameLabel.text = name.uppercased()
+            print("TEXT: \(name)")
+        } else {
+            clubCardTwoNameLabel.text = "Пользователь не аутентифицирован"
+            print("TEXT: Пользователь не аутентифицирован")
+        }
     }
 }
 

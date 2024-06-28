@@ -142,7 +142,11 @@ final class TeamCell: UITableViewCell {
     
     // CONFIGURE:
     func configure(with team: HumanModel) {
-        nameLabel.text = team.name
+        if team.youtube.isEmpty {
+            nameLabel.text = team.name
+        } else {
+            nameLabel.text = "🖥️  " + team.name
+        }
         countryLabel.text = team.country
         imagesArray = team.photo
         achievementsLabel.text = team.achievements

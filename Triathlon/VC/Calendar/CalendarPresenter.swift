@@ -103,7 +103,7 @@ final class CalendarPresenter: CalendarPresenterProtocol {
                 self.view.reloadTableView()
                 self.view.reloadCalendar()
                 self.view.hideActivityIndicator()
-                self.view.setCountLabel(countLabel: "Впереди мероприятий: \(eventDates.count).")
+                self.view.setTitleLabel(countLabel: "Впереди мероприятий: \(eventDates.count).")
             }
         }
     }

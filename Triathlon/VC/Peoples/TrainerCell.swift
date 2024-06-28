@@ -141,7 +141,11 @@ final class TrainerCell: UITableViewCell {
     
     // CONFIGURE:
     func configure(with trainer: HumanModel) {
-        nameLabel.text = trainer.name
+        if trainer.youtube.isEmpty {
+            nameLabel.text = trainer.name
+        } else {
+            nameLabel.text = "🖥️  " + trainer.name
+        }
         countryLabel.text = trainer.country
         imagesArray = trainer.photo
         achievementsLabel.text = trainer.achievements

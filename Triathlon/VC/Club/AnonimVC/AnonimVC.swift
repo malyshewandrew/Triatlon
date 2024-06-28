@@ -46,21 +46,21 @@ final class AnonimVC: UIViewController {
         // TITLE LABEL:
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         
         // DESCRIPTION LABEL:
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
         descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         
         // ANONIM TEXT VIEW:
         anonimTextView.translatesAutoresizingMaskIntoConstraints = false
-        anonimTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 35).isActive = true
+        anonimTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 25).isActive = true
         anonimTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         anonimTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-        anonimTextView.heightAnchor.constraint(equalTo: anonimTextView.widthAnchor, multiplier: 0.4).isActive = true
+        anonimTextView.heightAnchor.constraint(equalTo: anonimTextView.widthAnchor, multiplier: 0.3).isActive = true
         
         // SEND BUTTON:
         sendButton.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ final class AnonimVC: UIViewController {
         // ANONIM TEXT VIEW:
         anonimTextView.layer.masksToBounds = true
         anonimTextView.layer.cornerRadius = cornerRadius
-        anonimTextView.layer.borderWidth = 0.7
+        anonimTextView.layer.borderWidth = 0.6
         anonimTextView.layer.borderColor = UIColor.white.cgColor
         anonimTextView.textColor = .white
         anonimTextView.backgroundColor = .colorBackground

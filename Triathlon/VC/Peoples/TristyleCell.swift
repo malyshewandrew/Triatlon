@@ -141,13 +141,17 @@ final class TristyleCell: UITableViewCell {
     }
     
     // CONFIGURE:
-    func configure(with sportsmen: HumanModel) {
-        nameLabel.text = sportsmen.name
-        countryLabel.text = sportsmen.country
-        imagesArray = sportsmen.photo
-        achievementsLabel.text = sportsmen.achievements
-        workLabel.text = sportsmen.work
-        profileLink = sportsmen.url
+    func configure(with human: HumanModel) {
+        if human.youtube.isEmpty {
+            nameLabel.text = human.name
+        } else {
+            nameLabel.text = "🖥️  " + human.name
+        }
+        countryLabel.text = human.country
+        imagesArray = human.photo
+        achievementsLabel.text = human.achievements
+        workLabel.text = human.work
+        profileLink = human.url
         imageCollectionView.reloadData()
     }
     

@@ -1,4 +1,5 @@
 import UIKit
+import Lottie
 
 // MARK: - PROTOCOL:
 
@@ -142,7 +143,15 @@ final class ClubPresenter: ClubPresenterProtocol {
             """)
         }))
         alert.addAction(UIAlertAction(title: "О приложении", style: .default, handler: { _ in
-            self.showAlertDeveloper(title: "SwiftyLab™", message: "Версия приложения: \(self.appVersion)\nВерсия сборки:\(self.buildVersion)\n©Malyshew Andrew")
+            self.showAlertDeveloper(title: "SwiftyLab™", message: """
+                                    Версия приложения: \(self.appVersion)
+                                    Версия сборки:\(self.buildVersion)
+                                    ©Malyshew Andrew
+                                    
+                                    
+                                    
+                                    
+                                    """)
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
         return alert
@@ -170,6 +179,8 @@ final class ClubPresenter: ClubPresenterProtocol {
     // SHOW ALERT DEVELOPER:
     func showAlertDeveloper(title: String, message: String) {
         guard let viewController = view as? UIViewController else { return }
+        let appLottie = LottieAnimationView(name: "AppLottie")
+        let appleLottie = LottieAnimationView(name: "AppleLottie")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Связаться", style: .default, handler: { _ in
             let appURL = URL(string: "tg://resolve?domain=malyshewandrew")
@@ -183,6 +194,29 @@ final class ClubPresenter: ClubPresenterProtocol {
             }
         }))
         alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive))
+        // ADD SUBVIEWS:
+        alert.view.addSubviews(appLottie, appleLottie)
+        
+        // CONFIGURE CONSTRAINTS:
+        appLottie.translatesAutoresizingMaskIntoConstraints = false
+        appLottie.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
+        appLottie.topAnchor.constraint(equalTo: alert.view.topAnchor).isActive = true
+        appLottie.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        appLottie.widthAnchor.constraint(equalToConstant: 275).isActive = true
+        
+        appleLottie.translatesAutoresizingMaskIntoConstraints = false
+        appleLottie.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
+        appleLottie.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 22).isActive = true
+        appleLottie.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        appleLottie.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        // CONFIGURE UI:
+        appLottie.play()
+        appLottie.loopMode = .loop
+        
+        appleLottie.play()
+        appleLottie.loopMode = .playOnce
+        
         viewController.present(alert, animated: true)
     }
     

@@ -22,11 +22,10 @@ final class AccountVC: UIViewController {
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let backgroundImage = UIImageView()
     private let backgroundLottie = LottieAnimationView(name: "AccountLottie")
-    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private var segmentedControl = UISegmentedControl()
-    
     private let registrationView = UIView()
-    private let registrationTitleLabel = UILabel()
     private let registrationSurnameTF = UITextField()
     private let registrationNameTF = UITextField()
     private let registrationEmailTF = UITextField()
@@ -37,7 +36,6 @@ final class AccountVC: UIViewController {
     private let registrationButton = UIButton(type: .system)
     
     private let enterView = UIView()
-    private let enterTitleLabel = UILabel()
     private let enterEmailTF = UITextField()
     private let enterPasswordTF = UITextField()
     private let enterButton = UIButton(type: .system)
@@ -71,9 +69,11 @@ final class AccountVC: UIViewController {
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
-        view.addSubviews(backgroundLottie, backgroundImage, segmentedControl, registrationView, enterView, authView)
-        registrationView.addSubviews(registrationTitleLabel, registrationTitleLabel, registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
-        enterView.addSubviews(enterTitleLabel, enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
+        view.addSubviews(backgroundLottie, backgroundImage, scrollView)
+        scrollView.addSubviews(contentView)
+        contentView.addSubviews(segmentedControl, registrationView, enterView, authView)
+        registrationView.addSubviews(registrationSurnameTF, registrationNameTF, registrationEmailTF, registrationPasswordTF, registrationPasswordRepeatTF, registrationGroupTF, registrationButton)
+        enterView.addSubviews(enterEmailTF, enterPasswordTF, enterButton, resetPasswordButton)
         authView.addSubviews(authLogoImageView, authNameButton, authTitleButton, authGroupeButton, exitButton, deleteButton)
         authNameButton.addSubviews(authNameLabel)
         authTitleButton.addSubviews(authTitleLabel)
@@ -97,22 +97,37 @@ final class AccountVC: UIViewController {
         backgroundLottie.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundLottie.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
+        // SCROLL VIEW:
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        // CONTENT VIEW:
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25).isActive = true
         segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         
         // AUTH VIEW:
         authView.translatesAutoresizingMaskIntoConstraints = false
-        authView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        authView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        authView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        authView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        authView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        authView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        authView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        authView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         // AUTH LOGO IMAGE VIEW:
         authLogoImageView.translatesAutoresizingMaskIntoConstraints = false
-        authLogoImageView.topAnchor.constraint(equalTo: authView.topAnchor, constant: -5).isActive = true
+        authLogoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
         authLogoImageView.centerXAnchor.constraint(equalTo: authView.centerXAnchor).isActive = true
         authLogoImageView.widthAnchor.constraint(equalTo: authView.widthAnchor, multiplier: 0.3).isActive = true
         authLogoImageView.heightAnchor.constraint(equalTo: authLogoImageView.widthAnchor, multiplier: 1).isActive = true
@@ -162,26 +177,21 @@ final class AccountVC: UIViewController {
         // REGISTRATION VIEW:
         registrationView.translatesAutoresizingMaskIntoConstraints = false
         registrationView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
-        registrationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        registrationView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        registrationView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
-        
-        // REGISTRATION TITLE:
-        registrationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        registrationTitleLabel.centerXAnchor.constraint(equalTo: registrationView.centerXAnchor).isActive = true
-        registrationTitleLabel.topAnchor.constraint(equalTo: registrationView.topAnchor).isActive = true
+        registrationView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        registrationView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
+        registrationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
         
         // REGISTRATION SURNAME:
         registrationSurnameTF.translatesAutoresizingMaskIntoConstraints = false
-        registrationSurnameTF.topAnchor.constraint(equalTo: registrationTitleLabel.bottomAnchor, constant: 25).isActive = true
-        registrationSurnameTF.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5).isActive = true
+        registrationSurnameTF.topAnchor.constraint(equalTo: registrationView.topAnchor, constant: 15).isActive = true
+        registrationSurnameTF.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -5).isActive = true
         registrationSurnameTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
         registrationSurnameTF.heightAnchor.constraint(equalTo: registrationSurnameTF.widthAnchor, multiplier: 0.2).isActive = true
         
         // REGISTRATION NAME:
         registrationNameTF.translatesAutoresizingMaskIntoConstraints = false
-        registrationNameTF.topAnchor.constraint(equalTo: registrationTitleLabel.bottomAnchor, constant: 25).isActive = true
-        registrationNameTF.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 5).isActive = true
+        registrationNameTF.topAnchor.constraint(equalTo: registrationView.topAnchor, constant: 15).isActive = true
+        registrationNameTF.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 5).isActive = true
         registrationNameTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
         registrationNameTF.heightAnchor.constraint(equalTo: registrationNameTF.widthAnchor, multiplier: 0.2).isActive = true
         
@@ -195,14 +205,14 @@ final class AccountVC: UIViewController {
         // REGISTRATION PASSWORD:
         registrationPasswordTF.translatesAutoresizingMaskIntoConstraints = false
         registrationPasswordTF.topAnchor.constraint(equalTo: registrationEmailTF.bottomAnchor, constant: 15).isActive = true
-        registrationPasswordTF.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5).isActive = true
+        registrationPasswordTF.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -5).isActive = true
         registrationPasswordTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
         registrationPasswordTF.heightAnchor.constraint(equalTo: registrationPasswordTF.widthAnchor, multiplier: 0.2).isActive = true
         
         // REGISTRATION PASSWORD REPEAT:
         registrationPasswordRepeatTF.translatesAutoresizingMaskIntoConstraints = false
         registrationPasswordRepeatTF.topAnchor.constraint(equalTo: registrationEmailTF.bottomAnchor, constant: 15).isActive = true
-        registrationPasswordRepeatTF.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 5).isActive = true
+        registrationPasswordRepeatTF.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 5).isActive = true
         registrationPasswordRepeatTF.widthAnchor.constraint(equalTo: registrationView.widthAnchor, multiplier: 0.45).isActive = true
         registrationPasswordRepeatTF.heightAnchor.constraint(equalTo: registrationPasswordRepeatTF.widthAnchor, multiplier: 0.2).isActive = true
         
@@ -225,18 +235,13 @@ final class AccountVC: UIViewController {
         // ENTER VIEW:
         enterView.translatesAutoresizingMaskIntoConstraints = false
         enterView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 25).isActive = true
-        enterView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        enterView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        enterView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
-        
-        // ENTER TITLE:
-        enterTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        enterTitleLabel.centerXAnchor.constraint(equalTo: enterView.centerXAnchor).isActive = true
-        enterTitleLabel.topAnchor.constraint(equalTo: enterView.topAnchor).isActive = true
-        
+        enterView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        enterView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
+        enterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
+
         // ENTER EMAIL:
         enterEmailTF.translatesAutoresizingMaskIntoConstraints = false
-        enterEmailTF.topAnchor.constraint(equalTo: enterTitleLabel.bottomAnchor, constant: 25).isActive = true
+        enterEmailTF.topAnchor.constraint(equalTo: enterView.topAnchor, constant: 15).isActive = true
         enterEmailTF.centerXAnchor.constraint(equalTo: enterView.centerXAnchor).isActive = true
         enterEmailTF.widthAnchor.constraint(equalTo: enterView.widthAnchor, multiplier: 0.75).isActive = true
         enterEmailTF.heightAnchor.constraint(equalTo: enterEmailTF.widthAnchor, multiplier: 0.15).isActive = true
@@ -257,18 +262,21 @@ final class AccountVC: UIViewController {
         
         // RESET PASSWORD BUTTON:
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
-        resetPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        resetPasswordButton.bottomAnchor.constraint(equalTo: enterView.bottomAnchor, constant: -5).isActive = true
+        resetPasswordButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        resetPasswordButton.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 15).isActive = true
+        resetPasswordButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25).isActive = true
         
         // EXIT BUTTON:
         exitButton.translatesAutoresizingMaskIntoConstraints = false
-        exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        exitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
+        exitButton.topAnchor.constraint(equalTo: authGroupeButton.bottomAnchor, constant: 50).isActive = true
+        exitButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25).isActive = true
+        exitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25).isActive = true
         
         // DELETE BUTTON:
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        deleteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
+        deleteButton.topAnchor.constraint(equalTo: authGroupeButton.bottomAnchor, constant: 50).isActive = true
+        deleteButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25).isActive = true
+        deleteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -308,7 +316,7 @@ final class AccountVC: UIViewController {
         authLogoImageView.layer.shadowOpacity = 1
         
         // AUTH NAME BUTTON:
-        authNameButton.setTitle(NSLocalizedString("Спортсмен:", comment: "") + ":", for: .normal)
+        authNameButton.setTitle("Спортсмен:", for: .normal)
         authNameButton.setTitleColor(.lightGray, for: .normal)
         authNameButton.setTitleColor(.systemBlue, for: .highlighted)
         authNameButton.titleLabel?.font = fontLightStandard12
@@ -327,7 +335,7 @@ final class AccountVC: UIViewController {
         authNameLabel.font = fontBoldStandard26
         
         // AUTH TITLE BUTTON:
-        authTitleButton.setTitle(NSLocalizedString("Email:", comment: "") + ":", for: .normal)
+        authTitleButton.setTitle("Email:", for: .normal)
         authTitleButton.setTitleColor(.lightGray, for: .normal)
         authTitleButton.setTitleColor(.systemBlue, for: .highlighted)
         authTitleButton.titleLabel?.font = fontLightStandard12
@@ -346,7 +354,7 @@ final class AccountVC: UIViewController {
         authTitleLabel.font = fontBoldStandard16
         
         // AUTH GROUPE BUTTON:
-        authGroupeButton.setTitle(NSLocalizedString("Группа:", comment: "") + ":", for: .normal)
+        authGroupeButton.setTitle("Группа:", for: .normal)
         authGroupeButton.setTitleColor(.lightGray, for: .normal)
         authGroupeButton.setTitleColor(.systemBlue, for: .highlighted)
         authGroupeButton.titleLabel?.font = fontLightStandard12
@@ -367,12 +375,6 @@ final class AccountVC: UIViewController {
         // REGISTRATION VIEW:
         registrationView.layer.opacity = 1
         registrationView.isHidden = false
-        
-        // REGISTRATION TITLE:
-        registrationTitleLabel.textColor = .white
-        registrationTitleLabel.textAlignment = .center
-        registrationTitleLabel.font = fontBoldStandard22
-        registrationTitleLabel.text = "Регистрация"
         
         // REGISTRATION SURNAME:
         registrationSurnameTF.layer.masksToBounds = true
@@ -456,6 +458,8 @@ final class AccountVC: UIViewController {
             self.activityIndicator.startAnimating()
             self.view.addSubview(activityIndicator)
             guard self.registrationPasswordTF.text == self.registrationPasswordRepeatTF.text else {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
                 present(self.presenter.showAlert(title: "Ошибка", message: "Пароли не совпадают"), animated: true)
                 return
             }
@@ -466,6 +470,8 @@ final class AccountVC: UIViewController {
                   let passwordRepeat = self.registrationPasswordRepeatTF.text, !passwordRepeat.isEmpty,
                   let group = self.registrationGroupTF.text, !group.isEmpty
             else {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
                 present(self.presenter.showAlert(title: "Ошибка", message: "Заполните все поля"), animated: true)
                 return
             }
@@ -487,12 +493,6 @@ final class AccountVC: UIViewController {
         // ENTER VIEW:
         enterView.layer.opacity = 0.0
         enterView.isHidden = true
-        
-        // ENTER TITLE:
-        enterTitleLabel.textColor = .white
-        enterTitleLabel.textAlignment = .center
-        enterTitleLabel.font = fontBoldStandard22
-        enterTitleLabel.text = "Вход"
         
         // ENTER EMAIL:
         enterEmailTF.layer.masksToBounds = true
@@ -563,6 +563,9 @@ final class AccountVC: UIViewController {
             self.vibration.vibrationStandart()
             self.present(self.presenter.confirmExitAlert(), animated: true)
         }), for: .touchUpInside)
+        exitButton.layer.shadowRadius = 15
+        exitButton.layer.shadowColor = UIColor.black.cgColor
+        exitButton.layer.shadowOpacity = 1
         
         // DELETE BUTTON:
         deleteButton.setTitle("Удалить аккаунт", for: .normal)
@@ -573,6 +576,9 @@ final class AccountVC: UIViewController {
             self.vibration.vibrationStandart()
             self.present(self.presenter.confirmDeleteAlert(), animated: true)
         }), for: .touchUpInside)
+        deleteButton.layer.shadowRadius = 15
+        deleteButton.layer.shadowColor = UIColor.black.cgColor
+        deleteButton.layer.shadowOpacity = 1
     }
     
     // MARK: - CONFIGURE GESTURES:
@@ -637,9 +643,11 @@ final class AccountVC: UIViewController {
                        let lastName = document.data()?["Фамилия"] as? String
                     {
                         UserDefaults.standard.set(group, forKey: "userGroup")
-                        self.authNameLabel.text = "\(lastName) \(firstName) "
+                        self.authNameLabel.text = "\(lastName) \(firstName)"
                         self.authGroupeLabel.text = "\(group)"
                         print("Группа \(group) сохранена в UserDefaults")
+                        UserDefaults.standard.setValue("\(lastName) \(firstName)", forKey: "userName")
+                        print("Club Card: \(String(describing: UserDefaults.standard.string(forKey: "userName")))")
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.removeFromSuperview()
                     } else {
@@ -708,6 +716,7 @@ extension AccountVC: AccountVCProtocol {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 UserDefaults.standard.removeObject(forKey: "userGroup")
+                UserDefaults.standard.removeObject(forKey: "userName")
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
                 self.activityIndicator.stopAnimating()
@@ -728,6 +737,7 @@ extension AccountVC: AccountVCProtocol {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 UserDefaults.standard.removeObject(forKey: "userGroup")
+                UserDefaults.standard.removeObject(forKey: "userName")
             case .failure(let error):
                 self.present(self.presenter.showAlert(title: "Ошибка", message: "\(error.localizedDescription)"), animated: true)
                 self.activityIndicator.stopAnimating()

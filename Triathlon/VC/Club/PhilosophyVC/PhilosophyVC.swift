@@ -4,6 +4,7 @@ final class PhilosophyVC: UIViewController {
     // MARK: - PROPERTIES:
     private let backgroundImage = UIImageView()
     private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let topTitleLabel = UILabel()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -36,7 +37,8 @@ final class PhilosophyVC: UIViewController {
     
     private func addSubviews() {
         view.addSubviews(backgroundImage, scrollView)
-        scrollView.addSubviews(topTitleLabel, titleLabel, descriptionLabel, titleCollectionView, ruleOneTitleLabel, ruleOneDescriptionLabel, ruleOneCollectionView, ruleTwoTitleLabel, ruleTwoDescriptionLabel, ruleTwoCollectionView, ruleThreeTitleLabel, ruleThreeDescriptionLabel, ruleThreeCollectionView, ruleFourTitleLabel, ruleFourDescriptionLabel, ruleFourCollectionView)
+        scrollView.addSubviews(contentView)
+        contentView.addSubviews(topTitleLabel, titleLabel, descriptionLabel, titleCollectionView, ruleOneTitleLabel, ruleOneDescriptionLabel, ruleOneCollectionView, ruleTwoTitleLabel, ruleTwoDescriptionLabel, ruleTwoCollectionView, ruleThreeTitleLabel, ruleThreeDescriptionLabel, ruleThreeCollectionView, ruleFourTitleLabel, ruleFourDescriptionLabel, ruleFourCollectionView)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -51,111 +53,120 @@ final class PhilosophyVC: UIViewController {
         
         // SCROLL VIEW:
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        // CONTENT VIEW:
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         // TOP TITLE:
         topTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        topTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        topTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 25).isActive = true
-        topTitleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        topTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        topTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25).isActive = true
+        topTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         
         // TITLE LABEL:
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topTitleLabel.bottomAnchor, constant: 25).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1).isActive = true
         
         // DESCRIPTION LABEL:
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // TITLE COLLECTION VIEW:
         titleCollectionView.translatesAutoresizingMaskIntoConstraints = false
         titleCollectionView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 25).isActive = true
-        titleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        titleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        titleCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        titleCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         titleCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE ONE TITLE:
         ruleOneTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         ruleOneTitleLabel.topAnchor.constraint(equalTo: titleCollectionView.bottomAnchor, constant: 50).isActive = true
-        ruleOneTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        ruleOneTitleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleOneTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        ruleOneTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE ONE DESCRIPTION:
         ruleOneDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        ruleOneDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        ruleOneDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ruleOneDescriptionLabel.topAnchor.constraint(equalTo: ruleOneTitleLabel.bottomAnchor, constant: 25).isActive = true
-        ruleOneDescriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleOneDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE ONE COLLECTION VIEW:
         ruleOneCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleOneCollectionView.topAnchor.constraint(equalTo: ruleOneDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleOneCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        ruleOneCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        ruleOneCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        ruleOneCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         ruleOneCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE TWO TITLE:
         ruleTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         ruleTwoTitleLabel.topAnchor.constraint(equalTo: ruleOneCollectionView.bottomAnchor, constant: 50).isActive = true
-        ruleTwoTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        ruleTwoTitleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleTwoTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        ruleTwoTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE TWO DESCRIPTION:
         ruleTwoDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        ruleTwoDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        ruleTwoDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ruleTwoDescriptionLabel.topAnchor.constraint(equalTo: ruleTwoTitleLabel.bottomAnchor, constant: 25).isActive = true
-        ruleTwoDescriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleTwoDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE TWO COLLECTION VIEW:
         ruleTwoCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleTwoCollectionView.topAnchor.constraint(equalTo: ruleTwoDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleTwoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        ruleTwoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        ruleTwoCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        ruleTwoCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         ruleTwoCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE THREE TITLE:
         ruleThreeTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         ruleThreeTitleLabel.topAnchor.constraint(equalTo: ruleTwoCollectionView.bottomAnchor, constant: 50).isActive = true
-        ruleThreeTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        ruleThreeTitleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleThreeTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        ruleThreeTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE THREE DESCRIPTION:
         ruleThreeDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        ruleThreeDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        ruleThreeDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ruleThreeDescriptionLabel.topAnchor.constraint(equalTo: ruleThreeTitleLabel.bottomAnchor, constant: 25).isActive = true
-        ruleThreeDescriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleThreeDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE THREE COLLECTION VIEW:
         ruleThreeCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleThreeCollectionView.topAnchor.constraint(equalTo: ruleThreeDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleThreeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        ruleThreeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        ruleThreeCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        ruleThreeCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         ruleThreeCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // RULE FOUR TITLE:
         ruleFourTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         ruleFourTitleLabel.topAnchor.constraint(equalTo: ruleThreeCollectionView.bottomAnchor, constant: 50).isActive = true
-        ruleFourTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        ruleFourTitleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleFourTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        ruleFourTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE FOUR DESCRIPTION:
         ruleFourDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        ruleFourDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        ruleFourDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ruleFourDescriptionLabel.topAnchor.constraint(equalTo: ruleFourTitleLabel.bottomAnchor, constant: 25).isActive = true
-        ruleFourDescriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        ruleFourDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         
         // RULE FOUR COLLECTION VIEW:
         ruleFourCollectionView.translatesAutoresizingMaskIntoConstraints = false
         ruleFourCollectionView.topAnchor.constraint(equalTo: ruleFourDescriptionLabel.bottomAnchor, constant: 25).isActive = true
-        ruleFourCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        ruleFourCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        ruleFourCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        ruleFourCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         ruleFourCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        ruleFourCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -168,15 +179,17 @@ final class PhilosophyVC: UIViewController {
         backgroundImage.image = UIImage(resource: .background)
         
         // SCROLL VIEW:
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2.85)
-        scrollView.isScrollEnabled = true
+        scrollView.backgroundColor = .clear
+        
+        // CONTENT VIEW:
+        contentView.backgroundColor = .clear
         
         // TOP TITLE:
-        topTitleLabel.text = "Tristyle - это не только спорт\nЭто философия и команда"
+        topTitleLabel.text = "Tristyle - это не только спорт.\nЭто философия и команда."
         topTitleLabel.textColor = .white
         topTitleLabel.numberOfLines = 0
         topTitleLabel.textAlignment = .center
-        topTitleLabel.font = fontMediumStandard14
+        topTitleLabel.font = fontLightStandard12
         
         // TITLE LABEL:
         titleLabel.text = "Понимать идею и не бояться"

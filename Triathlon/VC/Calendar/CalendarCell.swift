@@ -65,7 +65,7 @@ final class CalendarCell: UITableViewCell {
         nameLabel.textColor = .white
         nameLabel.font = fontBoldStandard16
         
-        // DATE:
+        // DAYs LEFT:
         daysLeftLabel.textColor = .white
         daysLeftLabel.font = fontBoldStandard16
     }

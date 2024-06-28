@@ -1,6 +1,7 @@
 import UIKit
 
 // MARK: - PROTOCOL:
+
 protocol PeoplesVCProtocol: AnyObject {
     func showTrainerTableView()
     func showTeamTableView()
@@ -37,22 +38,6 @@ final class PeoplesVC: UIViewController {
         presenter.selectedSegmentControl(sender: segmentedControl)
     }
     
-    // MARK: - CONFIGURE TABLE VIEWS
-    private func configureTableView() {
-        trainerTableView.delegate = self
-        trainerTableView.dataSource = self
-        trainerTableView.register(TrainerCell.self, forCellReuseIdentifier: "TrainerCell")
-        teamTableView.delegate = self
-        teamTableView.dataSource = self
-        teamTableView.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
-        sportsmensTableView.delegate = self
-        sportsmensTableView.dataSource = self
-        sportsmensTableView.register(SportsmensCell.self, forCellReuseIdentifier: "SportsmensCell")
-        tristyleTableView.delegate = self
-        tristyleTableView.dataSource = self
-        tristyleTableView.register(TristyleCell.self, forCellReuseIdentifier: "TristyleCell")
-    }
-    
     // MARK: - ADD SUBVIEWS:
     
     private func addSubviews() {
@@ -62,7 +47,6 @@ final class PeoplesVC: UIViewController {
     // MARK: - CONFIGURE CONSTRAINTS:
     
     private func configureConstraints() {
-        
         // BACKGROUND VIEW:
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -72,7 +56,7 @@ final class PeoplesVC: UIViewController {
         
         // SEGMENTED CONTROL:
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         
@@ -151,6 +135,26 @@ final class PeoplesVC: UIViewController {
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
     }
     
+    // MARK: - CONFIGURE TABLE VIEWS
+
+    private func configureTableView() {
+        trainerTableView.delegate = self
+        trainerTableView.dataSource = self
+        trainerTableView.register(TrainerCell.self, forCellReuseIdentifier: "TrainerCell")
+
+        teamTableView.delegate = self
+        teamTableView.dataSource = self
+        teamTableView.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
+
+        sportsmensTableView.delegate = self
+        sportsmensTableView.dataSource = self
+        sportsmensTableView.register(SportsmensCell.self, forCellReuseIdentifier: "SportsmensCell")
+
+        tristyleTableView.delegate = self
+        tristyleTableView.dataSource = self
+        tristyleTableView.register(TristyleCell.self, forCellReuseIdentifier: "TristyleCell")
+    }
+    
     // MARK: - HELPERS:
     
     // SEGMENTED CONTROL VALUE CHANGED:
@@ -173,7 +177,7 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
         } else if tableView == tristyleTableView {
             return tristyleArray.count
         }
-       return 0
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -192,18 +196,18 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
                 cell.presenter = presenter
                 cell.backgroundColor = .clear
                 return cell
-            } 
+            }
         } else if tableView == sportsmensTableView {
-            if let cell = teamTableView.dequeueReusableCell(withIdentifier: "SportsmensCell", for: indexPath) as? SportsmensCell {
-                let sportsmen = teamArray[indexPath.row]
+            if let cell = sportsmensTableView.dequeueReusableCell(withIdentifier: "SportsmensCell", for: indexPath) as? SportsmensCell {
+                let sportsmen = sportsmensArray[indexPath.row]
                 cell.configure(with: sportsmen)
                 cell.presenter = presenter
                 cell.backgroundColor = .clear
                 return cell
             }
         } else if tableView == tristyleTableView {
-            if let cell = teamTableView.dequeueReusableCell(withIdentifier: "TristyleCell", for: indexPath) as? TristyleCell {
-                let tristyle = teamArray[indexPath.row]
+            if let cell = tristyleTableView.dequeueReusableCell(withIdentifier: "TristyleCell", for: indexPath) as? TristyleCell {
+                let tristyle = tristyleArray[indexPath.row]
                 cell.configure(with: tristyle)
                 cell.presenter = presenter
                 cell.backgroundColor = .clear
@@ -215,21 +219,60 @@ extension PeoplesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vibration.vibrationStandart()
-        let detailPeopleVC = DetailPeopleVC()
-        let trainer = trainerArray[indexPath.row]
-        if !trainer.youtube.isEmpty {
-            detailPeopleVC.configure(model: trainer)
-            if let sheetController = detailPeopleVC.sheetPresentationController {
-                sheetController.prefersGrabberVisible = true
-                sheetController.preferredCornerRadius = cornerRadius
-                sheetController.detents = [.medium()]
+        if tableView == trainerTableView {
+            let detailPeopleVC = DetailPeopleVC()
+            let trainer = trainerArray[indexPath.row]
+            if !trainer.youtube.isEmpty {
+                detailPeopleVC.configure(model: trainer)
+                if let sheetController = detailPeopleVC.sheetPresentationController {
+                    sheetController.prefersGrabberVisible = true
+                    sheetController.preferredCornerRadius = cornerRadius
+                    sheetController.detents = [.medium()]
+                }
+                present(detailPeopleVC, animated: true)
             }
-            self.present(detailPeopleVC, animated: true)
+        } else if tableView == teamTableView {
+            let detailPeopleVC = DetailPeopleVC()
+            let team = teamArray[indexPath.row]
+            if !team.youtube.isEmpty {
+                detailPeopleVC.configure(model: team)
+                if let sheetController = detailPeopleVC.sheetPresentationController {
+                    sheetController.prefersGrabberVisible = true
+                    sheetController.preferredCornerRadius = cornerRadius
+                    sheetController.detents = [.medium()]
+                }
+                present(detailPeopleVC, animated: true)
+            }
+        } else if tableView == sportsmensTableView {
+            let detailPeopleVC = DetailPeopleVC()
+            let sportsmen = tristyleArray[indexPath.row]
+            if !sportsmen.youtube.isEmpty {
+                detailPeopleVC.configure(model: sportsmen)
+                if let sheetController = detailPeopleVC.sheetPresentationController {
+                    sheetController.prefersGrabberVisible = true
+                    sheetController.preferredCornerRadius = cornerRadius
+                    sheetController.detents = [.medium()]
+                }
+                present(detailPeopleVC, animated: true)
+            }
+        } else if tableView == tristyleTableView {
+            let detailPeopleVC = DetailPeopleVC()
+            let tristyle = tristyleArray[indexPath.row]
+            if !tristyle.youtube.isEmpty {
+                detailPeopleVC.configure(model: tristyle)
+                if let sheetController = detailPeopleVC.sheetPresentationController {
+                    sheetController.prefersGrabberVisible = true
+                    sheetController.preferredCornerRadius = cornerRadius
+                    sheetController.detents = [.medium()]
+                }
+                present(detailPeopleVC, animated: true)
+            }
         }
     }
 }
-
+    
 // MARK: - PROTOCOL:
+    
 extension PeoplesVC: PeoplesVCProtocol {
     // SHOW TRAINERS:
     func showTrainerTableView() {
@@ -238,7 +281,7 @@ extension PeoplesVC: PeoplesVCProtocol {
         sportsmensTableView.isHidden = true
         tristyleTableView.isHidden = true
     }
-    
+        
     // SHOW TEAM:
     func showTeamTableView() {
         trainerTableView.isHidden = true
@@ -246,7 +289,7 @@ extension PeoplesVC: PeoplesVCProtocol {
         sportsmensTableView.isHidden = true
         tristyleTableView.isHidden = true
     }
-    
+        
     // SHOW SPORTSMNES:
     func showSportsmensTableView() {
         trainerTableView.isHidden = true
@@ -254,7 +297,7 @@ extension PeoplesVC: PeoplesVCProtocol {
         sportsmensTableView.isHidden = false
         tristyleTableView.isHidden = true
     }
-    
+        
     // SHOW TRISTYLE:
     func showTristyleTableView() {
         trainerTableView.isHidden = true
@@ -262,7 +305,7 @@ extension PeoplesVC: PeoplesVCProtocol {
         sportsmensTableView.isHidden = true
         tristyleTableView.isHidden = false
     }
-    
+        
     // HIDE ALL:
     func hideAllTableViews() {
         trainerTableView.isHidden = true
